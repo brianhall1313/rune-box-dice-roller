@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://onto76ada87d"]
+
+[ext_resource type="PackedScene" uid="uid://un86ip0c1s75" path="res://scenes/player_info_element.tscn" id="1_62fm1"]
+[ext_resource type="PackedScene" uid="uid://dka5ft4cxosrs" path="res://scenes/right_panel.tscn" id="2_yr2bm"]
+
+[node name="encounter" type="Node2D"]
+
+[node name="UI" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="player_info_element" parent="UI" instance=ExtResource("1_62fm1")]
+
+[node name="right_panel" parent="UI" instance=ExtResource("2_yr2bm")]
