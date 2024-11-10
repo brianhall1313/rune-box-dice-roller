@@ -1,8 +1,23 @@
-[gd_scene load_steps=3 format=3 uid="uid://bs6ky5dxh2gl2"]
+[gd_scene load_steps=4 format=3 uid="uid://bs6ky5dxh2gl2"]
 
 [ext_resource type="Script" path="res://scenes/die.gd" id="1_hkhwk"]
 [ext_resource type="Texture2D" uid="uid://747w4c7ftvc0" path="res://textures/Nature_Die.png" id="2_6eg0e"]
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_grjgk"]
+bg_color = Color(0.423529, 0.690196, 0.976471, 0.129412)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.281385, 0.88849, 0.98832, 1)
+
 [node name="die" type="TextureRect"]
 texture = ExtResource("2_6eg0e")
 script = ExtResource("1_hkhwk")
+
+[node name="selected" type="Panel" parent="."]
+layout_mode = 0
+offset_right = 32.0
+offset_bottom = 32.0
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_grjgk")

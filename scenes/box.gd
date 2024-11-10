@@ -13,7 +13,6 @@ extends Control
 @onready var die_11: TextureRect = $dice_grid/GridContainer/die11
 @onready var die_12: TextureRect = $dice_grid/GridContainer/die12
 
-@onready var blank:=preload("res://textures/Die_Divet.png")
 
 @onready var grid:Array[Array] = [
 		[

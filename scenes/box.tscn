@@ -9,7 +9,7 @@ layout_mode = 3
 anchors_preset = 0
 script = ExtResource("1_qljo8")
 
-[node name="TextureRect" type="TextureRect" parent="."]
+[node name="box_image" type="TextureRect" parent="."]
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
