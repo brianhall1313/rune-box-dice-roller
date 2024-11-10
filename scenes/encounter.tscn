@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://onto76ada87d"]
+[gd_scene load_steps=4 format=3 uid="uid://onto76ada87d"]
 
 [ext_resource type="PackedScene" uid="uid://un86ip0c1s75" path="res://scenes/player_info_element.tscn" id="1_62fm1"]
 [ext_resource type="PackedScene" uid="uid://dka5ft4cxosrs" path="res://scenes/right_panel.tscn" id="2_yr2bm"]
+[ext_resource type="PackedScene" uid="uid://h587v4triyb6" path="res://scenes/active_panel.tscn" id="3_5nnk0"]
 
 [node name="encounter" type="Node2D"]
 
@@ -14,3 +15,5 @@ offset_bottom = 40.0
 [node name="player_info_element" parent="UI" instance=ExtResource("1_62fm1")]
 
 [node name="right_panel" parent="UI" instance=ExtResource("2_yr2bm")]
+
+[node name="active_panel" parent="UI" instance=ExtResource("3_5nnk0")]

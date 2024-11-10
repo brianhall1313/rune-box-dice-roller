@@ -83,6 +83,8 @@ layout_mode = 2
 
 [node name="Button" type="Button" parent="VBoxContainer/spell_information/active_spell/HBoxContainer"]
 layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 0
 theme_override_font_sizes/font_size = 6
 text = "✓"
 
@@ -94,8 +96,20 @@ layout_mode = 2
 
 [node name="rune_spell" parent="VBoxContainer/spell_information/queued_spells/powerable_spell" instance=ExtResource("1_1tsrd")]
 layout_mode = 2
+size_flags_horizontal = 0
 
-[node name="Button" type="Button" parent="VBoxContainer/spell_information/queued_spells/powerable_spell"]
+[node name="power_control" type="HBoxContainer" parent="VBoxContainer/spell_information/queued_spells/powerable_spell"]
 layout_mode = 2
+size_flags_horizontal = 8
+
+[node name="decrease" type="Button" parent="VBoxContainer/spell_information/queued_spells/powerable_spell/power_control"]
+layout_mode = 2
+size_flags_vertical = 0
+theme_override_font_sizes/font_size = 6
+text = "-"
+
+[node name="increase" type="Button" parent="VBoxContainer/spell_information/queued_spells/powerable_spell/power_control"]
+layout_mode = 2
+size_flags_vertical = 0
 theme_override_font_sizes/font_size = 6
 text = "+"

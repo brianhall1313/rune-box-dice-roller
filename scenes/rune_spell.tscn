@@ -1,4 +1,9 @@
-[gd_scene format=3 uid="uid://fq6oy2qhfmhr"]
+[gd_scene load_steps=5 format=3 uid="uid://fq6oy2qhfmhr"]
+
+[ext_resource type="Texture2D" uid="uid://cohduxxuyg86m" path="res://textures/Fire_Glyph.png" id="1_gs7hy"]
+[ext_resource type="Texture2D" uid="uid://dnee5630octbt" path="res://textures/Lob_Glyph.png" id="2_lkp7b"]
+[ext_resource type="Texture2D" uid="uid://dbq7v3gav7s0i" path="res://textures/Echo_Glyph.png" id="3_cfuwh"]
+[ext_resource type="Texture2D" uid="uid://747w4c7ftvc0" path="res://textures/Nature_Die.png" id="4_8aph6"]
 
 [node name="rune_spell" type="VBoxContainer"]
 
@@ -7,25 +12,29 @@ layout_mode = 2
 theme_override_constants/separation = 2
 alignment = 1
 
-[node name="glyph_icon" type="ColorRect" parent="active_glyphs"]
+[node name="TextureRect" type="TextureRect" parent="active_glyphs"]
 custom_minimum_size = Vector2(16, 16)
 layout_mode = 2
-color = Color(0.0901961, 1, 1, 1)
+texture = ExtResource("1_gs7hy")
+expand_mode = 2
 
-[node name="glyph_icon2" type="ColorRect" parent="active_glyphs"]
+[node name="TextureRect2" type="TextureRect" parent="active_glyphs"]
 custom_minimum_size = Vector2(16, 16)
 layout_mode = 2
-color = Color(0.901492, 0.861697, 0.922959, 1)
+texture = ExtResource("2_lkp7b")
+expand_mode = 2
 
-[node name="glyph_icon3" type="ColorRect" parent="active_glyphs"]
+[node name="TextureRect3" type="TextureRect" parent="active_glyphs"]
 custom_minimum_size = Vector2(16, 16)
 layout_mode = 2
-color = Color(0.0901961, 1, 1, 1)
+texture = ExtResource("3_cfuwh")
+expand_mode = 2
 
-[node name="glyph_icon4" type="ColorRect" parent="active_glyphs"]
+[node name="TextureRect4" type="TextureRect" parent="active_glyphs"]
 custom_minimum_size = Vector2(16, 16)
 layout_mode = 2
-color = Color(0.709957, 0.972006, 0.443958, 1)
+texture = ExtResource("4_8aph6")
+expand_mode = 2
 
 [node name="effects" type="Label" parent="."]
 layout_mode = 2

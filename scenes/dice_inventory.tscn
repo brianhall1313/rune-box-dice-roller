@@ -1,0 +1,25 @@
+[gd_scene load_steps=2 format=3 uid="uid://wrja75sijyfj"]
+
+[ext_resource type="PackedScene" uid="uid://dg5jgxbrxsn8u" path="res://scenes/dice_entry.tscn" id="1_f80v1"]
+
+[node name="dice_inventory" type="ScrollContainer"]
+size_flags_vertical = 3
+horizontal_scroll_mode = 0
+
+[node name="dice_list" type="VBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="dice_entry" parent="dice_list" instance=ExtResource("1_f80v1")]
+layout_mode = 2
+
+[node name="dice_entry2" parent="dice_list" instance=ExtResource("1_f80v1")]
+layout_mode = 2
+
+[node name="dice_entry3" parent="dice_list" instance=ExtResource("1_f80v1")]
+layout_mode = 2
+
+[node name="dice_entry4" parent="dice_list" instance=ExtResource("1_f80v1")]
+layout_mode = 2
+
+[node name="dice_entry5" parent="dice_list" instance=ExtResource("1_f80v1")]
+layout_mode = 2
