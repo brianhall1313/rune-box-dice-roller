@@ -19,6 +19,7 @@ config/icon="res://icon.svg"
 Global="*res://globals/Global.gd"
 AudioPlayer="*res://globals/audio_player.tscn"
 GlobalSignalBus="*res://globals/GlobalSignalBus.gd"
+InventoryManager="*res://globals/InventoryManager.gd"
 
 [display]
 

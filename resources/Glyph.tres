@@ -1,0 +1,17 @@
+[gd_resource type="Resource" load_steps=2 format=3 uid="uid://ddn624ubrdg6s"]
+
+[sub_resource type="GDScript" id="GDScript_od2ec"]
+script/source = "extends Resource
+
+@export var type:String = \"\"
+@export var glyph:String = \"\"
+
+
+func effect()->void:
+	pass
+"
+
+[resource]
+script = SubResource("GDScript_od2ec")
+type = ""
+glyph = ""
