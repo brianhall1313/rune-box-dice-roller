@@ -1,2 +1,5 @@
 res://scenes/die.tscn
 res://scenes/die.gd
+res://scenes/right_panel.tscn
+res://scenes/rune_spell.tscn
+res://scenes/dice_entry.tscn

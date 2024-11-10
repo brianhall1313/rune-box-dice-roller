@@ -1,4 +1,6 @@
-[gd_scene load_steps=5 format=3 uid="uid://dka5ft4cxosrs"]
+[gd_scene load_steps=6 format=3 uid="uid://dka5ft4cxosrs"]
+
+[ext_resource type="PackedScene" uid="uid://fq6oy2qhfmhr" path="res://scenes/rune_spell.tscn" id="1_1tsrd"]
 
 [sub_resource type="Gradient" id="Gradient_mvp20"]
 
@@ -41,11 +43,11 @@ layout_mode = 2
 [node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/enemy_info_container/VBoxContainer"]
 layout_mode = 2
 
-[node name="TextureRect" type="TextureRect" parent="VBoxContainer/enemy_info_container/VBoxContainer/HBoxContainer"]
+[node name="portrait" type="TextureRect" parent="VBoxContainer/enemy_info_container/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 texture = SubResource("GradientTexture1D_vadxw")
 
-[node name="Label" type="Label" parent="VBoxContainer/enemy_info_container/VBoxContainer/HBoxContainer"]
+[node name="name" type="Label" parent="VBoxContainer/enemy_info_container/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_font_sizes/font_size = 10
@@ -60,42 +62,40 @@ theme_override_styles/fill = SubResource("StyleBoxFlat_2lga6")
 value = 54.0
 show_percentage = false
 
+[node name="status_effects" type="Label" parent="VBoxContainer/enemy_info_container/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 8
+text = "poisoned"
+
 [node name="spell_information" type="VBoxContainer" parent="VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
+size_flags_stretch_ratio = 2.0
+
+[node name="active_spell" type="VBoxContainer" parent="VBoxContainer/spell_information"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/spell_information/active_spell"]
+layout_mode = 2
+
+[node name="rune_spell" parent="VBoxContainer/spell_information/active_spell/HBoxContainer" instance=ExtResource("1_1tsrd")]
+layout_mode = 2
+
+[node name="Button" type="Button" parent="VBoxContainer/spell_information/active_spell/HBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 6
+text = "✓"
 
 [node name="queued_spells" type="VBoxContainer" parent="VBoxContainer/spell_information"]
 layout_mode = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/spell_information/queued_spells"]
+[node name="powerable_spell" type="HBoxContainer" parent="VBoxContainer/spell_information/queued_spells"]
 layout_mode = 2
 
-[node name="HBoxContainer2" type="HBoxContainer" parent="VBoxContainer/spell_information/queued_spells/VBoxContainer"]
+[node name="rune_spell" parent="VBoxContainer/spell_information/queued_spells/powerable_spell" instance=ExtResource("1_1tsrd")]
 layout_mode = 2
-theme_override_constants/separation = 2
-alignment = 1
 
-[node name="glyph_icon" type="ColorRect" parent="VBoxContainer/spell_information/queued_spells/VBoxContainer/HBoxContainer2"]
-custom_minimum_size = Vector2(16, 16)
+[node name="Button" type="Button" parent="VBoxContainer/spell_information/queued_spells/powerable_spell"]
 layout_mode = 2
-color = Color(0.0901961, 1, 1, 1)
-
-[node name="glyph_icon2" type="ColorRect" parent="VBoxContainer/spell_information/queued_spells/VBoxContainer/HBoxContainer2"]
-custom_minimum_size = Vector2(16, 16)
-layout_mode = 2
-color = Color(0.901492, 0.861697, 0.922959, 1)
-
-[node name="glyph_icon3" type="ColorRect" parent="VBoxContainer/spell_information/queued_spells/VBoxContainer/HBoxContainer2"]
-custom_minimum_size = Vector2(16, 16)
-layout_mode = 2
-color = Color(0.0901961, 1, 1, 1)
-
-[node name="glyph_icon4" type="ColorRect" parent="VBoxContainer/spell_information/queued_spells/VBoxContainer/HBoxContainer2"]
-custom_minimum_size = Vector2(16, 16)
-layout_mode = 2
-color = Color(0.709957, 0.972006, 0.443958, 1)
-
-[node name="Label" type="Label" parent="VBoxContainer/spell_information/queued_spells/VBoxContainer"]
-layout_mode = 2
-theme_override_font_sizes/font_size = 8
-text = "10 dmg Fire"
+theme_override_font_sizes/font_size = 6
+text = "+"
