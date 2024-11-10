@@ -1,0 +1,25 @@
+[gd_scene load_steps=2 format=3 uid="uid://du30i2smjir4w"]
+
+[ext_resource type="PackedScene" uid="uid://fq6oy2qhfmhr" path="res://scenes/rune_spell.tscn" id="1_0abhw"]
+
+[node name="powerable_spell" type="HBoxContainer"]
+
+[node name="rune_spell" parent="." instance=ExtResource("1_0abhw")]
+layout_mode = 2
+size_flags_horizontal = 0
+
+[node name="power_control" type="HBoxContainer" parent="."]
+layout_mode = 2
+size_flags_horizontal = 8
+
+[node name="decrease" type="Button" parent="power_control"]
+layout_mode = 2
+size_flags_vertical = 0
+theme_override_font_sizes/font_size = 6
+text = "-"
+
+[node name="increase" type="Button" parent="power_control"]
+layout_mode = 2
+size_flags_vertical = 0
+theme_override_font_sizes/font_size = 6
+text = "+"

@@ -1,6 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://dka5ft4cxosrs"]
+[gd_scene load_steps=8 format=3 uid="uid://dka5ft4cxosrs"]
 
-[ext_resource type="PackedScene" uid="uid://fq6oy2qhfmhr" path="res://scenes/rune_spell.tscn" id="1_1tsrd"]
+[ext_resource type="Script" path="res://scenes/right_panel.gd" id="1_ojs6q"]
+[ext_resource type="PackedScene" uid="uid://cxvm65rnq0he1" path="res://scenes/active_spell.tscn" id="2_66hhk"]
+[ext_resource type="PackedScene" uid="uid://du30i2smjir4w" path="res://scenes/queued_spell.tscn" id="3_a6yu1"]
 
 [sub_resource type="Gradient" id="Gradient_mvp20"]
 
@@ -19,6 +21,7 @@ layout_mode = 3
 anchors_preset = 0
 offset_left = 300.0
 offset_right = 300.0
+script = ExtResource("1_ojs6q")
 
 [node name="ColorRect" type="ColorRect" parent="."]
 layout_mode = 2
@@ -72,44 +75,11 @@ layout_mode = 2
 size_flags_vertical = 3
 size_flags_stretch_ratio = 2.0
 
-[node name="active_spell" type="VBoxContainer" parent="VBoxContainer/spell_information"]
+[node name="active_spell" parent="VBoxContainer/spell_information" instance=ExtResource("2_66hhk")]
 layout_mode = 2
-
-[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/spell_information/active_spell"]
-layout_mode = 2
-
-[node name="rune_spell" parent="VBoxContainer/spell_information/active_spell/HBoxContainer" instance=ExtResource("1_1tsrd")]
-layout_mode = 2
-
-[node name="Button" type="Button" parent="VBoxContainer/spell_information/active_spell/HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 0
-theme_override_font_sizes/font_size = 6
-text = "✓"
 
 [node name="queued_spells" type="VBoxContainer" parent="VBoxContainer/spell_information"]
 layout_mode = 2
 
-[node name="powerable_spell" type="HBoxContainer" parent="VBoxContainer/spell_information/queued_spells"]
+[node name="powerable_spell" parent="VBoxContainer/spell_information/queued_spells" instance=ExtResource("3_a6yu1")]
 layout_mode = 2
-
-[node name="rune_spell" parent="VBoxContainer/spell_information/queued_spells/powerable_spell" instance=ExtResource("1_1tsrd")]
-layout_mode = 2
-size_flags_horizontal = 0
-
-[node name="power_control" type="HBoxContainer" parent="VBoxContainer/spell_information/queued_spells/powerable_spell"]
-layout_mode = 2
-size_flags_horizontal = 8
-
-[node name="decrease" type="Button" parent="VBoxContainer/spell_information/queued_spells/powerable_spell/power_control"]
-layout_mode = 2
-size_flags_vertical = 0
-theme_override_font_sizes/font_size = 6
-text = "-"
-
-[node name="increase" type="Button" parent="VBoxContainer/spell_information/queued_spells/powerable_spell/power_control"]
-layout_mode = 2
-size_flags_vertical = 0
-theme_override_font_sizes/font_size = 6
-text = "+"

@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://h587v4triyb6"]
+[gd_scene load_steps=3 format=3 uid="uid://h587v4triyb6"]
 
 [ext_resource type="PackedScene" uid="uid://dgo31qb3uyshh" path="res://scenes/box.tscn" id="1_6qcb3"]
+[ext_resource type="Script" path="res://scenes/active_panel.gd" id="1_mbv1l"]
 
 [node name="active_panel" type="Control"]
 layout_mode = 3
@@ -9,6 +10,7 @@ offset_left = 112.0
 offset_top = 150.0
 offset_right = 409.0
 offset_bottom = 295.0
+script = ExtResource("1_mbv1l")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
 layout_mode = 1
