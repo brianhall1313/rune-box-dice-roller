@@ -1,4 +1,6 @@
-[gd_scene format=3 uid="uid://h587v4triyb6"]
+[gd_scene load_steps=2 format=3 uid="uid://h587v4triyb6"]
+
+[ext_resource type="PackedScene" uid="uid://dgo31qb3uyshh" path="res://scenes/box.tscn" id="1_6qcb3"]
 
 [node name="active_panel" type="Control"]
 layout_mode = 3
@@ -6,16 +8,7 @@ anchors_preset = 0
 offset_left = 112.0
 offset_top = 150.0
 offset_right = 409.0
-offset_bottom = 287.0
-
-[node name="ColorRect" type="ColorRect" parent="."]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-color = Color(0.360483, 0.15695, 0.0120854, 1)
+offset_bottom = 295.0
 
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
 layout_mode = 1
@@ -31,9 +24,9 @@ alignment = 1
 
 [node name="Button" type="Button" parent="HBoxContainer/VBoxContainer"]
 layout_mode = 2
+theme_override_font_sizes/font_size = 8
 text = "Shake
 "
 
-[node name="GridContainer" type="GridContainer" parent="HBoxContainer"]
+[node name="box" parent="HBoxContainer" instance=ExtResource("1_6qcb3")]
 layout_mode = 2
-size_flags_horizontal = 3

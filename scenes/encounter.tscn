@@ -17,3 +17,5 @@ offset_bottom = 40.0
 [node name="right_panel" parent="UI" instance=ExtResource("2_yr2bm")]
 
 [node name="active_panel" parent="UI" instance=ExtResource("3_5nnk0")]
+offset_top = 139.0
+offset_bottom = 287.0

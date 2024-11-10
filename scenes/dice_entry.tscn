@@ -1,6 +1,9 @@
-[gd_scene load_steps=2 format=3 uid="uid://dg5jgxbrxsn8u"]
+[gd_scene load_steps=5 format=3 uid="uid://dg5jgxbrxsn8u"]
 
 [ext_resource type="Script" path="res://scenes/dice_entry.gd" id="1_7v4nj"]
+[ext_resource type="Texture2D" uid="uid://cpvb5j6ghcqcv" path="res://textures/Craft_Die.png" id="2_16kty"]
+[ext_resource type="Texture2D" uid="uid://dnee5630octbt" path="res://textures/Lob_Glyph.png" id="3_y1sxj"]
+[ext_resource type="Texture2D" uid="uid://jmp57s4hr8ll" path="res://textures/Temper_Glyph.png" id="4_d1h3l"]
 
 [node name="dice_entry" type="VBoxContainer"]
 script = ExtResource("1_7v4nj")
@@ -8,10 +11,11 @@ script = ExtResource("1_7v4nj")
 [node name="dice_summary" type="HBoxContainer" parent="."]
 layout_mode = 2
 
-[node name="glyph_icon" type="ColorRect" parent="dice_summary"]
+[node name="type_icon" type="TextureRect" parent="dice_summary"]
 custom_minimum_size = Vector2(16, 16)
 layout_mode = 2
-color = Color(0.0901961, 1, 1, 1)
+texture = ExtResource("2_16kty")
+expand_mode = 2
 
 [node name="glyph_title" type="Label" parent="dice_summary"]
 layout_mode = 2
@@ -30,32 +34,38 @@ layout_mode = 2
 layout_mode = 2
 theme_override_constants/separation = 2
 
-[node name="glyph_icon" type="ColorRect" parent="full_dice_view/HBoxContainer2"]
+[node name="glyph_icon1" type="TextureRect" parent="full_dice_view/HBoxContainer2"]
 custom_minimum_size = Vector2(16, 16)
 layout_mode = 2
-color = Color(0.0901961, 1, 1, 1)
+texture = ExtResource("3_y1sxj")
+expand_mode = 2
 
-[node name="glyph_icon2" type="ColorRect" parent="full_dice_view/HBoxContainer2"]
+[node name="glyph_icon2" type="TextureRect" parent="full_dice_view/HBoxContainer2"]
 custom_minimum_size = Vector2(16, 16)
 layout_mode = 2
-color = Color(0.901492, 0.861697, 0.922959, 1)
+texture = ExtResource("3_y1sxj")
+expand_mode = 2
 
-[node name="glyph_icon3" type="ColorRect" parent="full_dice_view/HBoxContainer2"]
+[node name="glyph_icon3" type="TextureRect" parent="full_dice_view/HBoxContainer2"]
 custom_minimum_size = Vector2(16, 16)
 layout_mode = 2
-color = Color(0.0901961, 1, 1, 1)
+texture = ExtResource("3_y1sxj")
+expand_mode = 2
 
-[node name="glyph_icon4" type="ColorRect" parent="full_dice_view/HBoxContainer2"]
+[node name="glyph_icon4" type="TextureRect" parent="full_dice_view/HBoxContainer2"]
 custom_minimum_size = Vector2(16, 16)
 layout_mode = 2
-color = Color(0.709957, 0.972006, 0.443958, 1)
+texture = ExtResource("4_d1h3l")
+expand_mode = 2
 
-[node name="glyph_icon5" type="ColorRect" parent="full_dice_view/HBoxContainer2"]
+[node name="glyph_icon5" type="TextureRect" parent="full_dice_view/HBoxContainer2"]
 custom_minimum_size = Vector2(16, 16)
 layout_mode = 2
-color = Color(0.0901961, 1, 1, 1)
+texture = ExtResource("4_d1h3l")
+expand_mode = 2
 
-[node name="glyph_icon6" type="ColorRect" parent="full_dice_view/HBoxContainer2"]
+[node name="glyph_icon6" type="TextureRect" parent="full_dice_view/HBoxContainer2"]
 custom_minimum_size = Vector2(16, 16)
 layout_mode = 2
-color = Color(0.909691, 0.91223, 0.352799, 1)
+texture = ExtResource("2_16kty")
+expand_mode = 2

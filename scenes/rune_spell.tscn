@@ -39,4 +39,9 @@ expand_mode = 2
 [node name="effects" type="Label" parent="."]
 layout_mode = 2
 theme_override_font_sizes/font_size = 8
-text = "10 dmg Fire"
+text = "10 dmg Fire, echo"
+
+[node name="power-ups" type="Label" parent="."]
+layout_mode = 2
+theme_override_font_sizes/font_size = 6
+text = "+1"
