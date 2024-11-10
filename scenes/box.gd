@@ -35,9 +35,6 @@ extends Control
 		]
 	]
 	
-var displayed: Array[Object] = []
-var current_spell_selection: Array[Object] = []
-var spell_queue: Array[Array] = []
 
 
 func update_grid() -> void:

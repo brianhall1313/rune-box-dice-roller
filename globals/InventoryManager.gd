@@ -2,59 +2,72 @@ extends Node
 
 var default_inventory: Array[Dictionary] = [
 		{#1
+			"name":"Elemental",
 			"type":"nature",
-			"sides":["fire","water","earth","sky","life",""]
+			"faces":["fire","water","earth","sky","life",""]
 		},
 		{#2
+			"name":"Elemental",
 			"type":"nature",
-			"sides":["fire","water","earth","sky","life",""]
+			"faces":["fire","water","earth","sky","life",""]
 		},
 		{#3
+			"name":"Elemental",
 			"type":"nature",
-			"sides":["fire","water","earth","sky","life",""]
+			"faces":["fire","water","earth","sky","life",""]
 		},
 		{#4
+			"name":"Elemental",
 			"type":"nature",
-			"sides":["fire","water","earth","sky","life",""]
+			"faces":["fire","water","earth","sky","life",""]
 		},
 		{#5
+			"name":"Elemental",
 			"type":"nature",
-			"sides":["fire","water","earth","sky","life",""]
+			"faces":["fire","water","earth","sky","life",""]
 
 		},
 		{#6
+			"name":"Elemental",
 			"type":"nature",
-			"sides":["fire","water","earth","sky","life",""]
+			"faces":["fire","water","earth","sky","life",""]
 
 		},
 		{#7
+			"name":"Elemental",
 			"type":"nature",
-			"sides":["fire","water","earth","sky","life",""]
+			"faces":["fire","water","earth","sky","life",""]
 
 		},
 		{#8
+			"name":"Elemental",
 			"type":"nature",
-			"sides":["fire","water","earth","sky","life",""]
+			"faces":["fire","water","earth","sky","life",""]
 		},
 		{#9
+			"name":"Physical",
 			"type":"craft",
-			"sides":["temper","temper","lob","lob","",""]
+			"faces":["temper","temper","lob","lob","",""]
 		},
 		{#10
+			"name":"Physical",
 			"type":"craft",
-			"sides":["temper","temper","lob","lob","",""]
+			"faces":["temper","temper","lob","lob","",""]
 		},
 		{#11
+			"name":"Magical",
 			"type":"arcane",
-			"sides":["temper","temper","lob","lob","",""]
+			"faces":["temper","temper","lob","lob","",""]
 		},
 		{#12
+			"name":"Magical",
 			"type":"arcane",
-			"sides":["temper","temper","lob","lob","",""]
+			"faces":["temper","temper","lob","lob","",""]
 		},
 		{#13
+			"name":"Magical",
 			"type":"arcane",
-			"sides":["","","","","",""]
+			"faces":["","","","","",""]
 		}
 	]
 
