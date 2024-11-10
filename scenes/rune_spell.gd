@@ -11,10 +11,20 @@ extends VBoxContainer
 
 
 func setup(spell)->void:
+	print("called setup for ", self)
+	print("the spell is ",spell)
 	for i in 4:
-		if spell[i]:
-			var type = spell[i].die_type
-			var face = spell[i].current_glyph
-			glyphs[i].texture = Global.glyph_list[type][face]
+		print("i is ", i)
+		if len(spell) > i:
+			glyphs[i].texture = spell[i].texture
+			glyphs[i].show()
 		else:
 			glyphs[i].hide()
+
+
+func _on_confirm_pressed() -> void:
+	GlobalSignalBus.spell_confirm.emit()
+	 # Replace with function body.
+
+func _on_cancel_pressed() -> void:
+	GlobalSignalBus.spell_cancel.emit() # Replace with function body.

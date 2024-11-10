@@ -10,9 +10,19 @@ layout_mode = 2
 [node name="rune_spell" parent="HBoxContainer" instance=ExtResource("1_gs3yd")]
 layout_mode = 2
 
-[node name="Button" type="Button" parent="HBoxContainer"]
+[node name="confirm" type="Button" parent="HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 0
 theme_override_font_sizes/font_size = 6
 text = "✓"
+
+[node name="cancel" type="Button" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 0
+theme_override_font_sizes/font_size = 6
+text = "X"
+
+[connection signal="pressed" from="HBoxContainer/confirm" to="HBoxContainer/rune_spell" method="_on_confirm_pressed"]
+[connection signal="pressed" from="HBoxContainer/cancel" to="HBoxContainer/rune_spell" method="_on_cancel_pressed"]

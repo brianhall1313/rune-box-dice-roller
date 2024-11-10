@@ -9,9 +9,13 @@ extends Control
 
 func update(args:Dictionary)->void:
 	if args.has("spell"):
+		print(args["spell"])
 		for child in queued_spells.get_children():
 			child.queue_free()
 		for spell in args["spell"]["queue"]:
 			var new = queued_spell_box.instantiate()
 			queued_spells.add_child(new)
 			new.get_child(0).setup(spell)
+		print("want to update active spell too")
+		print(args["spell"]["active"])
+		active_spell.get_child(0).get_child(0).setup(args["spell"]["active"])
