@@ -1,20 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://bs6ky5dxh2gl2"]
+[gd_scene load_steps=3 format=3 uid="uid://bs6ky5dxh2gl2"]
 
 [ext_resource type="Script" path="res://scenes/die.gd" id="1_hkhwk"]
 [ext_resource type="Texture2D" uid="uid://747w4c7ftvc0" path="res://textures/Nature_Die.png" id="2_6eg0e"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_qt23w"]
-size = Vector2(32, 32)
-
-[node name="die" type="Node2D"]
-script = ExtResource("1_hkhwk")
-
-[node name="die_face" type="Sprite2D" parent="."]
+[node name="die" type="TextureRect"]
 texture = ExtResource("2_6eg0e")
-
-[node name="Area2D" type="Area2D" parent="."]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-shape = SubResource("RectangleShape2D_qt23w")
-
-[connection signal="input_event" from="Area2D" to="." method="_on_area_2d_input_event"]
+script = ExtResource("1_hkhwk")

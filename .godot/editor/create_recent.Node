@@ -1,3 +1,5 @@
+TextureRect
+Control
 Button
 HBoxContainer
 Sprite2D
@@ -5,7 +7,6 @@ Label
 TextureButton
 VBoxContainer
 ProgressBar
-TextureRect
 CollisionShape2D
 Area2D
 ColorRect
