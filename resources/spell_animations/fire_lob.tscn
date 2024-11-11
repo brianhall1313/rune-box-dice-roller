@@ -1,0 +1,44 @@
+[gd_scene load_steps=8 format=3 uid="uid://maw0ek2we5ty"]
+
+[ext_resource type="Texture2D" uid="uid://cextm6kawgjpn" path="res://textures/Spell_Effects/Fire_Lob/Fire_Lob_2.png" id="1_03hp2"]
+[ext_resource type="Texture2D" uid="uid://ccyugrs6xkajg" path="res://textures/Spell_Effects/Fire_Lob/Fire_Lob_1.png" id="2_cdse4"]
+[ext_resource type="Texture2D" uid="uid://ll42p5qkxite" path="res://textures/Spell_Effects/Fire_Lob/Frie_Lob_3.png" id="3_bq7h2"]
+[ext_resource type="Texture2D" uid="uid://ollx5rupaemj" path="res://textures/Spell_Effects/Fire_Lob/Fire_Lob_4.png" id="4_vi3pv"]
+[ext_resource type="Texture2D" uid="uid://udhr0wn1v151" path="res://textures/Spell_Effects/Fire_Lob/Fire_Lob_5.png" id="5_qritk"]
+[ext_resource type="Texture2D" uid="uid://bmqiu1trhv2wc" path="res://textures/Spell_Effects/Fire_Lob/Fire_Lob_Strike.png" id="6_dejsa"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_tgvk6"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_03hp2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_cdse4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_bq7h2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("1_03hp2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_bq7h2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_vi3pv")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_qritk")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_dejsa")
+}],
+"loop": true,
+"name": &"default",
+"speed": 4.0
+}]
+
+[node name="fire_lob" type="AnimatedSprite2D"]
+sprite_frames = SubResource("SpriteFrames_tgvk6")
+frame_progress = 0.883619
