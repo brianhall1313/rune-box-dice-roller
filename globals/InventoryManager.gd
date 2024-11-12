@@ -78,7 +78,6 @@ func _ready() -> void:
 
 func build_inventory(new_inv:Array=default_inventory)->void:
 	inventory = new_inv.duplicate(true)
-	print(inventory)
 
 
 func remove_item(remove_item)->void:

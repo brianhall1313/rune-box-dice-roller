@@ -1,10 +1,12 @@
-[gd_scene load_steps=2 format=3 uid="uid://wrja75sijyfj"]
+[gd_scene load_steps=3 format=3 uid="uid://wrja75sijyfj"]
 
+[ext_resource type="Script" path="res://scenes/dice_inventory.gd" id="1_1bsts"]
 [ext_resource type="PackedScene" uid="uid://dg5jgxbrxsn8u" path="res://scenes/dice_entry.tscn" id="1_f80v1"]
 
 [node name="dice_inventory" type="ScrollContainer"]
 size_flags_vertical = 3
 horizontal_scroll_mode = 0
+script = ExtResource("1_1bsts")
 
 [node name="dice_list" type="VBoxContainer" parent="."]
 layout_mode = 2
