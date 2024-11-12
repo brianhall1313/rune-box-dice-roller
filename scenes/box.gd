@@ -58,4 +58,5 @@ func update_grid() -> void:
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_released("ui_accept"):
+		print("poke")
 		update_grid()
