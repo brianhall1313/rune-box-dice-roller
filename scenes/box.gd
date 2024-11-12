@@ -35,16 +35,25 @@ extends Control
 		]
 	]
 
+var box_inventory:Array = []
+
+
+func _ready() -> void:
+	update_grid()
+
 
 func update_grid() -> void:
-	var box_inventory = InventoryManager.inventory.duplicate(true)
+	box_inventory = InventoryManager.inventory.duplicate(true)
 	box_inventory.shuffle()
 	var i = 0
 	for x in len(grid):
 		for y in len(grid[x]):
-			grid[x][y].setup(box_inventory[i]["name"],box_inventory[i]["type"],box_inventory[i]["faces"])
-			grid[x][y].roll()
-			i += 1
+			if i < len(box_inventory):
+				grid[x][y].setup(box_inventory[i]["name"],box_inventory[i]["type"],box_inventory[i]["faces"])
+				grid[x][y].roll()
+				i += 1
+			else:
+				grid[x][y].set_blank()
 			
 
 func _input(event: InputEvent) -> void:

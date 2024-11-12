@@ -33,6 +33,9 @@ func setup(name:String="",new_type:String="",new_faces:Array=["","","","","",""]
 	faces = new_faces
 	roll()
 
+func set_blank() -> void:
+	setup("","")
+
 func get_random() -> String:
 	return faces.pick_random()
 
