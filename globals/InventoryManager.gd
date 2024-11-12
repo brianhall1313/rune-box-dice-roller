@@ -57,12 +57,12 @@ var default_inventory: Array[Dictionary] = [
 		{#11
 			"name":"Magical",
 			"type":"arcane",
-			"faces":["temper","temper","lob","lob","",""]
+			"faces":["echo","echo","reflect","reflect","",""]
 		},
 		{#12
 			"name":"Magical",
 			"type":"arcane",
-			"faces":["temper","temper","lob","lob","",""]
+			"faces":["echo","echo","reflect","reflect","",""]
 		},
 		{#13
 			"name":"Magical",
@@ -71,10 +71,15 @@ var default_inventory: Array[Dictionary] = [
 		}
 	]
 
-var inventory: Array[Object] = []
+var inventory: Array[Dictionary] = []
+
+func _ready() -> void:
+	build_inventory()
 
 func build_inventory(new_inv:Array=default_inventory)->void:
 	inventory = new_inv.duplicate(true)
+	print(inventory)
+
 
 func remove_item(remove_item)->void:
 	#TODO

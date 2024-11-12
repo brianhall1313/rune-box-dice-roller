@@ -16,26 +16,37 @@ extends Control
 
 @onready var grid:Array[Array] = [
 		[
-			[die_1],
-			[die_2],
-			[die_3],
-			[die_4]
+			die_1,
+			die_2,
+			die_3,
+			die_4
 		],
 		[
-			[die_5],
-			[die_6],
-			[die_7],
-			[die_8]
+			die_5,
+			die_6,
+			die_7,
+			die_8
 		],
 		[
-			[die_9],
-			[die_10],
-			[die_11],
-			[die_12]
+			die_9,
+			die_10,
+			die_11,
+			die_12
 		]
 	]
-	
 
 
 func update_grid() -> void:
-	pass
+	var box_inventory = InventoryManager.inventory.duplicate(true)
+	box_inventory.shuffle()
+	var i = 0
+	for x in len(grid):
+		for y in len(grid[x]):
+			grid[x][y].setup(box_inventory[i]["name"],box_inventory[i]["type"],box_inventory[i]["faces"])
+			grid[x][y].roll()
+			i += 1
+			
+
+func _input(event: InputEvent) -> void:
+	if event.is_action_released("ui_accept"):
+		update_grid()

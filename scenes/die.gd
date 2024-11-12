@@ -7,7 +7,7 @@ class_name Die
 
 var die_type:String="nature"
 var current_glyph:String=""
-var faces:Array[String] = ["","","","","",""]
+var faces:Array = ["","","","","",""]
 
 var is_selected:bool = false
 
@@ -25,7 +25,7 @@ func _gui_input(event: InputEvent) -> void:
 		#roll()
 		GlobalSignalBus.rune_interaction.emit(self)
 
-func setup(name:String="",new_type:String="",new_faces:Array[String]=["","","","","",""])->void:
+func setup(name:String="",new_type:String="",new_faces:Array=["","","","","",""])->void:
 	if new_type == "":
 		self.texture = blank 
 		return
