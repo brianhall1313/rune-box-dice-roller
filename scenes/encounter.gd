@@ -7,6 +7,8 @@ var displayed: Array[Die] = []
 var current_spell_selection: Array[Die] = []
 var spell_queue: Array[Array] = []
 
+var current_enemy # scene instance or just the data?
+
 func _ready() -> void:
 	connect_to_global_signal_bus()
 

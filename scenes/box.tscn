@@ -11,9 +11,10 @@ script = ExtResource("1_qljo8")
 
 [node name="box_image" type="TextureRect" parent="."]
 layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
+offset_right = 256.0
+offset_bottom = 144.0
 texture = ExtResource("2_3olan")
+expand_mode = 2
 
 [node name="dice_grid" type="MarginContainer" parent="."]
 layout_mode = 0
