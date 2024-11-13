@@ -1,7 +1,6 @@
-[gd_scene load_steps=4 format=3 uid="uid://dgo31qb3uyshh"]
+[gd_scene load_steps=3 format=3 uid="uid://dgo31qb3uyshh"]
 
 [ext_resource type="Script" path="res://scenes/box.gd" id="1_qljo8"]
-[ext_resource type="PackedScene" uid="uid://bs6ky5dxh2gl2" path="res://scenes/die.tscn" id="2_1rfbj"]
 [ext_resource type="Texture2D" uid="uid://dvovfxyo88qim" path="res://textures/Rune_Box.png" id="2_3olan"]
 
 [node name="box" type="Control"]
@@ -16,51 +15,15 @@ offset_bottom = 144.0
 texture = ExtResource("2_3olan")
 expand_mode = 2
 
-[node name="dice_grid" type="MarginContainer" parent="."]
+[node name="dice_grid_margin" type="MarginContainer" parent="."]
 layout_mode = 0
 offset_right = 256.0
 offset_bottom = 144.0
 theme_override_constants/margin_left = 57
 theme_override_constants/margin_top = 20
 
-[node name="GridContainer" type="GridContainer" parent="dice_grid"]
+[node name="dice_grid" type="GridContainer" parent="dice_grid_margin"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 2.5
 columns = 4
-
-[node name="die" parent="dice_grid/GridContainer" instance=ExtResource("2_1rfbj")]
-layout_mode = 2
-
-[node name="die2" parent="dice_grid/GridContainer" instance=ExtResource("2_1rfbj")]
-layout_mode = 2
-
-[node name="die3" parent="dice_grid/GridContainer" instance=ExtResource("2_1rfbj")]
-layout_mode = 2
-
-[node name="die4" parent="dice_grid/GridContainer" instance=ExtResource("2_1rfbj")]
-layout_mode = 2
-
-[node name="die5" parent="dice_grid/GridContainer" instance=ExtResource("2_1rfbj")]
-layout_mode = 2
-
-[node name="die6" parent="dice_grid/GridContainer" instance=ExtResource("2_1rfbj")]
-layout_mode = 2
-
-[node name="die7" parent="dice_grid/GridContainer" instance=ExtResource("2_1rfbj")]
-layout_mode = 2
-
-[node name="die8" parent="dice_grid/GridContainer" instance=ExtResource("2_1rfbj")]
-layout_mode = 2
-
-[node name="die9" parent="dice_grid/GridContainer" instance=ExtResource("2_1rfbj")]
-layout_mode = 2
-
-[node name="die10" parent="dice_grid/GridContainer" instance=ExtResource("2_1rfbj")]
-layout_mode = 2
-
-[node name="die11" parent="dice_grid/GridContainer" instance=ExtResource("2_1rfbj")]
-layout_mode = 2
-
-[node name="die12" parent="dice_grid/GridContainer" instance=ExtResource("2_1rfbj")]
-layout_mode = 2
