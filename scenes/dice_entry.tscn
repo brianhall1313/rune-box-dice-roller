@@ -30,41 +30,41 @@ text = "0
 visible = false
 layout_mode = 2
 
-[node name="HBoxContainer2" type="HBoxContainer" parent="full_dice_view"]
+[node name="glyph_container" type="HBoxContainer" parent="full_dice_view"]
 layout_mode = 2
 theme_override_constants/separation = 2
 
-[node name="glyph_icon1" type="TextureRect" parent="full_dice_view/HBoxContainer2"]
+[node name="glyph_icon1" type="TextureRect" parent="full_dice_view/glyph_container"]
 custom_minimum_size = Vector2(16, 16)
 layout_mode = 2
 texture = ExtResource("3_y1sxj")
 expand_mode = 2
 
-[node name="glyph_icon2" type="TextureRect" parent="full_dice_view/HBoxContainer2"]
+[node name="glyph_icon2" type="TextureRect" parent="full_dice_view/glyph_container"]
 custom_minimum_size = Vector2(16, 16)
 layout_mode = 2
 texture = ExtResource("3_y1sxj")
 expand_mode = 2
 
-[node name="glyph_icon3" type="TextureRect" parent="full_dice_view/HBoxContainer2"]
+[node name="glyph_icon3" type="TextureRect" parent="full_dice_view/glyph_container"]
 custom_minimum_size = Vector2(16, 16)
 layout_mode = 2
 texture = ExtResource("3_y1sxj")
 expand_mode = 2
 
-[node name="glyph_icon4" type="TextureRect" parent="full_dice_view/HBoxContainer2"]
+[node name="glyph_icon4" type="TextureRect" parent="full_dice_view/glyph_container"]
 custom_minimum_size = Vector2(16, 16)
 layout_mode = 2
 texture = ExtResource("4_d1h3l")
 expand_mode = 2
 
-[node name="glyph_icon5" type="TextureRect" parent="full_dice_view/HBoxContainer2"]
+[node name="glyph_icon5" type="TextureRect" parent="full_dice_view/glyph_container"]
 custom_minimum_size = Vector2(16, 16)
 layout_mode = 2
 texture = ExtResource("4_d1h3l")
 expand_mode = 2
 
-[node name="glyph_icon6" type="TextureRect" parent="full_dice_view/HBoxContainer2"]
+[node name="glyph_icon6" type="TextureRect" parent="full_dice_view/glyph_container"]
 custom_minimum_size = Vector2(16, 16)
 layout_mode = 2
 texture = ExtResource("2_16kty")
