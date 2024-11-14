@@ -13,6 +13,7 @@ var dice_grid_array:Array = []
 func _ready() -> void:
 	update_grid()
 	build_dice_grid_array()
+	set_adjacency()
 
 
 func update_grid() -> void:
@@ -39,4 +40,29 @@ func build_dice_grid_array()->void:
 		dice_grid_array.append([])
 		for column in column_count:
 			dice_grid_array[row].append(dice[i])
+			dice[i].set_pos({"x":row,"y":column})
 			i += 1
+
+func set_adjacency()->void:
+	var dice = dice_grid.get_children()
+	var column_count = dice_grid.columns
+	var row_count = len(dice_grid_array)
+	for d:Die in dice:
+		var adjacent:Dictionary = {"up":"up","down":"down","right":"right","left":"left",}
+		#I always get cols and rows mixed up in 2d arrays
+		#right
+		if d.pos["y"]-1 >= 0:
+			adjacent["right"] = dice_grid_array[d.pos["x"]][d.pos["y"]-1]
+		#left
+		if d.pos["y"]+1 < column_count:
+			adjacent["left"] = dice_grid_array[d.pos["x"]][d.pos["y"]+1]
+		#up
+		if d.pos["x"]-1 >= 0:
+			adjacent["up"] = dice_grid_array[d.pos["x"]-1][d.pos["y"]]
+		#down
+		if d.pos["x"]+1 < row_count:
+			adjacent["down"] = dice_grid_array[d.pos["x"]+1][d.pos["y"]]
+		d.set_adjacent(adjacent)
+		print("die position: ",d.pos)
+		for ad in d.adjacent.values():
+			print(d.adjacent.find_key(ad)," : ",ad)

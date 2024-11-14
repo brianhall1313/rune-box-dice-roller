@@ -9,7 +9,8 @@ var die_type:String="nature"
 var current_glyph:String=""
 var faces:Array = ["","","","","",""]
 
-var adjacent:Array = []
+var adjacent:Dictionary = {"up":null,"down":null,"right":null,"left":null,}
+var pos:Dictionary = {}
 var is_selected:bool = false
 
 func _ready() -> void:
@@ -20,8 +21,6 @@ func _ready() -> void:
 
 func _gui_input(event: InputEvent) -> void:
 	if event.is_action_released("click"):
-		print("you clicked me D:")
-		set_selected(true)
 		#for testing purposes
 		#roll()
 		GlobalSignalBus.rune_interaction.emit(self)
@@ -50,3 +49,9 @@ func roll()->void:
 func set_selected(value:bool)->void:
 	is_selected = value
 	selected.visible = is_selected
+
+func set_adjacent(new:Dictionary)->void:
+	adjacent = new
+
+func set_pos(new_pos:Dictionary)->void:
+	pos=new_pos

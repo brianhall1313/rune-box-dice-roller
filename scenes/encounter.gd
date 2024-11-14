@@ -6,6 +6,7 @@ extends Node2D
 var displayed: Array[Die] = []
 var current_spell_selection: Array[Die] = []
 var spell_queue: Array[Array] = []
+var last_glyph_selected: Die
 
 var current_enemy # scene instance or just the data?
 
@@ -34,9 +35,21 @@ func rune_interaction(die) -> void:
 	if die in current_spell_selection:
 		die.set_selected(false)
 		current_spell_selection.erase(die)
-	elif len(current_spell_selection) < 4:
-		print("want to append a die")
+		if len(current_spell_selection) > 0:
+			last_glyph_selected = current_spell_selection[len(current_spell_selection)-1]
+		else:
+			last_glyph_selected = null
+	elif len(current_spell_selection) == 0:
 		current_spell_selection.append(die)
+		die.set_selected(true)
+		last_glyph_selected = die
+	elif len(current_spell_selection) < 2:
+		print("want to append a die")
+		if die in last_glyph_selected.adjacent.values():
+			current_spell_selection.append(die)
+			die.set_selected(true)
+			last_glyph_selected = die
+		
 		print("new spell length ", len(current_spell_selection))
 	else:
 		#TODO alert the player that the spell is full
