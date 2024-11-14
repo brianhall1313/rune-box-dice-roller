@@ -9,6 +9,7 @@ var die_type:String="nature"
 var current_glyph:String=""
 var faces:Array = ["","","","","",""]
 
+var adjacent:Array = []
 var is_selected:bool = false
 
 func _ready() -> void:
