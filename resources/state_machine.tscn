@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://dii5npi80kow4"]
+
+[ext_resource type="Script" path="res://resources/state_machine.gd" id="1_uor6d"]
+[ext_resource type="Script" path="res://resources/pause.gd" id="2_lnuc7"]
+
+[node name="State_machine" type="Node"]
+script = ExtResource("1_uor6d")
+
+[node name="pause" type="Node" parent="."]
+script = ExtResource("2_lnuc7")

@@ -20,3 +20,5 @@ extends Node
 		"reflect":preload("res://textures/Reflect_Glyph.png")
 	}
 }
+
+var current_state:String = "none"
