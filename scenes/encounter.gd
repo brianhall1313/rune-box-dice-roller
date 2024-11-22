@@ -1,5 +1,6 @@
 extends Node2D
 
+@onready var monster_manager: Node2D = $monster_manager
 @onready var ui: Control = $UI
 
 

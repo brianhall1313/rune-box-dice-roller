@@ -1,65 +1,24 @@
-[gd_scene load_steps=13 format=3 uid="uid://onto76ada87d"]
+[gd_scene load_steps=7 format=3 uid="uid://onto76ada87d"]
 
 [ext_resource type="PackedScene" uid="uid://un86ip0c1s75" path="res://scenes/player_info_element.tscn" id="1_62fm1"]
 [ext_resource type="Script" path="res://scenes/encounter.gd" id="1_ntlaj"]
 [ext_resource type="Script" path="res://scenes/ui.gd" id="2_dtx1n"]
-[ext_resource type="Texture2D" uid="uid://bhhfr6mn1nwga" path="res://textures/Jumpet/Jumpet_Base.png" id="2_tdpf4"]
+[ext_resource type="PackedScene" uid="uid://c32sargkrku8f" path="res://scenes/jumpet.tscn" id="2_pm20s"]
 [ext_resource type="PackedScene" uid="uid://dka5ft4cxosrs" path="res://scenes/right_panel.tscn" id="2_yr2bm"]
 [ext_resource type="PackedScene" uid="uid://h587v4triyb6" path="res://scenes/active_panel.tscn" id="3_5nnk0"]
-[ext_resource type="Texture2D" uid="uid://52xpjopx0wrq" path="res://textures/Jumpet/Jumpet_Base_2.png" id="3_s8nbm"]
-[ext_resource type="Texture2D" uid="uid://ckovvb1r7xkti" path="res://textures/Jumpet/Jumpet_Base.3.png" id="4_3osgq"]
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_6hkl7"]
-atlas = ExtResource("2_tdpf4")
-region = Rect2(0, 0, 256, 256)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_mtakt"]
-atlas = ExtResource("3_s8nbm")
-region = Rect2(0, 0, 256, 256)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_m2lbr"]
-atlas = ExtResource("4_3osgq")
-region = Rect2(0, 0, 256, 256)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_gdi4d"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_6hkl7")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_mtakt")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_m2lbr")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_6hkl7")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_mtakt")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_6hkl7")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_mtakt")
-}],
-"loop": true,
-"name": &"default",
-"speed": 5.0
-}]
 
 [node name="encounter" type="Node2D"]
 script = ExtResource("1_ntlaj")
 
-[node name="Node2D" type="Node2D" parent="."]
-position = Vector2(266, 37)
+[node name="monster_manager" type="Node2D" parent="."]
+position = Vector2(265, 34)
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Node2D"]
-sprite_frames = SubResource("SpriteFrames_gdi4d")
-frame = 5
-frame_progress = 0.141912
+[node name="Jumpet" parent="monster_manager" instance=ExtResource("2_pm20s")]
+animation = &"idle"
+frame_progress = 0.286582
+
+[node name="monster_position" type="Node2D" parent="."]
+position = Vector2(266, 37)
 
 [node name="UI" type="Control" parent="."]
 layout_mode = 3

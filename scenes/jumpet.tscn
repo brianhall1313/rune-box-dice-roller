@@ -1,0 +1,113 @@
+[gd_scene load_steps=17 format=3 uid="uid://c32sargkrku8f"]
+
+[ext_resource type="Texture2D" uid="uid://bdvsy5xyc3rba" path="res://textures/Jumpet/Jumpet_Grumpet_1.png" id="1_bnmjv"]
+[ext_resource type="Texture2D" uid="uid://cbghf5bwy67a1" path="res://textures/Jumpet/Jumpet_Grumpet_2.png" id="2_uvt6t"]
+[ext_resource type="Texture2D" uid="uid://bg7hlcjqwce7u" path="res://textures/Jumpet/Jumpet_Grumpet__3.png" id="3_dtsuu"]
+[ext_resource type="Texture2D" uid="uid://dwi0hwba5fxgs" path="res://textures/Jumpet/Jumpet_Grumpet_4.png" id="4_xne1u"]
+[ext_resource type="Texture2D" uid="uid://nyvck6orjpsu" path="res://textures/Jumpet/Jumpet_Impact.png" id="5_v3725"]
+[ext_resource type="Texture2D" uid="uid://4364o26kbf8w" path="res://textures/Jumpet/Jumpet_Struck.png" id="6_oqd8r"]
+[ext_resource type="Texture2D" uid="uid://cs4k65gbltel4" path="res://textures/Jumpet/Jumpet_Base.png" id="7_lodbp"]
+[ext_resource type="Texture2D" uid="uid://bmk4kfo8sjia7" path="res://textures/Jumpet/Jumpet_Base_2.png" id="8_gsf41"]
+[ext_resource type="Texture2D" uid="uid://bxjliadp2em1k" path="res://textures/Jumpet/Jumpet_Base.3.png" id="9_ny7gr"]
+[ext_resource type="Texture2D" uid="uid://b806mr5w1n62b" path="res://textures/Jumpet/Jumpet_Layeres.png" id="10_vpitv"]
+[ext_resource type="Texture2D" uid="uid://ixyiuaupwnm4" path="res://textures/Jumpet/Jumpet_Layeres_2.png" id="11_k3e4n"]
+[ext_resource type="Texture2D" uid="uid://djldof3nm7y5s" path="res://textures/Jumpet/Jumpet_Layeres_3.png" id="12_bdrqc"]
+[ext_resource type="Texture2D" uid="uid://dl0kqyq3c7qvl" path="res://textures/Jumpet/Jumpet_Layeres_4.png" id="13_aansc"]
+[ext_resource type="Texture2D" uid="uid://cnhuh4v8btera" path="res://textures/Jumpet/Jumpet_Layeres_5.png" id="14_otyib"]
+[ext_resource type="Script" path="res://scenes/jumpet.gd" id="15_7pbo0"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_rdhlt"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_bnmjv")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_uvt6t")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_dtsuu")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_xne1u")
+}],
+"loop": true,
+"name": &"angry",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_v3725")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_v3725")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_v3725")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_v3725")
+}],
+"loop": true,
+"name": &"attack",
+"speed": 3.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_oqd8r")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_oqd8r")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_oqd8r")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_oqd8r")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_oqd8r")
+}],
+"loop": true,
+"name": &"hit",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("7_lodbp")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_gsf41")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_ny7gr")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("10_vpitv")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_k3e4n")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_bdrqc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_aansc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_otyib")
+}],
+"loop": true,
+"name": &"layers",
+"speed": 5.0
+}]
+
+[node name="Jumpet" type="AnimatedSprite2D"]
+sprite_frames = SubResource("SpriteFrames_rdhlt")
+animation = &"hit"
+script = ExtResource("15_7pbo0")

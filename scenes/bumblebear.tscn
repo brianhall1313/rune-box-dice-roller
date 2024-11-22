@@ -1,0 +1,36 @@
+[gd_scene load_steps=6 format=3 uid="uid://coa7n5qj86rml"]
+
+[ext_resource type="Texture2D" uid="uid://56aqm2klayjn" path="res://textures/Bumblebear/Bumble_Strike.png" id="1_werpa"]
+[ext_resource type="Texture2D" uid="uid://behhpyxbgjl5q" path="res://textures/Bumblebear/Bumble_Base.png" id="2_godqu"]
+[ext_resource type="Texture2D" uid="uid://5nwst0dfcce2" path="res://textures/Bumblebear/Bumble_2.png" id="3_8iu55"]
+[ext_resource type="Texture2D" uid="uid://do0f67xsdbrpo" path="res://textures/Bumblebear/Bumble_3.png" id="4_1c3hi"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_nws6w"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_werpa")
+}],
+"loop": true,
+"name": &"attack",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_godqu")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_8iu55")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_1c3hi")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}]
+
+[node name="bumblebear" type="AnimatedSprite2D"]
+sprite_frames = SubResource("SpriteFrames_nws6w")
+animation = &"idle"
+frame_progress = 0.964612
