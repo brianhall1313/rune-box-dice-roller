@@ -1,20 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://dka5ft4cxosrs"]
+[gd_scene load_steps=5 format=3 uid="uid://dka5ft4cxosrs"]
 
 [ext_resource type="Script" path="res://scenes/right_panel.gd" id="1_ojs6q"]
 [ext_resource type="PackedScene" uid="uid://cxvm65rnq0he1" path="res://scenes/active_spell.tscn" id="2_66hhk"]
+[ext_resource type="PackedScene" uid="uid://ccb4jaydyjrbl" path="res://scenes/enemy_info_container.tscn" id="2_a0wsg"]
 [ext_resource type="PackedScene" uid="uid://du30i2smjir4w" path="res://scenes/queued_spell.tscn" id="3_a6yu1"]
-
-[sub_resource type="Gradient" id="Gradient_mvp20"]
-
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_vadxw"]
-gradient = SubResource("Gradient_mvp20")
-width = 32
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_03f7q"]
-bg_color = Color(0.000693897, 0.000693898, 0.000693897, 1)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2lga6"]
-bg_color = Color(0.917647, 0, 0, 1)
 
 [node name="right_panel" type="Control"]
 layout_mode = 3
@@ -36,39 +25,8 @@ offset_left = 112.0
 offset_right = 212.0
 offset_bottom = 288.0
 
-[node name="enemy_info_container" type="VBoxContainer" parent="VBoxContainer"]
+[node name="enemy_info_container" parent="VBoxContainer" instance=ExtResource("2_a0wsg")]
 layout_mode = 2
-size_flags_vertical = 3
-
-[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/enemy_info_container"]
-layout_mode = 2
-
-[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/enemy_info_container/VBoxContainer"]
-layout_mode = 2
-
-[node name="portrait" type="TextureRect" parent="VBoxContainer/enemy_info_container/VBoxContainer/HBoxContainer"]
-layout_mode = 2
-texture = SubResource("GradientTexture1D_vadxw")
-
-[node name="name" type="Label" parent="VBoxContainer/enemy_info_container/VBoxContainer/HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_font_sizes/font_size = 10
-text = "Jumpet"
-horizontal_alignment = 1
-
-[node name="ProgressBar" type="ProgressBar" parent="VBoxContainer/enemy_info_container/VBoxContainer"]
-custom_minimum_size = Vector2(0, 4)
-layout_mode = 2
-theme_override_styles/background = SubResource("StyleBoxFlat_03f7q")
-theme_override_styles/fill = SubResource("StyleBoxFlat_2lga6")
-value = 54.0
-show_percentage = false
-
-[node name="status_effects" type="Label" parent="VBoxContainer/enemy_info_container/VBoxContainer"]
-layout_mode = 2
-theme_override_font_sizes/font_size = 8
-text = "poisoned"
 
 [node name="spell_information" type="VBoxContainer" parent="VBoxContainer"]
 layout_mode = 2

@@ -9,7 +9,7 @@ var current_spell_selection: Array[Die] = []
 var spell_queue: Array[Array] = []
 var last_glyph_selected: Die
 
-var current_enemy # scene instance or just the data?
+var current_enemy:Monster # scene instance or just the data?
 
 func _ready() -> void:
 	connect_to_global_signal_bus()
@@ -18,6 +18,12 @@ func connect_to_global_signal_bus() -> void:
 	GlobalSignalBus.connect("rune_interaction",rune_interaction)
 	GlobalSignalBus.connect("spell_confirm",queue_spell)
 	GlobalSignalBus.connect("spell_cancel",clear_spell)
+	GlobalSignalBus.connect("enemy_interaction",enemy_selected)
+
+func show_enemy_information()->void:
+	if current_enemy:
+		ui.update_enemy_info(current_enemy)
+
 
 func queue_spell() -> void:
 	# if spell valid
@@ -60,3 +66,7 @@ func rune_interaction(die) -> void:
 func _update_ui():
 	print(current_spell_selection)
 	ui.update_right_panel({"queue":spell_queue,"active":current_spell_selection})
+
+func enemy_selected(enemy:Monster) -> void:
+	current_enemy = enemy
+	show_enemy_information()

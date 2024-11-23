@@ -5,8 +5,12 @@ class_name Monster
 @export var health:int = 100
 @export var attack:int = 10
 @export var defence:int = 0
+@export var monster_name:String = "Jumpet"
+@export var portrait:Image
 
 var current_action_index:int
+
+var status_effects:Array[Dictionary]=[]
 
 var actions:Array[Dictionary] = [
 	{#be agressive, be be agressive
@@ -17,16 +21,17 @@ var actions:Array[Dictionary] = [
 	{#attack and defend
 		"name":"Evasive Strike",
 		"attack":func ():return attack,
-		"defence":func ():return 10, #armor
+		"defence":10, #armor
 		"animation":"attack",
 	},
 	{#poison the player and do a tiny amount of damage
 		"name":"Dirty Claw",
-		"attack":func ():return 3,
-		"effect":func ():return {"poison":5},
+		"attack":3,
+		"effect":{"poison":5},
 		"animation":"attack",
 	}
 ]
+
 
 func _ready() -> void:
 	pass
@@ -36,7 +41,7 @@ func take_turn() -> void:
 	select_action()
 
 func select_action()-> void:
-	current_action_index = randi_range(0,len(actions))
+	current_action_index = randi_range(0,len(actions)-1)
 
 func play_animation(animation_name:String)->void:
 	if sprite_frames.get_animation_names().has(animation_name):
@@ -58,3 +63,8 @@ func take_damage(damage:int)->void:
 		health = 0
 		return
 	health -= current_damage
+
+
+func _on_click_box_input_event(viewport: Node, event: InputEvent, shape_idx: int) -> void:
+	if event.is_action_released("click"):
+		GlobalSignalBus.enemy_interaction.emit(self)

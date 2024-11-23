@@ -9,3 +9,8 @@ func update_player(player_information)->void:
 
 func update_right_panel(spell_information) -> void:
 	right_panel.update({"spell":spell_information})
+
+func update_enemy_info(enemy:Monster)->void:
+	right_panel.update({
+		"enemy":enemy
+	})

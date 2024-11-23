@@ -3,9 +3,12 @@ extends Control
 @onready var active_spell: VBoxContainer = $VBoxContainer/spell_information/active_spell
 @onready var queued_spells: VBoxContainer = $VBoxContainer/spell_information/queued_spells
 
-
 @onready var active_spell_box: PackedScene=preload("res://scenes/active_spell.tscn")
 @onready var queued_spell_box: PackedScene = preload("res://scenes/queued_spell.tscn")
+
+@onready var enemy_info_container: VBoxContainer = $VBoxContainer/enemy_info_container
+
+
 
 func update(args:Dictionary)->void:
 	if args.has("spell"):
@@ -19,3 +22,5 @@ func update(args:Dictionary)->void:
 		print("want to update active spell too")
 		print(args["spell"]["active"])
 		active_spell.get_child(0).get_child(0).setup(args["spell"]["active"])
+	if args.has("enemy"):
+		enemy_info_container.update(args["enemy"])
