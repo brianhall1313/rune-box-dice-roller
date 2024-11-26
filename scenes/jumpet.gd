@@ -1,6 +1,8 @@
 extends AnimatedSprite2D
 class_name Monster
 
+@onready var selected_box: Panel = $selected_box
+
 @export var max_health:int = 100
 @export var health:int = 100
 @export var attack:int = 10
@@ -64,7 +66,11 @@ func take_damage(damage:int)->void:
 		return
 	health -= current_damage
 
+func selected()->void:
+	selected_box.visible = !selected_box.visible
 
-func _on_click_box_input_event(viewport: Node, event: InputEvent, shape_idx: int) -> void:
+func _on_click_box_input_event(_viewport: Node, event: InputEvent, _shape_idx: int) -> void:
 	if event.is_action_released("click"):
+		selected()
 		GlobalSignalBus.enemy_interaction.emit(self)
+		

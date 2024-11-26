@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://c32sargkrku8f"]
+[gd_scene load_steps=19 format=3 uid="uid://c32sargkrku8f"]
 
 [ext_resource type="Texture2D" uid="uid://bqhlpmvppw8cc" path="res://textures/Jumpet/Jumpet_Grumpet_1.png" id="1_bnmjv"]
 [ext_resource type="Texture2D" uid="uid://b5vnvodt72plq" path="res://textures/Jumpet/Jumpet_Grumpet_2.png" id="2_uvt6t"]
@@ -110,6 +110,14 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hdaes"]
 size = Vector2(96, 136)
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gjshk"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.803922, 0.0588235, 0.054902, 1)
+
 [node name="Jumpet" type="AnimatedSprite2D"]
 sprite_frames = SubResource("SpriteFrames_rdhlt")
 animation = &"idle"
@@ -120,5 +128,13 @@ script = ExtResource("15_7pbo0")
 [node name="click_box_colide" type="CollisionShape2D" parent="click_box"]
 position = Vector2(0, 36)
 shape = SubResource("RectangleShape2D_hdaes")
+
+[node name="selected_box" type="Panel" parent="."]
+visible = false
+offset_left = -48.0
+offset_top = -32.0
+offset_right = 48.0
+offset_bottom = 104.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_gjshk")
 
 [connection signal="input_event" from="click_box" to="." method="_on_click_box_input_event"]

@@ -32,7 +32,6 @@ texture = SubResource("GradientTexture1D_vadxw")
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_font_sizes/font_size = 10
-text = "Jumpet"
 horizontal_alignment = 1
 
 [node name="health_bar" type="ProgressBar" parent="VBoxContainer"]
@@ -41,10 +40,8 @@ layout_mode = 2
 theme_override_styles/background = SubResource("StyleBoxFlat_03f7q")
 theme_override_styles/fill = SubResource("StyleBoxFlat_2lga6")
 step = 1.0
-value = 54.0
 show_percentage = false
 
 [node name="status_effects" type="Label" parent="VBoxContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 8
-text = "poisoned"

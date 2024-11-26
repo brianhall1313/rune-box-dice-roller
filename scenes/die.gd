@@ -8,6 +8,7 @@ class_name Die
 var die_type:String="nature"
 var current_glyph:String=""
 var faces:Array = ["","","","","",""]
+var die_name:String = ''
 
 var adjacent:Dictionary = {"up":null,"down":null,"right":null,"left":null,}
 var pos:Dictionary = {}
@@ -25,12 +26,13 @@ func _gui_input(event: InputEvent) -> void:
 		#roll()
 		GlobalSignalBus.rune_interaction.emit(self)
 
-func setup(name:String="",new_type:String="",new_faces:Array=["","","","","",""])->void:
+func setup(new_name:String="",new_type:String="",new_faces:Array=["","","","","",""])->void:
 	if new_type == "":
 		self.texture = blank 
 		return
 	die_type = new_type
 	faces = new_faces
+	die_name = new_name
 	roll()
 
 func set_blank() -> void:

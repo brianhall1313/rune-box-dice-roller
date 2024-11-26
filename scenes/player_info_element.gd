@@ -24,7 +24,3 @@ func _ready() -> void:
 		{"name": "magic", "type": "arcane", "faces": ["echo", "echo", "reflect", "reflect", "", ""]},
 	]
 	# pass a dice list to dice_inventory (raw or count unique above)
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass

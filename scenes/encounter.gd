@@ -13,6 +13,7 @@ var current_enemy:Monster # scene instance or just the data?
 
 func _ready() -> void:
 	connect_to_global_signal_bus()
+	#TODO setup combact: however we are going to do that
 
 func connect_to_global_signal_bus() -> void:
 	GlobalSignalBus.connect("rune_interaction",rune_interaction)
@@ -68,5 +69,8 @@ func _update_ui():
 	ui.update_right_panel({"queue":spell_queue,"active":current_spell_selection})
 
 func enemy_selected(enemy:Monster) -> void:
+	if current_enemy:
+		current_enemy.selected()
 	current_enemy = enemy
 	show_enemy_information()
+	

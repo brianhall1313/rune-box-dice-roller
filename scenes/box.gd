@@ -36,7 +36,7 @@ func build_dice_grid_array()->void:
 	#reset the array
 	dice_grid_array = []
 	var i = 0
-	for row in len(dice)/column_count:
+	for row in roundi(len(dice)/column_count):
 		dice_grid_array.append([])
 		for column in column_count:
 			dice_grid_array[row].append(dice[i])
@@ -63,6 +63,3 @@ func set_adjacency()->void:
 		if d.pos["x"]+1 < row_count:
 			adjacent["down"] = dice_grid_array[d.pos["x"]+1][d.pos["y"]]
 		d.set_adjacent(adjacent)
-		print("die position: ",d.pos)
-		for ad in d.adjacent.values():
-			print(d.adjacent.find_key(ad)," : ",ad)
