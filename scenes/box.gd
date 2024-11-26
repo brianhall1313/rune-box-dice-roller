@@ -63,3 +63,18 @@ func set_adjacency()->void:
 		if d.pos["x"]+1 < row_count:
 			adjacent["down"] = dice_grid_array[d.pos["x"]+1][d.pos["y"]]
 		d.set_adjacent(adjacent)
+
+func shake_box()->void:
+	print("poke")
+	box_inventory = InventoryManager.inventory.duplicate(true)
+	box_inventory.shuffle()
+	var i:int = 0
+	var dice = dice_grid.get_children()
+	for item in box_inventory:
+		if i < 12:
+			dice[i].setup(item["name"],item["type"],item["faces"])
+			dice[i].roll()
+		i += 1
+	while i < 12:
+		dice[i].set_blank()
+		i += 1

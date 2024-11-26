@@ -1,0 +1,17 @@
+[gd_scene load_steps=2 format=3 uid="uid://c3kej11nt2ksr"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gjshk"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.803922, 0.0588235, 0.054902, 1)
+
+[node name="selected_box" type="Panel"]
+visible = false
+offset_left = -48.0
+offset_top = -32.0
+offset_right = 48.0
+offset_bottom = 104.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_gjshk")

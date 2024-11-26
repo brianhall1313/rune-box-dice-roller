@@ -1,9 +1,12 @@
 extends Node
-@onready var pause: Node = $pause
+
+@onready var pause: Node = $Pause
+@onready var test: State = $test
 
 
 @onready var states:Dictionary={
-	"pause":pause
+	"pause":pause,
+	"test":test,
 	}
 
 @onready var current_state: State
@@ -22,9 +25,9 @@ func connect_to_global_signal_bus()->void:
 func state_change(new_state:String)->void:
 	if new_state in states.keys():
 		if current_state == states[new_state]:
-			print("Error: state changing to itself ",current_state)
+			#print("Error: state changing to itself ",current_state)
 			return
-		print("changing state to ",new_state)
+		#print("changing state to ",new_state)
 		#perform cleanup
 		if current_state != null:
 			current_state.exit()
@@ -46,7 +49,7 @@ func revert_state()->void:
 		state_stack.pop_back()
 		current_state = state_stack[len(state_stack)-1]
 		current_state.enter()
-		Global.current_staten = current_state.name
+		Global.current_state = current_state.name
 		print("changed state to ",current_state.name)
 		print_state_stack()
 

@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://onto76ada87d"]
+[gd_scene load_steps=10 format=3 uid="uid://onto76ada87d"]
 
 [ext_resource type="PackedScene" uid="uid://un86ip0c1s75" path="res://scenes/player_info_element.tscn" id="1_62fm1"]
 [ext_resource type="Script" path="res://scenes/encounter.gd" id="1_ntlaj"]
@@ -6,6 +6,9 @@
 [ext_resource type="PackedScene" uid="uid://c32sargkrku8f" path="res://scenes/jumpet.tscn" id="2_pm20s"]
 [ext_resource type="PackedScene" uid="uid://dka5ft4cxosrs" path="res://scenes/right_panel.tscn" id="2_yr2bm"]
 [ext_resource type="PackedScene" uid="uid://h587v4triyb6" path="res://scenes/active_panel.tscn" id="3_5nnk0"]
+[ext_resource type="PackedScene" uid="uid://dii5npi80kow4" path="res://resources/state_machine.tscn" id="7_u5qpl"]
+[ext_resource type="PackedScene" uid="uid://ku0noy5beus2" path="res://resources/pause.tscn" id="8_sofs6"]
+[ext_resource type="Script" path="res://resources/state.gd" id="9_fa62c"]
 
 [node name="encounter" type="Node2D"]
 script = ExtResource("1_ntlaj")
@@ -33,3 +36,10 @@ script = ExtResource("2_dtx1n")
 [node name="active_panel" parent="UI" instance=ExtResource("3_5nnk0")]
 offset_top = 139.0
 offset_bottom = 287.0
+
+[node name="State_machine" parent="." instance=ExtResource("7_u5qpl")]
+
+[node name="Pause" parent="State_machine" instance=ExtResource("8_sofs6")]
+
+[node name="test" type="Node" parent="State_machine"]
+script = ExtResource("9_fa62c")

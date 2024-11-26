@@ -14,6 +14,7 @@ var current_enemy:Monster # scene instance or just the data?
 func _ready() -> void:
 	connect_to_global_signal_bus()
 	#TODO setup combact: however we are going to do that
+	GlobalSignalBus.state_change.emit("test")
 
 func connect_to_global_signal_bus() -> void:
 	GlobalSignalBus.connect("rune_interaction",rune_interaction)
