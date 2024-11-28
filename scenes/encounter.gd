@@ -33,6 +33,7 @@ func queue_spell() -> void:
 		spell_queue.append(current_spell_selection)
 		current_spell_selection = []
 	_update_ui()
+	ui.toggle_shake(false)
 	
 func clear_spell() -> void:
 	for die in current_spell_selection:
@@ -74,4 +75,33 @@ func enemy_selected(enemy:Monster) -> void:
 		current_enemy.selected()
 	current_enemy = enemy
 	show_enemy_information()
-	
+
+func clear_queue() -> void:
+	for spell in spell_queue:
+		for die:Die in spell:
+			die.set_selected(false)
+	spell_queue = []
+	print("queue cleared")
+	_update_ui()
+	ui.toggle_shake(true)
+
+func clear_last_spell() -> void:
+	if len(spell_queue) > 0:
+		var spell:Array[Die] = spell_queue.pop_back()
+		for die:Die in spell:
+			die.set_selected(false)
+	_update_ui()
+	if len(spell_queue) == 0:
+		ui.toggle_shake(true)
+
+func _on_right_panel_cast() -> void:
+	print("SPELL C-C-C-C-C-C-COMBO")
+	#TODO casting stuff
+
+
+func _on_right_panel_clear_all() -> void:
+	clear_queue()
+
+
+func _on_right_panel_clear_last() -> void:
+	clear_last_spell()

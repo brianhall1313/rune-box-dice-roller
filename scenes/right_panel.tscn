@@ -41,3 +41,25 @@ layout_mode = 2
 
 [node name="powerable_spell" parent="VBoxContainer/spell_information/queued_spells" instance=ExtResource("3_a6yu1")]
 layout_mode = 2
+
+[node name="interact_buttons" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="clear_all" type="Button" parent="VBoxContainer/interact_buttons"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 5
+text = "clear all"
+
+[node name="clear_last" type="Button" parent="VBoxContainer/interact_buttons"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 5
+text = "clear last"
+
+[node name="cast" type="Button" parent="VBoxContainer/interact_buttons"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 5
+text = "Cast"
+
+[connection signal="button_up" from="VBoxContainer/interact_buttons/clear_all" to="." method="_on_clear_all_button_up"]
+[connection signal="button_up" from="VBoxContainer/interact_buttons/clear_last" to="." method="_on_clear_last_button_up"]
+[connection signal="button_up" from="VBoxContainer/interact_buttons/cast" to="." method="_on_cast_button_up"]

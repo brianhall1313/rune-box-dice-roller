@@ -14,3 +14,6 @@ func update_enemy_info(enemy:Monster)->void:
 	right_panel.update({
 		"enemy":enemy
 	})
+
+func toggle_shake(active:bool)->void:
+	active_panel.toggle_shake(active)

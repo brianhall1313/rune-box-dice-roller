@@ -43,3 +43,7 @@ offset_bottom = 287.0
 
 [node name="test" type="Node" parent="State_machine"]
 script = ExtResource("9_fa62c")
+
+[connection signal="cast" from="UI/right_panel" to="." method="_on_right_panel_cast"]
+[connection signal="clear_all" from="UI/right_panel" to="." method="_on_right_panel_clear_all"]
+[connection signal="clear_last" from="UI/right_panel" to="." method="_on_right_panel_clear_last"]
