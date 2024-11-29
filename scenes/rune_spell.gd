@@ -28,8 +28,7 @@ func setup(spell)->void:
 
 
 func _on_confirm_pressed() -> void:
-	GlobalSignalBus.spell_confirm.emit()
-	 # Replace with function body.
+	GlobalSignalBus.emit_spell_confirm()
 
 func _on_cancel_pressed() -> void:
-	GlobalSignalBus.spell_cancel.emit() # Replace with function body.
+	GlobalSignalBus.emit_spell_cancel()

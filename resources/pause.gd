@@ -9,4 +9,4 @@ func exit()->void:
 
 func handle_input(event:InputEvent)->void:
 	if event.is_action_released("undo"):
-		GlobalSignalBus.revert_state.emit()
+		GlobalSignalBus.emit_revert_state()

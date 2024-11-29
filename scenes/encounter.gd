@@ -2,6 +2,7 @@ extends Node2D
 
 @onready var monster_manager: Node2D = $monster_manager
 @onready var ui: Control = $UI
+@onready var player: player = $player
 
 
 var displayed: Array[Die] = []
@@ -14,7 +15,8 @@ var current_enemy:Monster # scene instance or just the data?
 func _ready() -> void:
 	connect_to_global_signal_bus()
 	#TODO setup combact: however we are going to do that
-	GlobalSignalBus.state_change.emit("test")
+	GlobalSignalBus.emit_state_change("test")
+	player.setup(PlayerManager.export())
 
 func connect_to_global_signal_bus() -> void:
 	GlobalSignalBus.connect("rune_interaction",rune_interaction)
@@ -96,7 +98,11 @@ func clear_last_spell() -> void:
 
 func _on_right_panel_cast() -> void:
 	print("SPELL C-C-C-C-C-C-COMBO")
-	#TODO casting stuff
+	for spell in spell_queue:
+		pass#TODO do spell stuff
+	for monster in monster_manager.get_children():
+		pass
+		#TODO monster turn
 
 
 func _on_right_panel_clear_all() -> void:

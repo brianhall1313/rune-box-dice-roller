@@ -3,8 +3,8 @@ class_name Monster
 
 @onready var selected_box: Panel = $selected_box
 
-@export var max_health:int = 100
-@export var health:int = 100
+@export var max_health:int = 20
+@export var health:int = max_health
 @export var attack:int = 10
 @export var defence:int = 0
 @export var monster_name:String = "Jumpet"
@@ -17,7 +17,7 @@ var status_effects:Array[Dictionary]=[]
 var actions:Array[Dictionary] = [
 	{#be agressive, be be agressive
 		"name":"Viscous Claw",
-		"attack":func ():return attack+10,
+		"attack":func (attack):return attack+10,
 		"animation":"attack",
 	},
 	{#attack and defend
@@ -72,5 +72,5 @@ func selected()->void:
 func _on_click_box_input_event(_viewport: Node, event: InputEvent, _shape_idx: int) -> void:
 	if event.is_action_released("click"):
 		selected()
-		GlobalSignalBus.enemy_interaction.emit(self)
+		GlobalSignalBus.emit_enemy_interaction(self)
 		

@@ -80,10 +80,10 @@ func build_inventory(new_inv:Array=default_inventory)->void:
 	inventory = new_inv.duplicate(true)
 
 
-func remove_item(remove_item)->void:
+func remove_item(_item)->void:
 	#TODO
 	pass
 
-func add_item(new_item)->void:
+func add_item(_new_item)->void:
 	#TODO
 	pass

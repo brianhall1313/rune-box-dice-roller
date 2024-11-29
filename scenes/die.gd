@@ -24,7 +24,7 @@ func _gui_input(event: InputEvent) -> void:
 	if event.is_action_released("click"):
 		#for testing purposes
 		#roll()
-		GlobalSignalBus.rune_interaction.emit(self)
+		GlobalSignalBus.emit_rune_interaction(self)
 
 func setup(new_name:String="",new_type:String="",new_faces:Array=["","","","","",""])->void:
 	if new_type == "":
