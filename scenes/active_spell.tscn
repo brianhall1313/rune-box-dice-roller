@@ -1,19 +1,23 @@
-[gd_scene load_steps=2 format=3 uid="uid://cxvm65rnq0he1"]
+[gd_scene load_steps=3 format=3 uid="uid://cxvm65rnq0he1"]
 
 [ext_resource type="PackedScene" uid="uid://fq6oy2qhfmhr" path="res://scenes/rune_spell.tscn" id="1_gs3yd"]
+[ext_resource type="Script" path="res://scenes/active_spell.gd" id="1_lnemb"]
 
 [node name="active_spell" type="VBoxContainer"]
+script = ExtResource("1_lnemb")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
 layout_mode = 2
 
 [node name="rune_spell" parent="HBoxContainer" instance=ExtResource("1_gs3yd")]
 layout_mode = 2
+size_flags_horizontal = 3
 
 [node name="confirm" type="Button" parent="HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 0
+size_flags_stretch_ratio = 0.5
 theme_override_font_sizes/font_size = 6
 text = "✓"
 
@@ -21,6 +25,7 @@ text = "✓"
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 0
+size_flags_stretch_ratio = 0.5
 theme_override_font_sizes/font_size = 6
 text = "X"
 

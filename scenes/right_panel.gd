@@ -13,6 +13,9 @@ signal clear_all
 signal clear_last
 
 
+func _ready() -> void:
+	update({"spell":{"queue":[],"active":[]}})
+
 func update(args:Dictionary)->void:
 	if args.has("spell"):
 		print(args["spell"])
@@ -24,7 +27,7 @@ func update(args:Dictionary)->void:
 			new.get_child(0).setup(spell)
 		print("want to update active spell too")
 		print(args["spell"]["active"])
-		active_spell.get_child(0).get_child(0).setup(args["spell"]["active"])
+		active_spell.setup(args["spell"]["active"])
 	if args.has("enemy"):
 		enemy_info_container.update(args["enemy"])
 

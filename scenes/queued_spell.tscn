@@ -10,7 +10,7 @@ size_flags_horizontal = 0
 
 [node name="power_control" type="HBoxContainer" parent="."]
 layout_mode = 2
-size_flags_horizontal = 8
+size_flags_horizontal = 10
 
 [node name="decrease" type="Button" parent="power_control"]
 layout_mode = 2

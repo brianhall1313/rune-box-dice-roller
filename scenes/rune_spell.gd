@@ -7,8 +7,11 @@ extends VBoxContainer
 @onready var glyph_4: TextureRect = $active_glyphs/glyph4
 
 @onready var glyphs = [glyph, glyph_2, glyph_3,glyph_4]
+@onready var effects: Label = $effects
+@onready var power_ups: Label = $"power-ups"
 
-
+func _ready() -> void:
+	setup([])
 
 func setup(spell)->void:
 	print("called setup for ", self)
@@ -20,6 +23,8 @@ func setup(spell)->void:
 			glyphs[i].show()
 		else:
 			glyphs[i].hide()
+			
+	effects.text = ""#TODO update to spell description text
 
 
 func _on_confirm_pressed() -> void:
