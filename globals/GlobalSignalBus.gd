@@ -11,6 +11,7 @@ signal rune_interaction(rune)
 signal spell_confirm
 signal spell_cancel
 signal player_death
+signal enemy_death(enemy:Monster)
 
 
 func emit_state_change(new_state:String) -> void:
@@ -28,3 +29,5 @@ func emit_spell_cancel() -> void:
 	spell_cancel.emit()
 func emit_player_death() -> void:
 	player_death.emit()
+func emit_enemy_death(enemy:Monster) -> void:
+	enemy_death.emit(enemy)

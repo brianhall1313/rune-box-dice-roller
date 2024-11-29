@@ -17,7 +17,7 @@ var status_effects:Array[Dictionary]=[]
 var actions:Array[Dictionary] = [
 	{#be agressive, be be agressive
 		"name":"Viscous Claw",
-		"attack":func (attack):return attack+10,
+		"attack":func ():return attack+10,
 		"animation":"attack",
 	},
 	{#attack and defend
@@ -38,7 +38,7 @@ var actions:Array[Dictionary] = [
 func _ready() -> void:
 	pass
 
-func take_turn() -> void:
+func plan_turn() -> void:
 	defence = 0
 	select_action()
 
@@ -60,9 +60,11 @@ func take_damage(damage:int)->void:
 		defence -= damage
 		return
 	var current_damage = damage - defence
-	defence = 0
-	if current_damage > health:
+	defence = 0 # you will inevitably lose all you defence if you are this far
+	if current_damage >= health:
 		health = 0
+		print("OWIE!!! jumpet died")
+		GlobalSignalBus.emit_enemy_death(self)
 		return
 	health -= current_damage
 
@@ -71,6 +73,5 @@ func selected()->void:
 
 func _on_click_box_input_event(_viewport: Node, event: InputEvent, _shape_idx: int) -> void:
 	if event.is_action_released("click"):
-		selected()
 		GlobalSignalBus.emit_enemy_interaction(self)
 		

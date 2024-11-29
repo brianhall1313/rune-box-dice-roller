@@ -21,6 +21,8 @@ AudioPlayer="*res://globals/audio_player.tscn"
 GlobalSignalBus="*res://globals/GlobalSignalBus.gd"
 InventoryManager="*res://globals/InventoryManager.gd"
 PlayerManager="*res://globals/PlayerManager.gd"
+MonsterManager="*res://globals/MonsterManager.gd"
+SpellManager="*res://globals/SpellManager.gd"
 
 [display]
 

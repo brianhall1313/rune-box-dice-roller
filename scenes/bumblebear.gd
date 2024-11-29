@@ -53,7 +53,7 @@ func take_damage(damage:int)->void:
 		return
 	var current_damage = damage - defence
 	defence = 0
-	if current_damage > health:
+	if current_damage >= health:
 		health = 0
 		return
 	health -= current_damage

@@ -14,10 +14,9 @@ func _ready() -> void:
 	setup([])
 
 func setup(spell)->void:
-	print("called setup for ", self)
-	print("the spell is ",spell)
+	#print("called setup for ", self)
+	#print("the spell is ",spell)
 	for i in 4:
-		print("i is ", i)
 		if len(spell) > i:
 			glyphs[i].texture = spell[i].texture
 			glyphs[i].show()

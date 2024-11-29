@@ -2,7 +2,7 @@ extends Node2D
 
 @onready var monster_manager: Node2D = $monster_manager
 @onready var ui: Control = $UI
-@onready var player: player = $player
+@onready var scene_player: player = $player
 
 
 var displayed: Array[Die] = []
@@ -16,18 +16,32 @@ func _ready() -> void:
 	connect_to_global_signal_bus()
 	#TODO setup combact: however we are going to do that
 	GlobalSignalBus.emit_state_change("test")
-	player.setup(PlayerManager.export())
+	scene_player.setup(PlayerManager.export())
+	print(monster_manager.get_child(0).health)
+	enemy_selected(monster_manager.get_child(0))
+	_update_ui()
 
 func connect_to_global_signal_bus() -> void:
 	GlobalSignalBus.connect("rune_interaction",rune_interaction)
 	GlobalSignalBus.connect("spell_confirm",queue_spell)
 	GlobalSignalBus.connect("spell_cancel",clear_spell)
 	GlobalSignalBus.connect("enemy_interaction",enemy_selected)
+	GlobalSignalBus.connect("enemy_death",enemy_death)
 
 func show_enemy_information()->void:
 	if current_enemy:
 		ui.update_enemy_info(current_enemy)
 
+func enemy_death(enemy:Monster) -> void:
+	if enemy == current_enemy:
+		current_enemy = null
+	print("enemy died")
+	if monster_manager.get_child_count() == 1:
+		enemy.queue_free()
+		print("you win!!")
+	else:
+		print("oh wow an anemy died! there are still more to fight!")
+		enemy.queue_free()
 
 func queue_spell() -> void:
 	# if spell valid
@@ -56,27 +70,26 @@ func rune_interaction(die) -> void:
 		die.set_selected(true)
 		last_glyph_selected = die
 	elif len(current_spell_selection) < 2:
-		print("want to append a die")
 		if die in last_glyph_selected.adjacent.values():
 			current_spell_selection.append(die)
 			die.set_selected(true)
 			last_glyph_selected = die
-		
-		print("new spell length ", len(current_spell_selection))
 	else:
 		#TODO alert the player that the spell is full
 		die.set_selected(false)
 	_update_ui()
 
 func _update_ui():
-	print(current_spell_selection)
+	if current_enemy:
+		show_enemy_information()
 	ui.update_right_panel({"queue":spell_queue,"active":current_spell_selection})
 
 func enemy_selected(enemy:Monster) -> void:
 	if current_enemy:
 		current_enemy.selected()
 	current_enemy = enemy
-	show_enemy_information()
+	current_enemy.selected()
+	_update_ui()
 
 func clear_queue() -> void:
 	for spell in spell_queue:
@@ -96,13 +109,30 @@ func clear_last_spell() -> void:
 	if len(spell_queue) == 0:
 		ui.toggle_shake(true)
 
+func cast_spell(spell)->void:
+	if spell.has("damage"):
+		print("sending ",spell["damage"]," damage")
+		current_enemy.take_damage(spell["damage"])
+	if spell.has("heal"):
+		scene_player.heal(spell["heal"])
+	if spell.has("defned"):
+		scene_player.defend(spell["defend"])
+	if spell.has("echo"):
+		for i in range(spell["echo"]):
+			print("echooooooo")
+
 func _on_right_panel_cast() -> void:
-	print("SPELL C-C-C-C-C-C-COMBO")
-	for spell in spell_queue:
-		pass#TODO do spell stuff
-	for monster in monster_manager.get_children():
-		pass
-		#TODO monster turn
+	print("cast button pressed from encounter")
+	if current_enemy:
+		print("SPELL C-C-C-C-C-C-COMBO")
+		for spell in spell_queue:
+			var effect = SpellManager.effect_generation(spell)
+			print("effect: ",effect)
+			cast_spell(effect)
+			_update_ui()
+	else:
+		print("please select a monster")
+	#TODO monster turn
 
 
 func _on_right_panel_clear_all() -> void:

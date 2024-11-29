@@ -14,6 +14,9 @@ func setup(info:Dictionary) -> void:
 	self.health = info["health"]
 	
 
+func defend(shield:int)->void:
+	defence += shield
+
 func take_damage(damage:int)->void:
 	if damage < defence:
 		defence -= damage

@@ -33,6 +33,7 @@ func update(args:Dictionary)->void:
 
 
 func _on_cast_button_up() -> void:
+	print("cast button hit from right_panel")
 	cast.emit()
 
 
