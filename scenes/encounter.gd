@@ -4,14 +4,19 @@ extends Node2D
 @onready var ui: Control = $UI
 @onready var scene_player: player = $player
 
-
 var displayed: Array[Die] = []
 var current_spell_selection: Array[Die] = []
 var spell_queue: Array[Array] = []
 var last_glyph_selected: Die
 
-var current_enemy:Monster # scene instance or just the data?
+var rewards:Dictionary = {
+	"stories":1,
+	"exp":100
+}
 
+var current_enemy:Monster # scene instance or just the data?
+var win_state:bool = false
+ 
 func _ready() -> void:
 	connect_to_global_signal_bus()
 	#TODO setup combact: however we are going to do that
@@ -20,6 +25,10 @@ func _ready() -> void:
 	print(monster_manager.get_child(0).health)
 	enemy_selected(monster_manager.get_child(0))
 	_update_ui()
+
+func _process(_delta: float) -> void:
+	if win_state:
+		player_wins()
 
 func connect_to_global_signal_bus() -> void:
 	GlobalSignalBus.connect("rune_interaction",rune_interaction)
@@ -38,10 +47,16 @@ func enemy_death(enemy:Monster) -> void:
 	print("enemy died")
 	if monster_manager.get_child_count() == 1:
 		enemy.queue_free()
-		print("you win!!")
+		win_state = true
 	else:
 		print("oh wow an anemy died! there are still more to fight!")
 		enemy.queue_free()
+
+func player_wins() -> void:
+	print("player wins")
+	PlayerManager.import(scene_player.export())
+	PlayerManager.reward(rewards)
+	get_tree().change_scene_to_file("res://scenes/liminal.tscn")
 
 func queue_spell() -> void:
 	# if spell valid
@@ -112,7 +127,8 @@ func clear_last_spell() -> void:
 func cast_spell(spell)->void:
 	if spell.has("damage"):
 		print("sending ",spell["damage"]," damage")
-		current_enemy.take_damage(spell["damage"])
+		if current_enemy and current_enemy.health > 0:
+			current_enemy.take_damage(spell["damage"])
 	if spell.has("heal"):
 		scene_player.heal(spell["heal"])
 	if spell.has("defned"):
@@ -129,7 +145,7 @@ func _on_right_panel_cast() -> void:
 			var effect = SpellManager.effect_generation(spell)
 			print("effect: ",effect)
 			cast_spell(effect)
-			_update_ui()
+		_update_ui()
 	else:
 		print("please select a monster")
 	#TODO monster turn
