@@ -4,6 +4,7 @@ extends Node2D
 @onready var ui: Control = $UI
 @onready var scene_player: player = $player
 
+var round:int = 0
 var displayed: Array[Die] = []
 var current_spell_selection: Array[Die] = []
 var spell_queue: Array[Array] = []
@@ -38,8 +39,7 @@ func connect_to_global_signal_bus() -> void:
 	GlobalSignalBus.connect("enemy_death",enemy_death)
 
 func show_enemy_information()->void:
-	if current_enemy:
-		ui.update_enemy_info(current_enemy)
+	ui.update_enemy_info(current_enemy)
 
 func enemy_death(enemy:Monster) -> void:
 	if enemy == current_enemy:
@@ -96,8 +96,7 @@ func rune_interaction(die) -> void:
 		_update_ui()
 
 func _update_ui():
-	if current_enemy:
-		show_enemy_information()
+	show_enemy_information()
 	ui.update_right_panel({"queue":spell_queue,"active":current_spell_selection})
 
 func enemy_selected(enemy:Monster) -> void:
@@ -138,8 +137,18 @@ func cast_spell(spell)->void:
 			print("echooooooo")
 	clear_queue()
 
+func player_turn_end() -> void:
+	GlobalSignalBus.emit_state_change("enemy_turn")
+	enemy_turn()
+
+func enemy_turn() -> void:
+	for monster:Monster in monster_manager.get_children():
+		print(monster.monster_name, " takes its turn")
+		#TODO damage to player
+	GlobalSignalBus.emit_revert_state()
+
 func _on_right_panel_cast() -> void:
-	if current_enemy:
+	if current_enemy and Global.current_state == "player_turn":
 		print("SPELL C-C-C-C-C-C-COMBO")
 		for spell in spell_queue:
 			var effect = SpellManager.effect_generation(spell)
@@ -148,7 +157,7 @@ func _on_right_panel_cast() -> void:
 		_update_ui()
 	else:
 		print("please select a monster")
-	#TODO monster turn
+	player_turn_end()
 
 
 func _on_right_panel_clear_all() -> void:
@@ -157,3 +166,10 @@ func _on_right_panel_clear_all() -> void:
 
 func _on_right_panel_clear_last() -> void:
 	clear_last_spell()
+
+
+func _on_player_turn_round_start() -> void:
+	round += 1
+	print("Round ", round, " ~start!~ ")
+	for monster:Monster in monster_manager.get_children():
+		monster.plan_turn()

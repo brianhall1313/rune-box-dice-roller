@@ -1,8 +1,9 @@
 extends State
 
+signal round_start
 
 func enter()->void:
-	pass
+	round_start.emit()
 
 func exit()->void:
 	pass
