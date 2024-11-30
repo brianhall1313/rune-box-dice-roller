@@ -3,7 +3,9 @@ class_name Monster
 
 @onready var selected_box: Panel = $selected_box
 
-@export var resistances:Dictionary = {}
+@export var resistances:Dictionary = {
+	"fire":150,
+}
 @export var max_health:int = 20
 @export var health:int = max_health
 @export var attack:int = 10
@@ -64,13 +66,16 @@ func heal_damage(amount:int)->void:
 	health += amount
 
 func get_damage_multiplier(type:String) -> float:
-	if type in resistances.keys():
-		return resistances[type]/100
+	if resistances.keys().has(type):
+		return resistances[type]/100.0
 	else:
-		return 1
+		return 1.0
 
 func take_damage(initial_damage:Damage)->void:
-	var damage = initial_damage.damage * get_damage_multiplier(initial_damage.type)
+	var multiplier: float = get_damage_multiplier(initial_damage.type)
+	#print("multiplier for damage is: ",multiplier)
+	var damage = roundi(initial_damage.damage * multiplier)
+	#print("my damage taken is ",damage, " of the type: ",initial_damage.type)
 	if damage < defence:
 		defence -= damage
 		return
