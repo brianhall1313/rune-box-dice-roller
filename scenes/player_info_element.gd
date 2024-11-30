@@ -3,6 +3,7 @@ extends Control
 @onready var player_portrait = $VBoxContainer/player_info/player_portrait
 @onready var player_name = $VBoxContainer/player_info/player_name
 # Called when the node enters the scene tree for the first time.
+@onready var player_health: ProgressBar = $VBoxContainer/player_health
 
 var dice_list = []
 func _ready() -> void:
@@ -24,3 +25,7 @@ func _ready() -> void:
 		{"name": "magic", "type": "arcane", "faces": ["echo", "echo", "reflect", "reflect", "", ""]},
 	]
 	# pass a dice list to dice_inventory (raw or count unique above)
+
+func update_player_information(scene_player:player)->void:
+	player_health.max_value = scene_player.max_health
+	player_health.value = scene_player.health

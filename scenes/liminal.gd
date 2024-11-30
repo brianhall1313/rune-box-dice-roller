@@ -7,7 +7,7 @@ func _ready() -> void:
 	player_info.text = ("player " + PlayerManager.player_name + "\n" + 
 	"      player health: " + str(PlayerManager.health) + "/" + str(PlayerManager.max_health) + "\n" +
 	"		stories: " + str(PlayerManager.stories) + "\n" + 
-	"		exp: " + str(PlayerManager.exp)
+	"		exp: " + str(PlayerManager.experience)
 	)
 
 

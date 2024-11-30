@@ -103,6 +103,8 @@ func rune_interaction(die) -> void:
 func _update_ui():
 	show_enemy_information()
 	ui.update_right_panel({"queue":spell_queue,"active":current_spell_selection})
+	ui.update_player_information(scene_player)
+	
 
 func enemy_selected(enemy:Monster) -> void:
 	if current_enemy:

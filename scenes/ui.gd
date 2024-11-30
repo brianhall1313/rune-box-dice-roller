@@ -17,3 +17,6 @@ func update_enemy_info(enemy:Monster)->void:
 
 func toggle_shake(active:bool)->void:
 	active_panel.toggle_shake(active)
+
+func update_player_information(scene_player:player) -> void:
+	player_info_element.update_player_information(scene_player)

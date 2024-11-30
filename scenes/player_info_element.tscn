@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://un86ip0c1s75"]
+[gd_scene load_steps=7 format=3 uid="uid://un86ip0c1s75"]
 
 [ext_resource type="PackedScene" uid="uid://wrja75sijyfj" path="res://scenes/dice_inventory.tscn" id="1_biodx"]
 [ext_resource type="Script" path="res://scenes/player_info_element.gd" id="1_i6yfk"]
@@ -8,6 +8,12 @@
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_5cfcg"]
 gradient = SubResource("Gradient_ohbm4")
 width = 32
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_o6cdi"]
+bg_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_n4knb"]
+bg_color = Color(0.901961, 0, 0, 1)
 
 [node name="player_info_element" type="Control"]
 layout_mode = 3
@@ -45,6 +51,15 @@ layout_mode = 2
 theme_override_font_sizes/font_size = 8
 text = "Defaulty Defaulter
 "
+
+[node name="player_health" type="ProgressBar" parent="VBoxContainer"]
+custom_minimum_size = Vector2(0, 10)
+layout_mode = 2
+theme_override_styles/background = SubResource("StyleBoxFlat_o6cdi")
+theme_override_styles/fill = SubResource("StyleBoxFlat_n4knb")
+step = 1.0
+value = 50.0
+show_percentage = false
 
 [node name="dice_inventory" parent="VBoxContainer" instance=ExtResource("1_biodx")]
 layout_mode = 2
