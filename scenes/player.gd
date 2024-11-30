@@ -25,12 +25,15 @@ func defend(shield:int)->void:
 
 func get_damage_multiplier(type:String) -> float:
 	if type in resistances.keys():
-		return resistances[type]/100
+		return resistances[type]/100.0
 	else:
-		return 1
+		return 1.0
 
 func take_damage(incoming_damage:Damage)->void:
-	var damage:int = roundi(incoming_damage.damage * get_damage_multiplier(incoming_damage.type))
+	var multiplier: float = get_damage_multiplier(incoming_damage.type)
+	#print("multiplier for damage is: ",multiplier)
+	var damage = roundi(incoming_damage.damage * multiplier)
+	#print("my damage taken is ",damage, " of the type: ",incoming_damage.type)
 	if damage < defence:
 		defence -= damage
 		return
