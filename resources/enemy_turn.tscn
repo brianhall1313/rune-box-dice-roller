@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://bw12jjsij082b"]
+
+[ext_resource type="Script" path="res://resources/enemy_turn.gd" id="1_thme1"]
+
+[node name="enemy_turn" type="Node"]
+script = ExtResource("1_thme1")

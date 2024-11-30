@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://onto76ada87d"]
+[gd_scene load_steps=12 format=3 uid="uid://onto76ada87d"]
 
 [ext_resource type="PackedScene" uid="uid://un86ip0c1s75" path="res://scenes/player_info_element.tscn" id="1_62fm1"]
 [ext_resource type="Script" path="res://scenes/encounter.gd" id="1_ntlaj"]
@@ -9,7 +9,8 @@
 [ext_resource type="PackedScene" uid="uid://h587v4triyb6" path="res://scenes/active_panel.tscn" id="3_5nnk0"]
 [ext_resource type="PackedScene" uid="uid://dii5npi80kow4" path="res://resources/state_machine.tscn" id="7_u5qpl"]
 [ext_resource type="PackedScene" uid="uid://ku0noy5beus2" path="res://resources/pause.tscn" id="8_sofs6"]
-[ext_resource type="Script" path="res://resources/state.gd" id="9_fa62c"]
+[ext_resource type="PackedScene" uid="uid://dvhx8smwwrc76" path="res://resources/player_turn.tscn" id="10_g8a0c"]
+[ext_resource type="PackedScene" uid="uid://bw12jjsij082b" path="res://resources/enemy_turn.tscn" id="11_w32u1"]
 
 [node name="encounter" type="Node2D"]
 script = ExtResource("1_ntlaj")
@@ -42,8 +43,9 @@ offset_bottom = 287.0
 
 [node name="Pause" parent="State_machine" instance=ExtResource("8_sofs6")]
 
-[node name="test" type="Node" parent="State_machine"]
-script = ExtResource("9_fa62c")
+[node name="player_turn" parent="State_machine" instance=ExtResource("10_g8a0c")]
+
+[node name="enemy_turn" parent="State_machine" instance=ExtResource("11_w32u1")]
 
 [connection signal="cast" from="UI/right_panel" to="." method="_on_right_panel_cast"]
 [connection signal="clear_all" from="UI/right_panel" to="." method="_on_right_panel_clear_all"]

@@ -20,7 +20,7 @@ var win_state:bool = false
 func _ready() -> void:
 	connect_to_global_signal_bus()
 	#TODO setup combact: however we are going to do that
-	GlobalSignalBus.emit_state_change("test")
+	GlobalSignalBus.emit_state_change("player_turn")
 	scene_player.setup(PlayerManager.export())
 	print(monster_manager.get_child(0).health)
 	enemy_selected(monster_manager.get_child(0))
@@ -73,26 +73,27 @@ func clear_spell() -> void:
 	_update_ui()
 
 func rune_interaction(die) -> void:
-	if die in current_spell_selection:
-		die.set_selected(false)
-		current_spell_selection.erase(die)
-		if len(current_spell_selection) > 0:
-			last_glyph_selected = current_spell_selection[len(current_spell_selection)-1]
-		else:
-			last_glyph_selected = null
-	elif len(current_spell_selection) == 0:
-		current_spell_selection.append(die)
-		die.set_selected(true)
-		last_glyph_selected = die
-	elif len(current_spell_selection) < 2:
-		if die in last_glyph_selected.adjacent.values():
+	if Global.current_state == "player_turn":
+		if die in current_spell_selection:
+			die.set_selected(false)
+			current_spell_selection.erase(die)
+			if len(current_spell_selection) > 0:
+				last_glyph_selected = current_spell_selection[len(current_spell_selection)-1]
+			else:
+				last_glyph_selected = null
+		elif len(current_spell_selection) == 0:
 			current_spell_selection.append(die)
 			die.set_selected(true)
 			last_glyph_selected = die
-	else:
-		#TODO alert the player that the spell is full
-		die.set_selected(false)
-	_update_ui()
+		elif len(current_spell_selection) < 2:
+			if die in last_glyph_selected.adjacent.values():
+				current_spell_selection.append(die)
+				die.set_selected(true)
+				last_glyph_selected = die
+		else:
+			#TODO alert the player that the spell is full
+			die.set_selected(false)
+		_update_ui()
 
 func _update_ui():
 	if current_enemy:
@@ -126,7 +127,6 @@ func clear_last_spell() -> void:
 
 func cast_spell(spell)->void:
 	if spell.has("damage"):
-		print("sending ",spell["damage"]," damage")
 		if current_enemy and current_enemy.health > 0:
 			current_enemy.take_damage(spell["damage"])
 	if spell.has("heal"):
@@ -136,9 +136,9 @@ func cast_spell(spell)->void:
 	if spell.has("echo"):
 		for i in range(spell["echo"]):
 			print("echooooooo")
+	clear_queue()
 
 func _on_right_panel_cast() -> void:
-	print("cast button pressed from encounter")
 	if current_enemy:
 		print("SPELL C-C-C-C-C-C-COMBO")
 		for spell in spell_queue:

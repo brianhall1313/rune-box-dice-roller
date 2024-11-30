@@ -1,12 +1,14 @@
 extends Node
 
-@onready var pause: Node = $Pause
-@onready var test: State = $test
+@onready var pause: State = $Pause
+@onready var player_turn: State = $player_turn
+@onready var enemy_turn: State = $enemy_turn
 
 
 @onready var states:Dictionary={
 	"pause":pause,
-	"test":test,
+	"player_turn":player_turn,
+	"enemy_turn":enemy_turn
 	}
 
 @onready var current_state: State
