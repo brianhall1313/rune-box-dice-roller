@@ -21,4 +21,6 @@ extends Node
 	}
 }
 
+@onready var damage = preload("res://resources/damage.gd")
+
 var current_state:String = "none"

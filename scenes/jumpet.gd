@@ -3,6 +3,7 @@ class_name Monster
 
 @onready var selected_box: Panel = $selected_box
 
+@export var resistances:Dictionary = {}
 @export var max_health:int = 20
 @export var health:int = max_health
 @export var attack:int = 10
@@ -17,18 +18,18 @@ var status_effects:Array[Dictionary]=[]
 var actions:Array[Dictionary] = [
 	{#be agressive, be be agressive
 		"name":"Viscous Claw",
-		"attack":func ():return attack+10,
+		"attack":func ():return do_damage(attack+10,"physical"),
 		"animation":"attack",
 	},
 	{#attack and defend
 		"name":"Evasive Strike",
-		"attack":func ():return attack,
+		"attack":func ():return do_damage(attack,"physical"),
 		"defence":10, #armor
 		"animation":"attack",
 	},
 	{#poison the player and do a tiny amount of damage
 		"name":"Dirty Claw",
-		"attack":func (): return 3,#is a function cause callables are necessary for the current build
+		"attack":func (): return do_damage(3,"physical"),#is a function cause callables are necessary for the current build
 		"effect":{"poison":5},
 		"animation":"attack",
 	}
@@ -42,6 +43,9 @@ func plan_turn() -> void:
 	defence = 0
 	select_action()
 
+func take_turn() -> void:
+	pass
+
 func select_action()-> void:
 	current_action_index = randi_range(0,len(actions)-1)
 
@@ -49,13 +53,24 @@ func play_animation(animation_name:String)->void:
 	if sprite_frames.get_animation_names().has(animation_name):
 		play_animation(animation_name)
 
+func do_damage(attack:int, type:String) -> Damage:
+	return Global.damage.new(attack,type)
+	
+
 func heal_damage(amount:int)->void:
 	if amount + health > max_health:
 		health = max_health
 		return
 	health += amount
 
-func take_damage(damage:int)->void:
+func get_damage_multiplier(type:String) -> float:
+	if type in resistances.keys():
+		return resistances[type]/100
+	else:
+		return 1
+
+func take_damage(initial_damage:Damage)->void:
+	var damage = initial_damage.damage * get_damage_multiplier(initial_damage.type)
 	if damage < defence:
 		defence -= damage
 		return

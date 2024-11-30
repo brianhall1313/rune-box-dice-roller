@@ -18,9 +18,9 @@ func effect_generation(spell) -> Dictionary:
 	for die:Die in spell:
 		if spell_effects[die.current_glyph].has("damage"):
 			if translated_spell.has("damage"):
-				translated_spell["damage"] += spell_effects[die.current_glyph]["damage"]
+				translated_spell["damage"].damage += spell_effects[die.current_glyph]["damage"]
 			else:
-				translated_spell["damage"] = spell_effects[die.current_glyph]["damage"]
+				translated_spell["damage"] = Global.damage.new(spell_effects[die.current_glyph]["damage"],die.current_glyph)
 		elif spell_effects[die.current_glyph].has("heal"):
 			if translated_spell.has("heal"):
 				translated_spell["heal"] += spell_effects[die.current_glyph]["heal"]

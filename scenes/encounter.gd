@@ -150,18 +150,21 @@ func player_turn_end() -> void:
 
 func enemy_turn() -> void:
 	for monster:Monster in monster_manager.get_children():
-		print(monster.monster_name, " takes its turn")
-		#TODO damage to player
-		var action = monster.actions[monster.current_action_index]
-		print(monster.monster_name, " takes the action: ",action["name"])
-		if action.keys().has("attack"):
-			scene_player.take_damage(action["attack"].call())
-			print(scene_player.health, " health left")
-		if action.keys().has("defence"):
-			monster.defence += action["defence"]
-		if action.keys().has("effect"):
-			for effect in action["effect"].keys():
-				print("THIS IS THE EFFECT ", effect)
+		if monster.health > 0:
+			print(monster.monster_name, " takes its turn")
+			#TODO damage to player
+			var action = monster.actions[monster.current_action_index]
+			print(monster.monster_name, " takes the action: ",action["name"])
+			if action.keys().has("attack"):
+				scene_player.take_damage(action["attack"].call())
+				print(scene_player.health, " health left")
+			if action.keys().has("defence"):
+				monster.defence += action["defence"]
+			if action.keys().has("effect"):
+				for effect in action["effect"].keys():
+					print("THIS IS THE EFFECT ", effect)
+		else:
+			print(monster.monster_name, " skips its turn because  it's DEAD")
 	GlobalSignalBus.emit_revert_state()
 
 func _on_right_panel_cast() -> void:
