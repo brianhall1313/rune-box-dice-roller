@@ -28,7 +28,7 @@ var actions:Array[Dictionary] = [
 	},
 	{#poison the player and do a tiny amount of damage
 		"name":"Dirty Claw",
-		"attack":3,
+		"attack":func (): return 3,#is a function cause callables are necessary for the current build
 		"effect":{"poison":5},
 		"animation":"attack",
 	}

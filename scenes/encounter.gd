@@ -4,7 +4,7 @@ extends Node2D
 @onready var ui: Control = $UI
 @onready var scene_player: player = $player
 
-var round:int = 0
+var battle_round:int = 0
 var displayed: Array[Die] = []
 var current_spell_selection: Array[Die] = []
 var spell_queue: Array[Array] = []
@@ -37,6 +37,7 @@ func connect_to_global_signal_bus() -> void:
 	GlobalSignalBus.connect("spell_cancel",clear_spell)
 	GlobalSignalBus.connect("enemy_interaction",enemy_selected)
 	GlobalSignalBus.connect("enemy_death",enemy_death)
+	GlobalSignalBus.connect("player_death",player_loses)
 
 func show_enemy_information()->void:
 	ui.update_enemy_info(current_enemy)
@@ -57,6 +58,10 @@ func player_wins() -> void:
 	PlayerManager.import(scene_player.export())
 	PlayerManager.reward(rewards)
 	get_tree().change_scene_to_file("res://scenes/liminal.tscn")
+
+func player_loses() -> void:
+	print("YOU LOSE")
+	get_tree().quit()
 
 func queue_spell() -> void:
 	# if spell valid
@@ -145,6 +150,16 @@ func enemy_turn() -> void:
 	for monster:Monster in monster_manager.get_children():
 		print(monster.monster_name, " takes its turn")
 		#TODO damage to player
+		var action = monster.actions[monster.current_action_index]
+		print(monster.monster_name, " takes the action: ",action["name"])
+		if action.keys().has("attack"):
+			scene_player.take_damage(action["attack"].call())
+			print(scene_player.health, " health left")
+		if action.keys().has("defence"):
+			monster.defence += action["defence"]
+		if action.keys().has("effect"):
+			for effect in action["effect"].keys():
+				print("THIS IS THE EFFECT ", effect)
 	GlobalSignalBus.emit_revert_state()
 
 func _on_right_panel_cast() -> void:
@@ -169,7 +184,8 @@ func _on_right_panel_clear_last() -> void:
 
 
 func _on_player_turn_round_start() -> void:
-	round += 1
-	print("Round ", round, " ~start!~ ")
+	scene_player.start_turn()
+	battle_round += 1
+	print("Round ", battle_round, " ~start!~ ")
 	for monster:Monster in monster_manager.get_children():
 		monster.plan_turn()

@@ -14,6 +14,10 @@ func setup(info:Dictionary) -> void:
 	self.health = info["health"]
 	
 
+func start_turn() -> void:
+	if health == 0:
+		GlobalSignalBus.emit_player_death()
+
 func defend(shield:int)->void:
 	defence += shield
 
