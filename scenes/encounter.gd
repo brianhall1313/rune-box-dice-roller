@@ -65,7 +65,7 @@ func player_loses() -> void:
 
 func queue_spell() -> void:
 	# if spell valid
-	if len(current_spell_selection) > 1:
+	if len(current_spell_selection) > 1 and SpellManager.is_spell(current_spell_selection):
 		spell_queue.append(current_spell_selection)
 		current_spell_selection = []
 	_update_ui()
@@ -134,7 +134,7 @@ func clear_last_spell() -> void:
 func cast_spell(spell)->void:
 	if spell.has("damage"):
 		if current_enemy and current_enemy.health > 0:
-			current_enemy.take_damage(spell["damage"])
+			current_enemy.take_damage(spell["damage"].call())
 	if spell.has("heal"):
 		scene_player.heal(spell["heal"])
 	if spell.has("defned"):
@@ -165,6 +165,7 @@ func enemy_turn() -> void:
 					print("THIS IS THE EFFECT ", effect)
 		else:
 			print(monster.monster_name, " skips its turn because  it's DEAD")
+		_update_ui()
 	GlobalSignalBus.emit_revert_state()
 
 func _on_right_panel_cast() -> void:

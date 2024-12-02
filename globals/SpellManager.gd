@@ -1,6 +1,80 @@
 extends Node
 
-var spell_effects:Dictionary={
+var spell_directory: Dictionary = {
+	"fire":{
+		"lob":{
+			"name":"fire hurl",
+			"damage":func ():return Damage.new(10,"fire")
+		},
+		"temper":{
+			"name":"fire wall",
+			"defend":10
+			},
+		"reflect":{
+			"name":"fire back",
+			"effect":{"reflect fire":1}
+			}
+	},
+	"earth":{
+		"lob":{
+			"name":"rock huck",
+			"damage":func ():return Damage.new(10,"earth")
+		},
+		"temper":{
+			"name":"stone wall",
+			"defend":10
+			},
+		"reflect":{
+			"name":"polished rock",
+			"effect":{"reflect earth":1}
+			}
+		},
+	"water":{
+		"lob":{
+			"name":"wet smack",
+			"damage":func ():return Damage.new(10,"water")
+		},
+		"temper":{
+			"name":"tidal wall",
+			"defend":10
+			},
+		"reflect":{
+			"name":"mirrored surface",
+			"effect":{"reflect water":1}
+			}
+		},
+	"sky":{
+		"lob":{
+			"name":"sparkles",
+			"damage":func ():return Damage.new(10,"sky")
+		},
+		"temper":{
+			"name":"winderwall",
+			"defend":10
+			},
+		"reflect":{
+			"name":"blowback",
+			"effect":{"reflect sky":1}
+			}
+		},
+	"life":{
+		"lob":{
+			"name":"blood smack",
+			"damage":func ():return Damage.new(10,"life")
+		},
+		"temper":{
+			"name":"heals~",
+			"heal":10
+			},
+		"reflect":{
+			"name":"reflect damage",
+			"effect":{"reflect damage":1}
+			}
+		},
+	
+}
+
+var spell_effects: Dictionary = {
 	"fire":{"damage":10},
 	"water":{"damage":10},
 	"earth":{"damage":10},
@@ -12,28 +86,15 @@ var spell_effects:Dictionary={
 	"echo":{"echo":1}
 }
 
+func is_spell(spell) -> bool:
+	if len(spell) >= 2:
+		print("pass 1: ", spell[0].current_glyph,"  ",spell[1].current_glyph)
+		if spell_directory.has(spell[0].current_glyph):
+			print("pass 2")
+			if spell_directory[spell[0].current_glyph].has(spell[1].current_glyph):
+				print("pass 3")
+				return true
+	return false
+
 func effect_generation(spell) -> Dictionary:
-	#TODO alpha mode! we still need effects and stuff in here too, as well as an actual spell list instead of this simplistic one
-	var translated_spell:Dictionary ={}
-	for die:Die in spell:
-		if spell_effects[die.current_glyph].has("damage"):
-			if translated_spell.has("damage"):
-				translated_spell["damage"].damage += spell_effects[die.current_glyph]["damage"]
-			else:
-				translated_spell["damage"] = Global.damage.new(spell_effects[die.current_glyph]["damage"],die.current_glyph)
-		elif spell_effects[die.current_glyph].has("heal"):
-			if translated_spell.has("heal"):
-				translated_spell["heal"] += spell_effects[die.current_glyph]["heal"]
-			else:
-				translated_spell["heal"] = spell_effects[die.current_glyph]["heal"]
-		elif spell_effects[die.current_glyph].has("defend"):
-			if translated_spell.has("defend"):
-				translated_spell["defend"] += spell_effects[die.current_glyph]["defend"]
-			else:
-				translated_spell["defend"] = spell_effects[die.current_glyph]["defend"]
-		elif spell_effects[die.current_glyph].has("echo"):
-			if translated_spell.has("echo"):
-				translated_spell["echo"] += spell_effects[die.current_glyph]["echo"]
-			else:
-				translated_spell["echo"] = spell_effects[die.current_glyph]["echo"]
-	return translated_spell
+	return spell_directory[spell[0].current_glyph][spell[1].current_glyph]
