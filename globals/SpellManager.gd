@@ -74,27 +74,20 @@ var spell_directory: Dictionary = {
 	
 }
 
-var spell_effects: Dictionary = {
-	"fire":{"damage":10},
-	"water":{"damage":10},
-	"earth":{"damage":10},
-	"sky":{"damage":10},
-	"life":{"heal":10},
-	"lob":{"damage":10},
-	"temper":{"defend":10},
-	"reflect":{"defend":10},
-	"echo":{"echo":1}
-}
-
 func is_spell(spell) -> bool:
 	if len(spell) >= 2:
-		print("pass 1: ", spell[0].current_glyph,"  ",spell[1].current_glyph)
+		#print("pass 1: ", spell[0].current_glyph,"  ",spell[1].current_glyph)
 		if spell_directory.has(spell[0].current_glyph):
-			print("pass 2")
+			#print("pass 2")
 			if spell_directory[spell[0].current_glyph].has(spell[1].current_glyph):
-				print("pass 3")
+				#print("pass 3")
 				return true
 	return false
 
 func effect_generation(spell) -> Dictionary:
 	return spell_directory[spell[0].current_glyph][spell[1].current_glyph]
+
+func get_ui_info(spell) -> Dictionary:
+	if len(spell) >= 2:
+		return spell_directory[spell[0].current_glyph][spell[1].current_glyph]
+	return {}

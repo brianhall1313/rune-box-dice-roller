@@ -10,6 +10,7 @@ func _ready() -> void:
 	setup([])
 
 func setup(spell:Array) -> void:
+	SpellManager.get_ui_info(spell)
 	rune_spell.setup(spell)
 	if len(spell) == 0:
 		confirm.disabled = true

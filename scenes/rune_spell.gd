@@ -14,7 +14,7 @@ func _ready() -> void:
 	setup([])
 
 func setup(spell)->void:
-	print("called setup for ", self)
+	print("called setup for rune spell")
 	print("the spell is ",spell)
 	for i in 4:
 		if len(spell) > i:
@@ -23,7 +23,10 @@ func setup(spell)->void:
 		else:
 			glyphs[i].hide()
 			
-	effects.text = ""#TODO update to spell description text
+	if SpellManager.is_spell(spell):
+		effects.text = SpellManager.get_ui_info(spell)["name"]
+	else:
+		effects.text = ""
 
 
 func _on_confirm_pressed() -> void:

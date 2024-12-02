@@ -68,7 +68,7 @@ func queue_spell() -> void:
 	if len(current_spell_selection) > 1 and SpellManager.is_spell(current_spell_selection):
 		spell_queue.append(current_spell_selection)
 		current_spell_selection = []
-	_update_ui()
+		_update_ui()
 	ui.toggle_shake(false)
 	
 func clear_spell() -> void:
