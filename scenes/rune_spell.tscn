@@ -36,9 +36,12 @@ texture = ExtResource("1_gs7hy")
 expand_mode = 2
 
 [node name="effects" type="Label" parent="."]
+custom_minimum_size = Vector2(30, 12)
 layout_mode = 2
 theme_override_font_sizes/font_size = 8
-text = "10 dmg Fire, echo"
+text = "10 dmg Fire, echo, long "
+autowrap_mode = 2
+text_overrun_behavior = 3
 
 [node name="power-ups" type="Label" parent="."]
 visible = false

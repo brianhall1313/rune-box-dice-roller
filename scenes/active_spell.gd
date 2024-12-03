@@ -1,7 +1,9 @@
 extends VBoxContainer
 
-@onready var confirm: Button = $HBoxContainer/confirm
-@onready var cancel: Button = $HBoxContainer/cancel
+@onready var confirm: Button = $HBoxContainer/HBoxContainer/confirm
+@onready var cancel: Button = $HBoxContainer/HBoxContainer/cancel
+
+
 @onready var rune_spell: VBoxContainer = $HBoxContainer/rune_spell
 
 

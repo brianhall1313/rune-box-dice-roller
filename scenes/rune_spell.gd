@@ -24,9 +24,26 @@ func setup(spell)->void:
 			glyphs[i].hide()
 			
 	if SpellManager.is_spell(spell):
-		effects.text = SpellManager.get_ui_info(spell)["name"]
+		var spell_info = SpellManager.get_ui_info(spell)
+		effects.text = spell_info["name"] + ": "
+		for key in spell_info.keys():
+			if key == "damage":
+				var damage_info = spell_info["damage"].call()
+				effects.text += str(damage_info.damage) + " " + damage_info.type + " Damage"
+			if key == "effect":
+				for  effect in spell_info["effect"].keys():
+					effects.text += effect + " "
+			if key == "defend":
+				effects.text += "get " + str(spell_info["defend"]) + " defense"
+			if key == "heal":
+				effects.text += "heals for " + str(spell_info["heal"])
+			if key == "reflect":
+				effects.text += "Reflects damage"
+		self.tooltip_text = effects.text
 	else:
 		effects.text = ""
+		self.tooltip_text = effects.text
+		
 
 
 func _on_confirm_pressed() -> void:

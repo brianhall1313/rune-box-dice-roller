@@ -3,14 +3,16 @@
 [ext_resource type="PackedScene" uid="uid://fq6oy2qhfmhr" path="res://scenes/rune_spell.tscn" id="1_0abhw"]
 
 [node name="powerable_spell" type="HBoxContainer"]
+size_flags_horizontal = 3
 
 [node name="rune_spell" parent="." instance=ExtResource("1_0abhw")]
 layout_mode = 2
-size_flags_horizontal = 0
+size_flags_horizontal = 3
 
 [node name="power_control" type="HBoxContainer" parent="."]
 layout_mode = 2
 size_flags_horizontal = 10
+size_flags_stretch_ratio = 0.25
 
 [node name="decrease" type="Button" parent="power_control"]
 layout_mode = 2

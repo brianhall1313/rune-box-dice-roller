@@ -88,6 +88,6 @@ func effect_generation(spell) -> Dictionary:
 	return spell_directory[spell[0].current_glyph][spell[1].current_glyph]
 
 func get_ui_info(spell) -> Dictionary:
-	if len(spell) >= 2:
+	if is_spell(spell):
 		return spell_directory[spell[0].current_glyph][spell[1].current_glyph]
 	return {}

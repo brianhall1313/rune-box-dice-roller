@@ -6,28 +6,31 @@
 [node name="active_spell" type="VBoxContainer"]
 script = ExtResource("1_lnemb")
 
-[node name="HBoxContainer" type="HBoxContainer" parent="."]
+[node name="HBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 2
 
 [node name="rune_spell" parent="HBoxContainer" instance=ExtResource("1_gs3yd")]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="confirm" type="Button" parent="HBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="HBoxContainer"]
+layout_mode = 2
+
+[node name="confirm" type="Button" parent="HBoxContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 0
 size_flags_stretch_ratio = 0.5
-theme_override_font_sizes/font_size = 6
+theme_override_font_sizes/font_size = 8
 text = "✓"
 
-[node name="cancel" type="Button" parent="HBoxContainer"]
+[node name="cancel" type="Button" parent="HBoxContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 0
 size_flags_stretch_ratio = 0.5
-theme_override_font_sizes/font_size = 6
+theme_override_font_sizes/font_size = 8
 text = "X"
 
-[connection signal="pressed" from="HBoxContainer/confirm" to="HBoxContainer/rune_spell" method="_on_confirm_pressed"]
-[connection signal="pressed" from="HBoxContainer/cancel" to="HBoxContainer/rune_spell" method="_on_cancel_pressed"]
+[connection signal="pressed" from="HBoxContainer/HBoxContainer/confirm" to="HBoxContainer/rune_spell" method="_on_confirm_pressed"]
+[connection signal="pressed" from="HBoxContainer/HBoxContainer/cancel" to="HBoxContainer/rune_spell" method="_on_cancel_pressed"]

@@ -6,7 +6,7 @@ var player_name:String = "Default"
 var max_health:int = 100
 var health:int = max_health
 var shifts:int = 0
-var defence:int = 0
+var defense:int = 0
 var resistances:Dictionary = {}
 var status:Dictionary = {}
 
@@ -21,7 +21,7 @@ func start_turn() -> void:
 		GlobalSignalBus.emit_player_death()
 
 func defend(shield:int)->void:
-	defence += shield
+	defense += shield
 
 func get_damage_multiplier(type:String) -> float:
 	if type in resistances.keys():
@@ -34,11 +34,11 @@ func take_damage(incoming_damage:Damage)->void:
 	#print("multiplier for damage is: ",multiplier)
 	var damage = roundi(incoming_damage.damage * multiplier)
 	#print("my damage taken is ",damage, " of the type: ",incoming_damage.type)
-	if damage < defence:
-		defence -= damage
+	if damage < defense:
+		defense -= damage
 		return
-	var current_damage = damage - defence
-	defence = 0
+	var current_damage = damage - defense
+	defense = 0
 	if current_damage >= health:
 		health = 0
 		return
