@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://t05fywc266s"
-path="res://.godot/imported/heal_particle.png-2d1a39f57a96e9987397abbab0806e91.ctex"
+uid="uid://0ys7j3mr7op3"
+path="res://.godot/imported/War_Jumpet_Strike.png-7b5872b2d22ab994f5cfa4f5fc58772b.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://textures/Spell_Effects/heal_particle.png"
-dest_files=["res://.godot/imported/heal_particle.png-2d1a39f57a96e9987397abbab0806e91.ctex"]
+source_file="res://textures/War Jumpet/War_Jumpet_Strike.png"
+dest_files=["res://.godot/imported/War_Jumpet_Strike.png-7b5872b2d22ab994f5cfa4f5fc58772b.ctex"]
 
 [params]
 

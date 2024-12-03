@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b61vhglpjjiu8"
-path="res://.godot/imported/pixil-frame-0.png-df7fbcdf7f3ffbdf36f1a445e4f5c562.ctex"
+uid="uid://4cw4wnwj8g23"
+path="res://.godot/imported/War_Jumpet_3.png-cb93656613513e71b731227ee9b6a798.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://textures/Spell_Effects/pixil-frame-0.png"
-dest_files=["res://.godot/imported/pixil-frame-0.png-df7fbcdf7f3ffbdf36f1a445e4f5c562.ctex"]
+source_file="res://textures/War Jumpet/War_Jumpet_3.png"
+dest_files=["res://.godot/imported/War_Jumpet_3.png-cb93656613513e71b731227ee9b6a798.ctex"]
 
 [params]
 
