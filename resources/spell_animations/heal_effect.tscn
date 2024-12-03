@@ -1,0 +1,21 @@
+[gd_scene load_steps=3 format=3 uid="uid://bkpru0m1tdexl"]
+
+[ext_resource type="Texture2D" uid="uid://t05fywc266s" path="res://textures/Spell_Effects/heal_particle.png" id="1_knie0"]
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_uagsa"]
+lifetime_randomness = 1.0
+particle_flag_disable_z = true
+emission_shape = 3
+emission_box_extents = Vector3(32, 2, 1)
+direction = Vector3(0, -100, 0)
+initial_velocity_min = 10.0
+initial_velocity_max = 10.0
+gravity = Vector3(0, -100, 0)
+turbulence_enabled = true
+
+[node name="heal_effect" type="GPUParticles2D"]
+amount = 35
+process_material = SubResource("ParticleProcessMaterial_uagsa")
+texture = ExtResource("1_knie0")
+lifetime = 2.0
+randomness = 1.0
