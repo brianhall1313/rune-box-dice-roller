@@ -55,8 +55,8 @@ func play_animation(animation_name:String)->void:
 	if sprite_frames.get_animation_names().has(animation_name):
 		play_animation(animation_name)
 
-func do_damage(attack:int, type:String) -> Damage:
-	return Global.damage.new(attack,type)
+func do_damage(attack_val:int, type:String) -> Damage:
+	return Global.damage.new(attack_val,type)
 	
 
 func heal_damage(amount:int)->void:

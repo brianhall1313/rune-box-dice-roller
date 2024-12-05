@@ -1,9 +1,9 @@
 [gd_scene load_steps=7 format=3 uid="uid://coa7n5qj86rml"]
 
-[ext_resource type="Texture2D" uid="uid://b82rya0a73kqt" path="res://textures/Bumblebear/Bumble_Strike.png" id="1_werpa"]
-[ext_resource type="Texture2D" uid="uid://cmgdw83hdx6b8" path="res://textures/Bumblebear/Bumble_Base.png" id="2_godqu"]
-[ext_resource type="Texture2D" uid="uid://0nuxgnx4k07u" path="res://textures/Bumblebear/Bumble_2.png" id="3_8iu55"]
-[ext_resource type="Texture2D" uid="uid://ixy30fprrmhg" path="res://textures/Bumblebear/Bumble_3.png" id="4_1c3hi"]
+[ext_resource type="Texture2D" uid="uid://d0sqaqqow2jha" path="res://textures/Bumblebear/Bumble_Strike.png" id="1_werpa"]
+[ext_resource type="Texture2D" uid="uid://dkmjmr3apv74e" path="res://textures/Bumblebear/Bumble_Base.png" id="2_godqu"]
+[ext_resource type="Texture2D" uid="uid://b7au6ekk6dsvn" path="res://textures/Bumblebear/Bumble_2.png" id="3_8iu55"]
+[ext_resource type="Texture2D" uid="uid://n7ql4kysvsca" path="res://textures/Bumblebear/Bumble_3.png" id="4_1c3hi"]
 [ext_resource type="Script" path="res://scenes/bumblebear.gd" id="5_va1v8"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_nws6w"]
@@ -34,5 +34,5 @@ animations = [{
 [node name="bumblebear" type="AnimatedSprite2D"]
 sprite_frames = SubResource("SpriteFrames_nws6w")
 animation = &"idle"
-frame_progress = 0.964612
+frame_progress = 0.91378
 script = ExtResource("5_va1v8")
