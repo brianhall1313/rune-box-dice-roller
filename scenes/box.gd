@@ -36,6 +36,8 @@ func build_dice_grid_array()->void:
 	#reset the array
 	dice_grid_array = []
 	var i = 0
+	@warning_ignore("integer_division")
+	#
 	for row in roundi(len(dice)/column_count):
 		dice_grid_array.append([])
 		for column in column_count:
