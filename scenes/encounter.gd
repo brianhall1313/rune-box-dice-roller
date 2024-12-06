@@ -159,7 +159,7 @@ func enemy_turn() -> void:
 				scene_player.take_damage(action["attack"].call())
 				print(scene_player.health, " health left")
 			if action.keys().has("defence"):
-				monster.defence += action["defence"]
+				monster.defense += action["defence"]
 			if action.keys().has("effect"):
 				for effect in action["effect"].keys():
 					print("THIS IS THE EFFECT ", effect)

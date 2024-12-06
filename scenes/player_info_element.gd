@@ -27,5 +27,5 @@ func _ready() -> void:
 	# pass a dice list to dice_inventory (raw or count unique above)
 
 func update_player_information(scene_player:player)->void:
-	player_health.max_value = scene_player.max_health
-	player_health.value = scene_player.health
+	player_health.max_value = scene_player.health.max_health
+	player_health.value = scene_player.health.health

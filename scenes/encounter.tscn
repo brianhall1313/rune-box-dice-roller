@@ -2,8 +2,8 @@
 
 [ext_resource type="PackedScene" uid="uid://un86ip0c1s75" path="res://scenes/player_info_element.tscn" id="1_62fm1"]
 [ext_resource type="Script" path="res://scenes/encounter.gd" id="1_ntlaj"]
+[ext_resource type="PackedScene" uid="uid://bafdqhpqe7b6q" path="res://scenes/player.tscn" id="2_bb2np"]
 [ext_resource type="Script" path="res://scenes/ui.gd" id="2_dtx1n"]
-[ext_resource type="Script" path="res://scenes/player.gd" id="2_ki8dt"]
 [ext_resource type="PackedScene" uid="uid://c32sargkrku8f" path="res://scenes/jumpet.tscn" id="2_pm20s"]
 [ext_resource type="PackedScene" uid="uid://dka5ft4cxosrs" path="res://scenes/right_panel.tscn" id="2_yr2bm"]
 [ext_resource type="PackedScene" uid="uid://h587v4triyb6" path="res://scenes/active_panel.tscn" id="3_5nnk0"]
@@ -15,8 +15,7 @@
 [node name="encounter" type="Node2D"]
 script = ExtResource("1_ntlaj")
 
-[node name="player" type="Node" parent="."]
-script = ExtResource("2_ki8dt")
+[node name="player" parent="." instance=ExtResource("2_bb2np")]
 
 [node name="monster_manager" type="Node2D" parent="."]
 position = Vector2(265, 34)
