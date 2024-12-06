@@ -8,7 +8,7 @@ var health:int = max_health
 var shifts:int = 0
 var defense:int = 0
 var resistances:Dictionary = {}
-var status:Dictionary = {}
+var status:Dictionary = {"poison":3}
 
 func setup(info:Dictionary) -> void:
 	self.max_health = info["max_health"]
@@ -17,8 +17,17 @@ func setup(info:Dictionary) -> void:
 	
 
 func start_turn() -> void:
+	update_status()
+	defense = 0
 	if health == 0:
 		GlobalSignalBus.emit_player_death()
+
+func update_status() -> void:
+	print("status")
+	for effect in status.keys():
+		if StatusManager.status_directory.keys().has(effect):
+			StatusManager.status_directory[effect].call(self)
+
 
 func defend(shield:int)->void:
 	defense += shield
@@ -29,20 +38,25 @@ func get_damage_multiplier(type:String) -> float:
 	else:
 		return 1.0
 
-func take_damage(incoming_damage:Damage)->void:
+func take_damage(incoming_damage:Damage, direct:bool = false)->void:
 	var multiplier: float = get_damage_multiplier(incoming_damage.type)
 	#print("multiplier for damage is: ",multiplier)
 	var damage = roundi(incoming_damage.damage * multiplier)
 	#print("my damage taken is ",damage, " of the type: ",incoming_damage.type)
-	if damage < defense:
-		defense -= damage
-		return
-	var current_damage = damage - defense
-	defense = 0
+	var current_damage:int=0
+	if not direct:
+		if damage < defense:
+			defense -= damage
+			return
+		current_damage = damage - defense
+		defense = 0
+	else:
+		current_damage = damage
 	if current_damage >= health:
 		health = 0
 		return
 	health -= current_damage
+	print("ouch!", health )
 
 func heal(heal_amount:int)->void:
 	if health + heal_amount > max_health:

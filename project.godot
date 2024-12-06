@@ -23,6 +23,7 @@ InventoryManager="*res://globals/InventoryManager.gd"
 PlayerManager="*res://globals/PlayerManager.gd"
 MonsterManager="*res://globals/MonsterManager.gd"
 SpellManager="*res://globals/SpellManager.gd"
+StatusManager="*res://globals/StatusManager.gd"
 
 [display]
 

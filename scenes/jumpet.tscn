@@ -97,7 +97,7 @@ size = Vector2(96, 136)
 
 [node name="Jumpet" type="AnimatedSprite2D"]
 sprite_frames = SubResource("SpriteFrames_rdhlt")
-animation = &"hit"
+animation = &"angry"
 script = ExtResource("15_7pbo0")
 
 [node name="click_box" type="Area2D" parent="."]

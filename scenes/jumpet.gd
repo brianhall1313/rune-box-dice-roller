@@ -9,7 +9,7 @@ class_name Monster
 @export var max_health:int = 20
 @export var health:int = max_health
 @export var attack:int = 10
-@export var defence:int = 0
+@export var defense:int = 0
 @export var monster_name:String = "Jumpet"
 @export var portrait:Image
 
@@ -42,7 +42,7 @@ func _ready() -> void:
 	pass
 
 func plan_turn() -> void:
-	defence = 0
+	defense = 0
 	select_action()
 
 func take_turn() -> void:
@@ -71,16 +71,20 @@ func get_damage_multiplier(type:String) -> float:
 	else:
 		return 1.0
 
-func take_damage(initial_damage:Damage)->void:
+func take_damage(initial_damage:Damage, direct:bool = false)->void:
 	var multiplier: float = get_damage_multiplier(initial_damage.type)
 	#print("multiplier for damage is: ",multiplier)
 	var damage = roundi(initial_damage.damage * multiplier)
 	#print("my damage taken is ",damage, " of the type: ",initial_damage.type)
-	if damage < defence:
-		defence -= damage
-		return
-	var current_damage = damage - defence
-	defence = 0 # you will inevitably lose all you defence if you are this far
+	var current_damage:int = 0
+	if not direct:
+		if damage < defense:
+			defense -= damage
+			return
+		current_damage = damage - defense
+		defense = 0
+	else:
+		current_damage = damage
 	if current_damage >= health:
 		health = 0
 		print("OWIE!!! jumpet died")
