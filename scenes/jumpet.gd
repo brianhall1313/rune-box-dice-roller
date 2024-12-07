@@ -1,15 +1,11 @@
-extends AnimatedSprite2D
-class_name Monster
+extends Monster
 
 @onready var selected_box: Panel = $selected_box
 
 @export var resistances:Dictionary = {
 	"fire":150,
 }
-@export var max_health:int = 20
-@export var health:int = max_health
 @export var attack:int = 10
-@export var defense:int = 0
 @export var monster_name:String = "Jumpet"
 @export var portrait:Image
 
@@ -42,7 +38,7 @@ func _ready() -> void:
 	pass
 
 func plan_turn() -> void:
-	defense = 0
+	health.reset_defense()
 	select_action()
 
 func take_turn() -> void:
@@ -51,46 +47,6 @@ func take_turn() -> void:
 func select_action()-> void:
 	current_action_index = randi_range(0,len(actions)-1)
 
-func play_animation(animation_name:String)->void:
-	if sprite_frames.get_animation_names().has(animation_name):
-		play_animation(animation_name)
-
-func do_damage(attack_val:int, type:String) -> Damage:
-	return Global.damage.new(attack_val,type)
-	
-
-func heal_damage(amount:int)->void:
-	if amount + health > max_health:
-		health = max_health
-		return
-	health += amount
-
-func get_damage_multiplier(type:String) -> float:
-	if resistances.keys().has(type):
-		return resistances[type]/100.0
-	else:
-		return 1.0
-
-func take_damage(initial_damage:Damage, direct:bool = false)->void:
-	var multiplier: float = get_damage_multiplier(initial_damage.type)
-	#print("multiplier for damage is: ",multiplier)
-	var damage = roundi(initial_damage.damage * multiplier)
-	#print("my damage taken is ",damage, " of the type: ",initial_damage.type)
-	var current_damage:int = 0
-	if not direct:
-		if damage < defense:
-			defense -= damage
-			return
-		current_damage = damage - defense
-		defense = 0
-	else:
-		current_damage = damage
-	if current_damage >= health:
-		health = 0
-		print("OWIE!!! jumpet died")
-		GlobalSignalBus.emit_enemy_death(self)
-		return
-	health -= current_damage
 
 func selected()->void:
 	selected_box.visible = !selected_box.visible

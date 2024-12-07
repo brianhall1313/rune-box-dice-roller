@@ -7,8 +7,8 @@ extends VBoxContainer
 
 
 func update(enemy:Monster) -> void:
-	health_bar.max_value = enemy.max_health
-	health_bar.value = enemy.health
+	health_bar.max_value = enemy.health.max_health
+	health_bar.value = enemy.health.health
 	set_statuses(enemy.status_effects)
 	enemy_name.text = enemy.monster_name
 

@@ -39,7 +39,7 @@ func state_change(new_state:String)->void:
 		Global.current_state=new_state
 		#perform any changes need doing
 		current_state.enter()
-		print_state_stack()
+		#print_state_stack()
 
 
 func revert_state()->void:
@@ -52,8 +52,8 @@ func revert_state()->void:
 		current_state = state_stack[len(state_stack)-1]
 		current_state.enter()
 		Global.current_state = current_state.name
-		print("changed state to ",current_state.name)
-		print_state_stack()
+		#print("changed state to ",current_state.name)
+		#print_state_stack()
 
 func print_state_stack()->void:
 	print("the current stack")

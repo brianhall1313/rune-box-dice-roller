@@ -1,8 +1,9 @@
-[gd_scene load_steps=14 format=3 uid="uid://c32sargkrku8f"]
+[gd_scene load_steps=15 format=3 uid="uid://c32sargkrku8f"]
 
 [ext_resource type="Texture2D" uid="uid://bw60bsywso33s" path="res://textures/Jumpet/Jumpet_Grumpet_1.png" id="1_bnmjv"]
 [ext_resource type="Texture2D" uid="uid://bmenpsck08rev" path="res://textures/Jumpet/Jumpet_Grumpet_2.png" id="2_uvt6t"]
 [ext_resource type="Texture2D" uid="uid://4buuffubxam2" path="res://textures/Jumpet/Jumpet_Grumpet__3.png" id="3_dtsuu"]
+[ext_resource type="PackedScene" uid="uid://c5d41p3om6lvl" path="res://resources/health.tscn" id="3_qukoe"]
 [ext_resource type="Texture2D" uid="uid://cxfw5cjysq8y6" path="res://textures/Jumpet/Jumpet_Grumpet_4.png" id="4_xne1u"]
 [ext_resource type="Texture2D" uid="uid://cqm2f0fprirs5" path="res://textures/Jumpet/Jumpet_Impact.png" id="5_v3725"]
 [ext_resource type="Texture2D" uid="uid://cexr36qskn4k1" path="res://textures/Jumpet/Jumpet_Struck.png" id="6_oqd8r"]
@@ -12,8 +13,19 @@
 [ext_resource type="Script" path="res://scenes/jumpet.gd" id="15_7pbo0"]
 [ext_resource type="PackedScene" uid="uid://c3kej11nt2ksr" path="res://scenes/selected_box.tscn" id="16_wyp31"]
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_rdhlt"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hdaes"]
+size = Vector2(96, 136)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_q1wro"]
 animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_v3725")
+}],
+"loop": true,
+"name": &"attack",
+"speed": 5.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": ExtResource("1_bnmjv")
@@ -28,45 +40,10 @@ animations = [{
 "texture": ExtResource("4_xne1u")
 }],
 "loop": true,
-"name": &"angry",
+"name": &"grump",
 "speed": 5.0
 }, {
 "frames": [{
-"duration": 1.0,
-"texture": ExtResource("5_v3725")
-}, {
-"duration": 1.0,
-"texture": ExtResource("5_v3725")
-}, {
-"duration": 1.0,
-"texture": ExtResource("5_v3725")
-}, {
-"duration": 1.0,
-"texture": ExtResource("5_v3725")
-}, {
-"duration": 1.0,
-"texture": ExtResource("5_v3725")
-}],
-"loop": true,
-"name": &"attack",
-"speed": 3.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("6_oqd8r")
-}, {
-"duration": 1.0,
-"texture": ExtResource("6_oqd8r")
-}, {
-"duration": 1.0,
-"texture": ExtResource("6_oqd8r")
-}, {
-"duration": 1.0,
-"texture": ExtResource("6_oqd8r")
-}, {
-"duration": 1.0,
-"texture": ExtResource("6_oqd8r")
-}, {
 "duration": 1.0,
 "texture": ExtResource("6_oqd8r")
 }],
@@ -79,26 +56,20 @@ animations = [{
 "texture": ExtResource("7_lodbp")
 }, {
 "duration": 1.0,
-"texture": ExtResource("9_ny7gr")
-}, {
-"duration": 1.0,
-"texture": ExtResource("7_lodbp")
-}, {
-"duration": 1.0,
 "texture": ExtResource("8_gsf41")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_ny7gr")
 }],
 "loop": true,
 "name": &"idle",
 "speed": 5.0
 }]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_hdaes"]
-size = Vector2(96, 136)
-
-[node name="Jumpet" type="AnimatedSprite2D"]
-sprite_frames = SubResource("SpriteFrames_rdhlt")
-animation = &"angry"
+[node name="Jumpet" type="Node2D" node_paths=PackedStringArray("health", "sprite")]
 script = ExtResource("15_7pbo0")
+health = NodePath("Health")
+sprite = NodePath("sprite")
 
 [node name="click_box" type="Area2D" parent="."]
 
@@ -107,5 +78,13 @@ position = Vector2(0, 36)
 shape = SubResource("RectangleShape2D_hdaes")
 
 [node name="selected_box" parent="." instance=ExtResource("16_wyp31")]
+
+[node name="Health" parent="." instance=ExtResource("3_qukoe")]
+max_health = 20
+health = 20
+
+[node name="sprite" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_q1wro")
+animation = &"idle"
 
 [connection signal="input_event" from="click_box" to="." method="_on_click_box_input_event"]

@@ -16,6 +16,9 @@ func start_turn() -> void:
 	if health.health == 0:
 		GlobalSignalBus.emit_player_death()
 
+func defend(shield:int) -> void:
+	health.defend(shield)
+
 func update_status() -> void:
 	print("status")
 	for effect in status.keys():

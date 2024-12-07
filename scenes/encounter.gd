@@ -133,11 +133,11 @@ func clear_last_spell() -> void:
 
 func cast_spell(spell)->void:
 	if spell.has("damage"):
-		if current_enemy and current_enemy.health > 0:
+		if current_enemy and current_enemy.health.health > 0:
 			current_enemy.take_damage(spell["damage"].call())
 	if spell.has("heal"):
 		scene_player.heal(spell["heal"])
-	if spell.has("defned"):
+	if spell.has("defend"):
 		scene_player.defend(spell["defend"])
 	if spell.has("echo"):
 		for i in range(spell["echo"]):
@@ -150,7 +150,7 @@ func player_turn_end() -> void:
 
 func enemy_turn() -> void:
 	for monster:Monster in monster_manager.get_children():
-		if monster.health > 0:
+		if monster.health.health > 0:
 			print(monster.monster_name, " takes its turn")
 			#TODO damage to player
 			var action = monster.actions[monster.current_action_index]
@@ -159,7 +159,7 @@ func enemy_turn() -> void:
 				scene_player.take_damage(action["attack"].call())
 				print(scene_player.health, " health left")
 			if action.keys().has("defence"):
-				monster.defense += action["defence"]
+				monster.defend(action["defence"])
 			if action.keys().has("effect"):
 				for effect in action["effect"].keys():
 					print("THIS IS THE EFFECT ", effect)

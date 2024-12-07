@@ -21,7 +21,6 @@ script = ExtResource("1_ntlaj")
 position = Vector2(265, 34)
 
 [node name="Jumpet" parent="monster_manager" instance=ExtResource("2_pm20s")]
-frame_progress = 0.286582
 
 [node name="UI" type="Control" parent="."]
 layout_mode = 3
