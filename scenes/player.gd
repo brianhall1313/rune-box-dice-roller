@@ -5,7 +5,7 @@ class_name player
 
 var player_name:String = "Default"
 var shifts:int = 0
-var status:Dictionary = {"poison":3}
+var status:Dictionary = {}
 
 func setup(info) -> void:
 	health.setup(info["max_health"],info["health"])
@@ -24,6 +24,13 @@ func update_status() -> void:
 	for effect in status.keys():
 		if StatusManager.status_directory.keys().has(effect):
 			StatusManager.status_directory[effect].call(self)
+
+func add_effect(effect_name:String, effect_value:int) -> void:
+	if status.keys().has(effect_name):
+		status[effect_name] += effect_value
+		return
+	status[effect_name] = effect_value
+	
 
 func take_damage(incomming_damage:Damage,direct:bool=false) -> void:
 	health.take_damage(incomming_damage,direct)

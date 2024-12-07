@@ -20,16 +20,18 @@ func reset_defense() -> void:
 	defense = 0
 
 func get_damage_multiplier(type:String) -> float:
-	if type in resistances.keys():
+	print("the damage type is ", type)
+	print("My resistances are ", self.resistances)
+	if type in self.resistances.keys():
+		print("match!")
 		return resistances[type]/100.0
-	else:
-		return 1.0
+	return 1.0
 
 func take_damage(incoming_damage:Damage, direct:bool = false)->void:
 	var multiplier: float = get_damage_multiplier(incoming_damage.type)
-	#print("multiplier for damage is: ",multiplier)
+	print("multiplier for damage is: ",multiplier)
 	var damage = roundi(incoming_damage.damage * multiplier)
-	#print("my damage taken is ",damage, " of the type: ",incoming_damage.type)
+	print("my damage taken is ",damage, " of the type: ",incoming_damage.type)
 	print(damage, " damage vs ", defense)
 	var current_damage:int=0
 	if not direct:

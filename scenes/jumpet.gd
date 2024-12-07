@@ -35,7 +35,7 @@ var actions:Array[Dictionary] = [
 
 
 func _ready() -> void:
-	pass
+	health.setup(health.max_health,health.max_health)
 
 func plan_turn() -> void:
 	health.reset_defense()

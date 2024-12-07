@@ -4,6 +4,7 @@ class_name Monster
 
 @export var health:Health
 @export var sprite:AnimatedSprite2D
+@export var status:Dictionary = {}
 
 
 func play_animation(animation_name:String)->void:
@@ -20,3 +21,16 @@ func take_damage(initial_damage:Damage, direct:bool = false)->void:
 
 func defend(defend_amount:int) -> void:
 	health.defend(defend_amount)
+
+
+func update_status() -> void:
+	print("status")
+	for effect in status.keys():
+		if StatusManager.status_directory.keys().has(effect):
+			StatusManager.status_directory[effect].call(self)
+
+func add_effect(effect_name:String, effect_value:int) -> void:
+	if status.keys().has(effect_name):
+		status[effect_name] += effect_value
+		return
+	status[effect_name] = effect_value

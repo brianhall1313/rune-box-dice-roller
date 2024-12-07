@@ -82,6 +82,9 @@ shape = SubResource("RectangleShape2D_hdaes")
 [node name="Health" parent="." instance=ExtResource("3_qukoe")]
 max_health = 20
 health = 20
+resistances = {
+"fire": 150.0
+}
 
 [node name="sprite" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_q1wro")

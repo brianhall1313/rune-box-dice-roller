@@ -162,7 +162,8 @@ func enemy_turn() -> void:
 				monster.defend(action["defence"])
 			if action.keys().has("effect"):
 				for effect in action["effect"].keys():
-					print("THIS IS THE EFFECT ", effect)
+					print("Effect added ", {effect:action["effect"][effect]})
+					scene_player.add_effect(effect,action["effect"][effect])
 		else:
 			print(monster.monster_name, " skips its turn because  it's DEAD")
 		_update_ui()
