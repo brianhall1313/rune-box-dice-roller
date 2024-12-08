@@ -25,15 +25,12 @@ func update_status() -> void:
 		if StatusManager.status_directory.keys().has(effect):
 			StatusManager.status_directory[effect].call(self)
 
-func add_effect(effect_name:String, effect_value:int) -> void:
-	if status.keys().has(effect_name):
-		status[effect_name] += effect_value
-		return
-	status[effect_name] = effect_value
-	
 
 func take_damage(incomming_damage:Damage,direct:bool=false) -> void:
 	health.take_damage(incomming_damage,direct)
+
+func heal(heal_amount:int) -> void:
+	health.heal(heal_amount)
 
 func export() -> Dictionary:
 	return {"health":health.health}

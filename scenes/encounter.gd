@@ -142,6 +142,10 @@ func cast_spell(spell)->void:
 	if spell.has("echo"):
 		for i in range(spell["echo"]):
 			print("echooooooo")
+	if spell.has("effect"):
+		for effect in spell["effect"]:
+			print("Effect added ", {effect:spell["effect"][effect]})
+			StatusManager.increase_effect(current_enemy,effect,spell["effect"][effect])
 	clear_queue()
 
 func player_turn_end() -> void:
@@ -160,10 +164,12 @@ func enemy_turn() -> void:
 				print(scene_player.health, " health left")
 			if action.keys().has("defence"):
 				monster.defend(action["defence"])
+			if action.keys().has("heal"):
+				monster.heal(action["heal"])
 			if action.keys().has("effect"):
 				for effect in action["effect"].keys():
 					print("Effect added ", {effect:action["effect"][effect]})
-					scene_player.add_effect(effect,action["effect"][effect])
+					StatusManager.increase_effect(scene_player,effect,action["effect"][effect])
 		else:
 			print(monster.monster_name, " skips its turn because  it's DEAD")
 		_update_ui()
@@ -191,9 +197,13 @@ func _on_right_panel_clear_last() -> void:
 
 
 func _on_player_turn_round_start() -> void:
-	scene_player.start_turn()
 	battle_round += 1
-	_update_ui()
 	print("Round ", battle_round, " ~start!~ ")
+	scene_player.start_turn()
 	for monster:Monster in monster_manager.get_children():
-		monster.plan_turn()
+		monster.start_turn()
+	_update_ui()
+
+
+func _on_active_panel_shook() -> void:
+	clear_spell()

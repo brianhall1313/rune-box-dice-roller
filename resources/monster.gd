@@ -22,6 +22,16 @@ func take_damage(initial_damage:Damage, direct:bool = false)->void:
 func defend(defend_amount:int) -> void:
 	health.defend(defend_amount)
 
+func heal(heal_amount:int) -> void:
+	health.heal(heal_amount)
+
+func start_turn() -> void:
+	health.reset_defense()
+	update_status()
+	select_action()
+
+func select_action()->void:
+	pass#overwrite on individual monsters
 
 func update_status() -> void:
 	print("status")

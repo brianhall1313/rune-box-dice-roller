@@ -9,10 +9,10 @@ extends VBoxContainer
 func update(enemy:Monster) -> void:
 	health_bar.max_value = enemy.health.max_health
 	health_bar.value = enemy.health.health
-	set_statuses(enemy.status_effects)
+	set_statuses(enemy.status)
 	enemy_name.text = enemy.monster_name
 
-func set_statuses(statuses:Array[Dictionary]) -> void:
+func set_statuses(statuses:Dictionary) -> void:
 	status_effects.text = ""
-	for item in statuses:
-		status_effects.text += item["name"] #TODO add a number for strength or duration
+	for item in statuses.keys():
+		status_effects.text += item + ": " + str(statuses[item]) + " "

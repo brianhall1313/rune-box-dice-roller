@@ -68,6 +68,9 @@ animations = [{
 
 [node name="Jumpet" type="Node2D" node_paths=PackedStringArray("health", "sprite")]
 script = ExtResource("15_7pbo0")
+resistances = {
+"fire": 150.0
+}
 health = NodePath("Health")
 sprite = NodePath("sprite")
 

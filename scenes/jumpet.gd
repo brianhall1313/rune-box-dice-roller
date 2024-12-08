@@ -3,7 +3,6 @@ extends Monster
 @onready var selected_box: Panel = $selected_box
 
 @export var resistances:Dictionary = {
-	"fire":150,
 }
 @export var attack:int = 10
 @export var monster_name:String = "Jumpet"
@@ -11,7 +10,6 @@ extends Monster
 
 var current_action_index:int
 
-var status_effects:Array[Dictionary]=[]
 
 var actions:Array[Dictionary] = [
 	{#be agressive, be be agressive
@@ -38,7 +36,6 @@ func _ready() -> void:
 	health.setup(health.max_health,health.max_health)
 
 func plan_turn() -> void:
-	health.reset_defense()
 	select_action()
 
 func take_turn() -> void:

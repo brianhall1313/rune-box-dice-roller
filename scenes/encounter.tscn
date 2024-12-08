@@ -48,4 +48,5 @@ offset_bottom = 287.0
 [connection signal="cast" from="UI/right_panel" to="." method="_on_right_panel_cast"]
 [connection signal="clear_all" from="UI/right_panel" to="." method="_on_right_panel_clear_all"]
 [connection signal="clear_last" from="UI/right_panel" to="." method="_on_right_panel_clear_last"]
+[connection signal="shook" from="UI/active_panel" to="." method="_on_active_panel_shook"]
 [connection signal="round_start" from="State_machine/player_turn" to="." method="_on_player_turn_round_start"]
