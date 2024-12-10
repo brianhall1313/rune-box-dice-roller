@@ -25,6 +25,9 @@ func defend(defend_amount:int) -> void:
 func heal(heal_amount:int) -> void:
 	health.heal(heal_amount)
 
+func is_alive() -> bool:
+	return health.health > 0
+
 func start_turn() -> void:
 	health.reset_defense()
 	update_status()

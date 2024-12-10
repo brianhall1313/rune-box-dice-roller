@@ -9,6 +9,8 @@ var displayed: Array[Die] = []
 var current_spell_selection: Array[Die] = []
 var spell_queue: Array[Array] = []
 var last_glyph_selected: Die
+var action_queue:Array[Dictionary] = []
+var busy:bool = false
 
 var rewards:Dictionary = {
 	"stories":1,
@@ -28,6 +30,20 @@ func _ready() -> void:
 	_update_ui()
 
 func _process(_delta: float) -> void:
+	if not busy and len(action_queue) > 0:
+		for a in action_queue:
+			print(a)
+		busy = true
+		var action = action_queue.pop_back()
+		for item in action.keys():
+			if item == "spell":
+				cast_spell(action["spell"])
+			if item == "turn_end":
+				print("turn end in process!")
+				action[item].call()
+			if item == "monster_action":
+				monster_action(action[item])
+		#take action
 	if win_state:
 		player_wins()
 
@@ -38,6 +54,7 @@ func connect_to_global_signal_bus() -> void:
 	GlobalSignalBus.connect("enemy_interaction",enemy_selected)
 	GlobalSignalBus.connect("enemy_death",enemy_death)
 	GlobalSignalBus.connect("player_death",player_loses)
+	GlobalSignalBus.connect("action_finished",process_finished_action)
 
 func show_enemy_information()->void:
 	ui.update_enemy_info(current_enemy)
@@ -62,6 +79,10 @@ func player_wins() -> void:
 func player_loses() -> void:
 	print("YOU LOSE")
 	get_tree().quit()
+
+func process_finished_action() -> void:
+	busy = false
+
 
 func queue_spell() -> void:
 	# if spell valid
@@ -146,34 +167,48 @@ func cast_spell(spell)->void:
 		for effect in spell["effect"]:
 			print("Effect added ", {effect:spell["effect"][effect]})
 			StatusManager.increase_effect(current_enemy,effect,spell["effect"][effect])
-	clear_queue()
+	_update_ui()
+	GlobalSignalBus.emit_action_finished()
+
+
 
 func player_turn_end() -> void:
+	print("player turn end")
 	GlobalSignalBus.emit_state_change("enemy_turn")
 	enemy_turn()
+	GlobalSignalBus.emit_action_finished()
+
+func enemy_turn_end() -> void:
+	GlobalSignalBus.emit_action_finished()
+	GlobalSignalBus.emit_revert_state()
+
 
 func enemy_turn() -> void:
+	print("enemy turn start")
 	for monster:Monster in monster_manager.get_children():
-		if monster.health.health > 0:
-			print(monster.monster_name, " takes its turn")
-			#TODO damage to player
-			var action = monster.actions[monster.current_action_index]
-			print(monster.monster_name, " takes the action: ",action["name"])
-			if action.keys().has("attack"):
-				scene_player.take_damage(action["attack"].call())
-				print(scene_player.health, " health left")
-			if action.keys().has("defence"):
-				monster.defend(action["defence"])
-			if action.keys().has("heal"):
-				monster.heal(action["heal"])
-			if action.keys().has("effect"):
-				for effect in action["effect"].keys():
-					print("Effect added ", {effect:action["effect"][effect]})
-					StatusManager.increase_effect(scene_player,effect,action["effect"][effect])
-		else:
-			print(monster.monster_name, " skips its turn because  it's DEAD")
-		_update_ui()
-	GlobalSignalBus.emit_revert_state()
+		print("monster turn added to queue ", monster)
+		add_action_to_queue({"monster_action":monster})
+	add_action_to_queue({"turn_end": func (): enemy_turn_end()})
+
+func monster_action(monster:Monster) -> void:
+	if monster.is_alive():
+		print(monster.monster_name, " takes its turn")
+		#TODO damage to player
+		var action = monster.actions[monster.current_action_index]
+		print(monster.monster_name, " takes the action: ",action["name"])
+		if action.keys().has("attack"):
+			scene_player.take_damage(action["attack"].call())
+			print(scene_player.health, " health left")
+		if action.keys().has("defence"):
+			monster.defend(action["defence"])
+		if action.keys().has("heal"):
+			monster.heal(action["heal"])
+		if action.keys().has("effect"):
+			for effect in action["effect"].keys():
+				print("Effect added ", {effect:action["effect"][effect]})
+				StatusManager.increase_effect(scene_player,effect,action["effect"][effect])
+	_update_ui()
+	GlobalSignalBus.emit_action_finished()
 
 func _on_right_panel_cast() -> void:
 	if current_enemy and Global.current_state == "player_turn":
@@ -181,11 +216,15 @@ func _on_right_panel_cast() -> void:
 		for spell in spell_queue:
 			var effect = SpellManager.effect_generation(spell)
 			print("effect: ",effect)
-			cast_spell(effect)
+			add_action_to_queue({"spell":effect})
 		_update_ui()
 	else:
 		print("please select a monster")
-	player_turn_end()
+	add_action_to_queue({"turn_end":func ():player_turn_end()})
+
+
+func add_action_to_queue(item:Dictionary) -> void:
+	action_queue.insert(0,item)
 
 
 func _on_right_panel_clear_all() -> void:
@@ -197,12 +236,15 @@ func _on_right_panel_clear_last() -> void:
 
 
 func _on_player_turn_round_start() -> void:
+	clear_queue()
 	battle_round += 1
 	print("Round ", battle_round, " ~start!~ ")
 	scene_player.start_turn()
 	for monster:Monster in monster_manager.get_children():
 		monster.start_turn()
 	_update_ui()
+	GlobalSignalBus.emit_action_finished()
+	
 
 
 func _on_active_panel_shook() -> void:

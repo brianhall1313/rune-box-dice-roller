@@ -13,6 +13,7 @@ signal spell_cancel
 signal player_death
 signal enemy_death(enemy:Monster)
 
+signal action_finished
 
 func emit_state_change(new_state:String) -> void:
 	state_change.emit(new_state)
@@ -31,3 +32,5 @@ func emit_player_death() -> void:
 	player_death.emit()
 func emit_enemy_death(enemy:Monster) -> void:
 	enemy_death.emit(enemy)
+func emit_action_finished() -> void:
+	action_finished.emit()

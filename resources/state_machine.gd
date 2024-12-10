@@ -29,7 +29,7 @@ func state_change(new_state:String)->void:
 		if current_state == states[new_state]:
 			#print("Error: state changing to itself ",current_state)
 			return
-		#print("changing state to ",new_state)
+		print("changing state to ",new_state)
 		#perform cleanup
 		if current_state != null:
 			current_state.exit()
@@ -52,7 +52,7 @@ func revert_state()->void:
 		current_state = state_stack[len(state_stack)-1]
 		current_state.enter()
 		Global.current_state = current_state.name
-		#print("changed state to ",current_state.name)
+		print("changed state to ",current_state.name)
 		#print_state_stack()
 
 func print_state_stack()->void:
