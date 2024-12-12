@@ -1,0 +1,34 @@
+[gd_scene load_steps=6 format=3 uid="uid://bj3cxp748podj"]
+
+[ext_resource type="Texture2D" uid="uid://bv276deugums2" path="res://textures/Spell_Effects/Sky_Lob/Sky_Lob_1.png" id="1_4tfa6"]
+[ext_resource type="Texture2D" uid="uid://c8g7uam048dec" path="res://textures/Spell_Effects/Sky_Lob/Sky_Lob_2.png" id="2_ahfu1"]
+[ext_resource type="Texture2D" uid="uid://bkyiq8rr1tm3t" path="res://textures/Spell_Effects/Sky_Lob/Sky_Lob_3.png" id="3_owlfh"]
+[ext_resource type="Texture2D" uid="uid://ckhcqdwoiv5b7" path="res://textures/Spell_Effects/Sky_Lob/Sky_Lob_Strike.png" id="4_xtmta"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_bc7bx"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_4tfa6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_ahfu1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_owlfh")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_xtmta")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_xtmta")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="sky_lob" type="AnimatedSprite2D"]
+sprite_frames = SubResource("SpriteFrames_bc7bx")
+autoplay = "default"
+frame_progress = 0.46952

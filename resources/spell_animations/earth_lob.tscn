@@ -1,0 +1,30 @@
+[gd_scene load_steps=6 format=3 uid="uid://bfmjb53lisw7r"]
+
+[ext_resource type="Texture2D" uid="uid://x6mrt03ratof" path="res://textures/Spell_Effects/Earth_Lob/Earth_Lob_1.png" id="1_pwwg0"]
+[ext_resource type="Texture2D" uid="uid://xsua3v2q6oe1" path="res://textures/Spell_Effects/Earth_Lob/Earth_Lob_2.png" id="2_2ctvw"]
+[ext_resource type="Texture2D" uid="uid://d0aymc6vlet43" path="res://textures/Spell_Effects/Earth_Lob/Earth_Lob_3.png" id="3_qdfis"]
+[ext_resource type="Texture2D" uid="uid://cdb4lhbquf1l7" path="res://textures/Spell_Effects/Earth_Lob/Earth_Lob__Strike.png" id="4_fw73o"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_p0nww"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_pwwg0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_2ctvw")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_qdfis")
+}, {
+"duration": 2.0,
+"texture": ExtResource("4_fw73o")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="earth_lob" type="AnimatedSprite2D"]
+sprite_frames = SubResource("SpriteFrames_p0nww")
+frame_progress = 0.646331
