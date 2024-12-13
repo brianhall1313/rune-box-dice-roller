@@ -1,6 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://bkjs1cd38k1g3"]
+[gd_scene load_steps=7 format=3 uid="uid://73ouce55bbvk"]
 
-[ext_resource type="Texture2D" uid="uid://clumvxxxusaxh" path="res://textures/Spell_Effects/Earth_Temper/Earth_Particle.png" id="1_loaeg"]
+[ext_resource type="Texture2D" uid="uid://d1agfknjurch0" path="res://textures/Spell_Effects/Fire_Temper/Fire_Particle_1.png" id="1_tc46e"]
+[ext_resource type="Texture2D" uid="uid://bokvlp7wknaat" path="res://textures/Spell_Effects/Fire_Temper/Fire_Particle_2.png" id="2_j6cwe"]
 
 [sub_resource type="Curve" id="Curve_w3e6h"]
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.695146, 1), 0.0, 0.0, 0, 0, Vector2(0.970874, 0.0229734), 0.0, 0.0, 0, 0]
@@ -12,20 +13,25 @@ curve = SubResource("Curve_w3e6h")
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_en02h"]
 lifetime_randomness = 1.0
 particle_flag_disable_z = true
-emission_shape_scale = Vector3(36, 1, 1)
+emission_shape_scale = Vector3(36, 10, 1)
 emission_shape = 3
 emission_box_extents = Vector3(1, 1, 1)
-angle_min = -180.0
-angle_max = 180.0
 direction = Vector3(0, -1, 0)
 initial_velocity_min = 5.0
 initial_velocity_max = 5.0
-gravity = Vector3(0, -5, 0)
+gravity = Vector3(0, -10, 0)
 alpha_curve = SubResource("CurveTexture_wu023")
 
-[node name="earth_temper" type="GPUParticles2D"]
+[sub_resource type="AnimatedTexture" id="AnimatedTexture_mdcjd"]
+frames = 2
+frame_0/texture = ExtResource("1_tc46e")
+frame_0/duration = 0.2
+frame_1/texture = ExtResource("2_j6cwe")
+frame_1/duration = 0.2
+
+[node name="fire_temper" type="GPUParticles2D"]
 amount = 44
 process_material = SubResource("ParticleProcessMaterial_en02h")
-texture = ExtResource("1_loaeg")
+texture = SubResource("AnimatedTexture_mdcjd")
 lifetime = 7.0
 randomness = 1.0
