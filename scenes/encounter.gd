@@ -43,8 +43,10 @@ func _process(_delta: float) -> void:
 				action[item].call()
 			if item == "monster_action":
 				monster_action(action[item])
-			if item == "animation":
+			if item == "attack_animation":
 				play_animation(action[item])
+			if item == "defense_animation":
+				add_effect(action[item],true)
 		#take action
 	if win_state:
 		player_wins()
@@ -128,15 +130,26 @@ func _update_ui():
 	ui.update_right_panel({"queue":spell_queue,"active":current_spell_selection})
 	ui.update_player_information(scene_player)
 
-func play_animation(animation:PackedScene) -> void:
+func play_animation(animation:PackedScene,is_player:bool=false) -> void:
+	GlobalSignalBus.emit_state_change("animation_playing")
 	var ani = animation.instantiate()
-	ani.global_position = current_enemy.global_position
+	if is_player:
+		pass
+	else:
+		ani.global_position = current_enemy.hit_position.global_position
 	add_child(ani)
 	ani.play("default")
 	await ani.animation_looped
 	print("ANIMATION FINISHED")
 	GlobalSignalBus.emit_action_finished()
 	ani.queue_free()
+	GlobalSignalBus.emit_revert_state()
+
+func add_effect(effect:PackedScene,is_player:bool=false) -> void:
+	GlobalSignalBus.emit_state_change("animation_playing")
+	if is_player:
+		ui.add_effect_to_player(effect)
+	GlobalSignalBus.emit_revert_state()
 
 func enemy_selected(enemy:Monster) -> void:
 	if current_enemy:
@@ -227,8 +240,10 @@ func _on_right_panel_cast() -> void:
 		for spell in spell_queue:
 			var effect = SpellManager.effect_generation(spell)
 			print("effect: ",effect)
-			if effect.keys().has("animation"):
-				add_action_to_queue({"animation":effect.animation})
+			if effect.keys().has("attack_animation"):
+				add_action_to_queue({"attack_animation":effect.attack_animation})
+			if effect.keys().has("defense_animation"):
+				add_action_to_queue({"defense_animation":effect.defense_animation})
 			add_action_to_queue({"spell":effect})
 		_update_ui()
 	else:
@@ -262,3 +277,7 @@ func _on_player_turn_round_start() -> void:
 
 func _on_active_panel_shook() -> void:
 	clear_spell()
+
+
+func _on_player_defense_gone() -> void:
+	ui.remove_effect_from_player()

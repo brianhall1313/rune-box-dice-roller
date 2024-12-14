@@ -1,6 +1,7 @@
 extends Monster
 
 @onready var selected_box: Panel = $selected_box
+@onready var hit_position: Marker2D = $hit_position
 
 @export var resistances:Dictionary = {
 }
@@ -34,6 +35,7 @@ var actions:Array[Dictionary] = [
 
 func _ready() -> void:
 	health.setup(health.max_health,health.max_health)
+	sprite.play("idle")
 
 func plan_turn() -> void:
 	select_action()

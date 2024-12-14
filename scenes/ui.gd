@@ -20,3 +20,9 @@ func toggle_shake(active:bool)->void:
 
 func update_player_information(scene_player:player) -> void:
 	player_info_element.update_player_information(scene_player)
+
+func add_effect_to_player(effect:PackedScene) -> void:
+	player_info_element.add_effect(effect)
+
+func remove_effect_from_player() -> void:
+	player_info_element.remove_effect()

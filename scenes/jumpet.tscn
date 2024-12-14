@@ -44,7 +44,7 @@ animations = [{
 "speed": 5.0
 }, {
 "frames": [{
-"duration": 1.0,
+"duration": 3.0,
 "texture": ExtResource("6_oqd8r")
 }],
 "loop": true,
@@ -91,6 +91,10 @@ resistances = {
 
 [node name="sprite" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_q1wro")
-animation = &"idle"
+animation = &"hit"
+
+[node name="hit_position" type="Marker2D" parent="."]
+position = Vector2(0, 55)
+gizmo_extents = 20.0
 
 [connection signal="input_event" from="click_box" to="." method="_on_click_box_input_event"]

@@ -4,6 +4,8 @@ extends Control
 @onready var player_name = $VBoxContainer/player_info/player_name
 # Called when the node enters the scene tree for the first time.
 @onready var player_health: ProgressBar = $VBoxContainer/player_health
+# this is so you can add and delete effects easily
+@onready var effect_point: Control = $effect_point
 
 var dice_list = []
 func _ready() -> void:
@@ -29,3 +31,12 @@ func _ready() -> void:
 func update_player_information(scene_player:player)->void:
 	player_health.max_value = scene_player.health.max_health
 	player_health.value = scene_player.health.health
+
+func add_effect(effect:PackedScene) -> void:
+	var ani = effect.instantiate()
+	effect_point.add_child(ani)
+	ani.global_position = effect_point.global_position
+
+func remove_effect() -> void:
+	for child in effect_point.get_children():
+		child.queue_free()

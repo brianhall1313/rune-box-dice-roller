@@ -5,12 +5,12 @@ var spell_directory: Dictionary = {
 		"lob":{
 			"name":"fire hurl",
 			"damage":func ():return Damage.new(10,"fire"),
-			"animation":preload("res://resources/spell_animations/fire_lob.tscn")
+			"attack_animation":preload("res://resources/spell_animations/fire_lob.tscn")
 		},
 		"temper":{
 			"name":"fire wall",
 			"defend":10,
-			"animation":preload("res://resources/spell_animations/fire_temper.tscn")
+			"defense_animation":preload("res://resources/spell_animations/fire_temper.tscn")
 			},
 		"reflect":{
 			"name":"fire back",
@@ -21,12 +21,12 @@ var spell_directory: Dictionary = {
 		"lob":{
 			"name":"rock huck",
 			"damage":func ():return Damage.new(10,"earth"),
-			"animation":preload("res://resources/spell_animations/earth_lob.tscn")
+			"attack_animation":preload("res://resources/spell_animations/earth_lob.tscn")
 		},
 		"temper":{
 			"name":"stone wall",
 			"defend":10,
-			"animation":preload("res://resources/spell_animations/earth_temper.tscn")
+			"defense_animation":preload("res://resources/spell_animations/earth_temper.tscn")
 			},
 		"reflect":{
 			"name":"polished rock",
@@ -37,12 +37,12 @@ var spell_directory: Dictionary = {
 		"lob":{
 			"name":"wet smack",
 			"damage":func ():return Damage.new(10,"water"),
-			"animation":preload("res://resources/spell_animations/water_lob.tscn")
+			"attack_animation":preload("res://resources/spell_animations/water_lob.tscn")
 		},
 		"temper":{
 			"name":"tidal wall",
 			"defend":10,
-			"animation":preload("res://resources/spell_animations/water_temper.tscn")
+			"defense_animation":preload("res://resources/spell_animations/water_temper.tscn")
 			},
 		"reflect":{
 			"name":"mirrored surface",
@@ -53,12 +53,12 @@ var spell_directory: Dictionary = {
 		"lob":{
 			"name":"sparkles",
 			"damage":func ():return Damage.new(10,"sky"),
-			"animation":preload("res://resources/spell_animations/sky_lob.tscn")
+			"attack_animation":preload("res://resources/spell_animations/sky_lob.tscn")
 		},
 		"temper":{
 			"name":"winderwall",
 			"defend":10,
-			"animation":preload("res://resources/spell_animations/sky_temper.tscn")
+			"defense_animation":preload("res://resources/spell_animations/sky_temper.tscn")
 			},
 		"reflect":{
 			"name":"blowback",
@@ -69,12 +69,12 @@ var spell_directory: Dictionary = {
 		"lob":{
 			"name":"blood smack",
 			"damage":func ():return Damage.new(10,"life"),
-			"animation":preload("res://resources/spell_animations/life_lob.tscn")
+			"attack_animation":preload("res://resources/spell_animations/life_lob.tscn")
 		},
 		"temper":{
 			"name":"heals~",
 			"heal":10,
-			"animation":preload("res://resources/spell_animations/life_temper.tscn")
+			"defense_animation":preload("res://resources/spell_animations/life_temper.tscn")
 			},
 		"reflect":{
 			"name":"reflect damage",

@@ -1,12 +1,12 @@
 [gd_scene load_steps=9 format=3 uid="uid://cn8vo8ly2gr5j"]
 
-[ext_resource type="Texture2D" uid="uid://dk717t08ahf3q" path="res://textures/Spell_Effects/Water_Lob/Water_Lob_1.png" id="1_ouldp"]
-[ext_resource type="Texture2D" uid="uid://c6duvwr83oah8" path="res://textures/Spell_Effects/Water_Lob/Water_Lob_2.png" id="2_qfmms"]
-[ext_resource type="Texture2D" uid="uid://bgsn6nm0siold" path="res://textures/Spell_Effects/Water_Lob/Water_Lob_3.png" id="3_1xgpu"]
-[ext_resource type="Texture2D" uid="uid://ch83e1sv42wuh" path="res://textures/Spell_Effects/Water_Lob/Water_Lob_4.png" id="4_unawb"]
-[ext_resource type="Texture2D" uid="uid://v2d1khxp0rp4" path="res://textures/Spell_Effects/Water_Lob/Water_Lob_5.png" id="5_gh7u2"]
-[ext_resource type="Texture2D" uid="uid://djjoup7iinuht" path="res://textures/Spell_Effects/Water_Lob/Water_Lob_6.png" id="6_8pejd"]
-[ext_resource type="Texture2D" uid="uid://dos412ginpnm0" path="res://textures/Spell_Effects/Water_Lob/Water_Lob_Strike.png" id="7_y40n6"]
+[ext_resource type="Texture2D" uid="uid://erdusqeky8to" path="res://textures/Spell_Effects/Water_Lob/Water_Lob_1.png" id="1_ouldp"]
+[ext_resource type="Texture2D" uid="uid://08kyh871mpn8" path="res://textures/Spell_Effects/Water_Lob/Water_Lob_2.png" id="2_qfmms"]
+[ext_resource type="Texture2D" uid="uid://74nc6pgausl7" path="res://textures/Spell_Effects/Water_Lob/Water_Lob_3.png" id="3_1xgpu"]
+[ext_resource type="Texture2D" uid="uid://c0q4w6yt8lils" path="res://textures/Spell_Effects/Water_Lob/Water_Lob_4.png" id="4_unawb"]
+[ext_resource type="Texture2D" uid="uid://bkoj15dpodhr1" path="res://textures/Spell_Effects/Water_Lob/Water_Lob_5.png" id="5_gh7u2"]
+[ext_resource type="Texture2D" uid="uid://mvasw0ajbj37" path="res://textures/Spell_Effects/Water_Lob/Water_Lob_6.png" id="6_8pejd"]
+[ext_resource type="Texture2D" uid="uid://b14h7oebufthe" path="res://textures/Spell_Effects/Water_Lob/Water_Lob_Strike.png" id="7_y40n6"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_5ecm6"]
 animations = [{
@@ -29,10 +29,7 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("6_8pejd")
 }, {
-"duration": 1.0,
-"texture": ExtResource("7_y40n6")
-}, {
-"duration": 1.0,
+"duration": 2.0,
 "texture": ExtResource("7_y40n6")
 }],
 "loop": true,
@@ -42,4 +39,4 @@ animations = [{
 
 [node name="water_lob" type="AnimatedSprite2D"]
 sprite_frames = SubResource("SpriteFrames_5ecm6")
-frame_progress = 0.58788
+frame_progress = 0.039343
