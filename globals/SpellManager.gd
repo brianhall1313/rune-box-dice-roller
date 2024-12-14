@@ -4,11 +4,13 @@ var spell_directory: Dictionary = {
 	"fire":{
 		"lob":{
 			"name":"fire hurl",
-			"damage":func ():return Damage.new(10,"fire")
+			"damage":func ():return Damage.new(10,"fire"),
+			"animation":preload("res://resources/spell_animations/fire_lob.tscn")
 		},
 		"temper":{
 			"name":"fire wall",
-			"defend":10
+			"defend":10,
+			"animation":preload("res://resources/spell_animations/fire_temper.tscn")
 			},
 		"reflect":{
 			"name":"fire back",
@@ -18,11 +20,13 @@ var spell_directory: Dictionary = {
 	"earth":{
 		"lob":{
 			"name":"rock huck",
-			"damage":func ():return Damage.new(10,"earth")
+			"damage":func ():return Damage.new(10,"earth"),
+			"animation":preload("res://resources/spell_animations/earth_lob.tscn")
 		},
 		"temper":{
 			"name":"stone wall",
-			"defend":10
+			"defend":10,
+			"animation":preload("res://resources/spell_animations/earth_temper.tscn")
 			},
 		"reflect":{
 			"name":"polished rock",
@@ -32,11 +36,13 @@ var spell_directory: Dictionary = {
 	"water":{
 		"lob":{
 			"name":"wet smack",
-			"damage":func ():return Damage.new(10,"water")
+			"damage":func ():return Damage.new(10,"water"),
+			"animation":preload("res://resources/spell_animations/water_lob.tscn")
 		},
 		"temper":{
 			"name":"tidal wall",
-			"defend":10
+			"defend":10,
+			"animation":preload("res://resources/spell_animations/water_temper.tscn")
 			},
 		"reflect":{
 			"name":"mirrored surface",
@@ -46,11 +52,13 @@ var spell_directory: Dictionary = {
 	"sky":{
 		"lob":{
 			"name":"sparkles",
-			"damage":func ():return Damage.new(10,"sky")
+			"damage":func ():return Damage.new(10,"sky"),
+			"animation":preload("res://resources/spell_animations/sky_lob.tscn")
 		},
 		"temper":{
 			"name":"winderwall",
-			"defend":10
+			"defend":10,
+			"animation":preload("res://resources/spell_animations/sky_temper.tscn")
 			},
 		"reflect":{
 			"name":"blowback",
@@ -60,11 +68,13 @@ var spell_directory: Dictionary = {
 	"life":{
 		"lob":{
 			"name":"blood smack",
-			"damage":func ():return Damage.new(10,"life")
+			"damage":func ():return Damage.new(10,"life"),
+			"animation":preload("res://resources/spell_animations/life_lob.tscn")
 		},
 		"temper":{
 			"name":"heals~",
-			"heal":10
+			"heal":10,
+			"animation":preload("res://resources/spell_animations/life_temper.tscn")
 			},
 		"reflect":{
 			"name":"reflect damage",

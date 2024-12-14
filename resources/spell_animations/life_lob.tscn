@@ -1,0 +1,34 @@
+[gd_scene load_steps=7 format=3 uid="uid://dd3pwr0fs1fkv"]
+
+[ext_resource type="Texture2D" uid="uid://du37wiiqm75ui" path="res://textures/Spell_Effects/Life_Lob/Life_Lob_1.png" id="1_5qdom"]
+[ext_resource type="Texture2D" uid="uid://btrpao6uk5hxn" path="res://textures/Spell_Effects/Life_Lob/Life_Lob_2.png" id="2_rfip3"]
+[ext_resource type="Texture2D" uid="uid://bd6ydfohethhk" path="res://textures/Spell_Effects/Life_Lob/Life_Lob_3.png" id="3_fe2sf"]
+[ext_resource type="Texture2D" uid="uid://c0qfnhcigqcgu" path="res://textures/Spell_Effects/Life_Lob/Life_Lob_4.png" id="4_lv5xi"]
+[ext_resource type="Texture2D" uid="uid://quufkko00tno" path="res://textures/Spell_Effects/Life_Lob/Life_Lob_Strike.png" id="5_as1ya"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_64h2u"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_5qdom")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_rfip3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_fe2sf")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_lv5xi")
+}, {
+"duration": 2.0,
+"texture": ExtResource("5_as1ya")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="life_lob" type="AnimatedSprite2D"]
+sprite_frames = SubResource("SpriteFrames_64h2u")
+frame_progress = 0.227088

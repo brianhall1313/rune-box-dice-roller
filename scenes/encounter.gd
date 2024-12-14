@@ -43,6 +43,8 @@ func _process(_delta: float) -> void:
 				action[item].call()
 			if item == "monster_action":
 				monster_action(action[item])
+			if item == "animation":
+				play_animation(action[item])
 		#take action
 	if win_state:
 		player_wins()
@@ -125,7 +127,16 @@ func _update_ui():
 	show_enemy_information()
 	ui.update_right_panel({"queue":spell_queue,"active":current_spell_selection})
 	ui.update_player_information(scene_player)
-	
+
+func play_animation(animation:PackedScene) -> void:
+	var ani = animation.instantiate()
+	ani.global_position = current_enemy.global_position
+	add_child(ani)
+	ani.play("default")
+	await ani.animation_looped
+	print("ANIMATION FINISHED")
+	GlobalSignalBus.emit_action_finished()
+	ani.queue_free()
 
 func enemy_selected(enemy:Monster) -> void:
 	if current_enemy:
@@ -216,6 +227,8 @@ func _on_right_panel_cast() -> void:
 		for spell in spell_queue:
 			var effect = SpellManager.effect_generation(spell)
 			print("effect: ",effect)
+			if effect.keys().has("animation"):
+				add_action_to_queue({"animation":effect.animation})
 			add_action_to_queue({"spell":effect})
 		_update_ui()
 	else:
