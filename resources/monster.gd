@@ -55,12 +55,12 @@ func damage_effet() -> void:
 	var tween = create_tween()
 	var init_pos:Vector2 = sprite.position
 	var offset:int = 15
-	tween.tween_property(sprite,"position",Vector2(init_pos.x,init_pos.y-offset),.2)
-	tween.tween_property(sprite,"position",Vector2(init_pos.x,init_pos.y+offset),.2)
-	tween.tween_property(sprite,"position",Vector2(init_pos.x,init_pos.y-offset),.2)
-	tween.tween_property(sprite,"position",Vector2(init_pos.x,init_pos.y+offset),.2)
-	tween.tween_property(sprite,"position",Vector2(init_pos.x,init_pos.y-offset),.2)
-	tween.tween_property(sprite,"position",Vector2(init_pos.x,init_pos.y+offset),.2)
+	tween.tween_property(sprite,"position",Vector2(init_pos.x,init_pos.y-offset),.1)
+	tween.tween_property(sprite,"position",Vector2(init_pos.x,init_pos.y+offset),.1)
+	tween.tween_property(sprite,"position",Vector2(init_pos.x,init_pos.y-offset),.1)
+	tween.tween_property(sprite,"position",Vector2(init_pos.x,init_pos.y+offset),.1)
+	tween.tween_property(sprite,"position",Vector2(init_pos.x,init_pos.y-offset),.1)
+	tween.tween_property(sprite,"position",Vector2(init_pos.x,init_pos.y+offset),.1)
 	tween.tween_property(sprite,"position",init_pos,.1)
 	await tween.finished
 	sprite.play("idle")

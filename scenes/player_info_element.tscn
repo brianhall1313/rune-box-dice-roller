@@ -61,6 +61,12 @@ step = 1.0
 value = 50.0
 show_percentage = false
 
+[node name="health_label" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="effects_info" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+
 [node name="dice_inventory" parent="VBoxContainer" instance=ExtResource("1_biodx")]
 layout_mode = 2
 

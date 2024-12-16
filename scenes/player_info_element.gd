@@ -6,6 +6,8 @@ extends Control
 @onready var player_health: ProgressBar = $VBoxContainer/player_health
 # this is so you can add and delete effects easily
 @onready var effect_point: Control = $effect_point
+@onready var health_label: Label = $VBoxContainer/health_label
+@onready var effects_info: Label = $VBoxContainer/effects_info
 
 var dice_list = []
 func _ready() -> void:
@@ -31,6 +33,10 @@ func _ready() -> void:
 func update_player_information(scene_player:player)->void:
 	player_health.max_value = scene_player.health.max_health
 	player_health.value = scene_player.health.health
+	health_label.text = "HP: " + str(scene_player.health.health)+" / " + str(scene_player.health.max_health)
+	effects_info.text = ""
+	for effect in scene_player.status:
+		effects_info.text += effect + ": " + str(scene_player.status[effect]) + "\n"
 
 func add_effect(effect:PackedScene) -> void:
 	var ani = effect.instantiate()

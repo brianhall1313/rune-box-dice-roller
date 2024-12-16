@@ -42,6 +42,12 @@ theme_override_styles/fill = SubResource("StyleBoxFlat_2lga6")
 step = 1.0
 show_percentage = false
 
+[node name="health_label" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="effects_info" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+
 [node name="status_effects" type="Label" parent="VBoxContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 8
