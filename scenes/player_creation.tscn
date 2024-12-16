@@ -1,0 +1,66 @@
+[gd_scene load_steps=2 format=3 uid="uid://dnohbnyl634r0"]
+
+[ext_resource type="Script" path="res://scenes/player_creation.gd" id="1_x5psx"]
+
+[node name="player_creation" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_x5psx")
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+layout_mode = 0
+offset_right = 512.0
+offset_bottom = 288.0
+
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="character_creation_label" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Charater Creation"
+horizontal_alignment = 1
+
+[node name="Control" type="Control" parent="PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="name_label" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "Character Name:"
+
+[node name="name_entry" type="LineEdit" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(0, 32)
+layout_mode = 2
+size_flags_horizontal = 3
+tooltip_text = "Please Enter A Name"
+placeholder_text = "please enter a character name"
+max_length = 25
+
+[node name="error" type="TextureRect" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+
+[node name="interact_buttons" type="HBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="confirm" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer/interact_buttons"]
+layout_mode = 2
+text = "Create Character"
+
+[node name="go back" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer/interact_buttons"]
+layout_mode = 2
+text = "Go Back"
+
+[connection signal="text_changed" from="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/name_entry" to="." method="_on_name_entry_text_changed"]
+[connection signal="text_submitted" from="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/name_entry" to="." method="_on_name_entry_text_submitted"]
+[connection signal="button_up" from="PanelContainer/MarginContainer/VBoxContainer/interact_buttons/confirm" to="." method="_on_confirm_button_up"]

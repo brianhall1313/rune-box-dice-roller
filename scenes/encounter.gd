@@ -266,6 +266,7 @@ func _on_right_panel_clear_last() -> void:
 func _on_player_turn_round_start() -> void:
 	clear_queue()
 	battle_round += 1
+	ui.shake_box()
 	print("Round ", battle_round, " ~start!~ ")
 	scene_player.start_turn()
 	for monster:Monster in monster_manager.get_children():

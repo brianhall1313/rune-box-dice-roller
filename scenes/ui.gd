@@ -26,3 +26,6 @@ func add_effect_to_player(effect:PackedScene) -> void:
 
 func remove_effect_from_player() -> void:
 	player_info_element.remove_effect()
+
+func shake_box() -> void:
+	active_panel.shake_box()
