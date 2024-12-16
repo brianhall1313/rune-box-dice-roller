@@ -27,4 +27,4 @@ animations = [{
 
 [node name="earth_lob" type="AnimatedSprite2D"]
 sprite_frames = SubResource("SpriteFrames_p0nww")
-frame_progress = 0.646331
+frame_progress = 0.0186666

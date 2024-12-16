@@ -34,7 +34,7 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("5_qritk")
 }, {
-"duration": 1.0,
+"duration": 2.0,
 "texture": ExtResource("6_dejsa")
 }],
 "loop": true,

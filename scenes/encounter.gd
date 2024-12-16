@@ -3,6 +3,7 @@ extends Node2D
 @onready var monster_manager: Node2D = $monster_manager
 @onready var ui: Control = $UI
 @onready var scene_player: player = $player
+@onready var action_delay: Timer = $action_delay
 
 var battle_round:int = 0
 var displayed: Array[Die] = []
@@ -27,13 +28,15 @@ func _ready() -> void:
 	scene_player.setup(PlayerManager.export())
 	print(monster_manager.get_child(0).health)
 	enemy_selected(monster_manager.get_child(0))
+	round_start()
 	_update_ui()
 
 func _process(_delta: float) -> void:
-	if not busy and len(action_queue) > 0:
+	if not busy and (len(action_queue) > 0) and action_delay.is_stopped():
 		for a in action_queue:
-			print(a)
+			print("action: ", a)
 		busy = true
+		action_delay.start()
 		var action = action_queue.pop_back()
 		for item in action.keys():
 			if item == "spell":
@@ -143,6 +146,7 @@ func play_animation(animation:PackedScene,is_player:bool=false) -> void:
 	print("ANIMATION FINISHED")
 	GlobalSignalBus.emit_action_finished()
 	ani.queue_free()
+	print("animation deleted....reverting state")
 	GlobalSignalBus.emit_revert_state()
 
 func add_effect(effect:PackedScene,is_player:bool=false) -> void:
@@ -150,6 +154,7 @@ func add_effect(effect:PackedScene,is_player:bool=false) -> void:
 	if is_player:
 		ui.add_effect_to_player(effect)
 	GlobalSignalBus.emit_revert_state()
+	GlobalSignalBus.emit_action_finished()
 
 func enemy_selected(enemy:Monster) -> void:
 	if current_enemy:
@@ -194,7 +199,16 @@ func cast_spell(spell)->void:
 	_update_ui()
 	GlobalSignalBus.emit_action_finished()
 
-
+func round_start() -> void:
+	clear_queue()
+	battle_round += 1
+	ui.shake_box()
+	print("Round ", battle_round, " ~start!~ ")
+	scene_player.start_turn()
+	for monster:Monster in monster_manager.get_children():
+		monster.start_turn()
+	_update_ui()
+	GlobalSignalBus.emit_action_finished()
 
 func player_turn_end() -> void:
 	print("player turn end")
@@ -205,6 +219,7 @@ func player_turn_end() -> void:
 func enemy_turn_end() -> void:
 	GlobalSignalBus.emit_action_finished()
 	GlobalSignalBus.emit_revert_state()
+	round_start()
 
 
 func enemy_turn() -> void:
@@ -245,10 +260,10 @@ func _on_right_panel_cast() -> void:
 			if effect.keys().has("defense_animation"):
 				add_action_to_queue({"defense_animation":effect.defense_animation})
 			add_action_to_queue({"spell":effect})
+		add_action_to_queue({"turn_end":func ():player_turn_end()})
 		_update_ui()
 	else:
 		print("please select a monster")
-	add_action_to_queue({"turn_end":func ():player_turn_end()})
 
 
 func add_action_to_queue(item:Dictionary) -> void:
@@ -262,18 +277,6 @@ func _on_right_panel_clear_all() -> void:
 func _on_right_panel_clear_last() -> void:
 	clear_last_spell()
 
-
-func _on_player_turn_round_start() -> void:
-	clear_queue()
-	battle_round += 1
-	ui.shake_box()
-	print("Round ", battle_round, " ~start!~ ")
-	scene_player.start_turn()
-	for monster:Monster in monster_manager.get_children():
-		monster.start_turn()
-	_update_ui()
-	GlobalSignalBus.emit_action_finished()
-	
 
 
 func _on_active_panel_shook() -> void:

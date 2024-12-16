@@ -54,9 +54,12 @@ offset_bottom = 287.0
 
 [node name="animation_playing" parent="State_machine" instance=ExtResource("13_18n1d")]
 
+[node name="action_delay" type="Timer" parent="."]
+wait_time = 3.0
+one_shot = true
+
 [connection signal="defense_gone" from="player" to="." method="_on_player_defense_gone"]
 [connection signal="cast" from="UI/right_panel" to="." method="_on_right_panel_cast"]
 [connection signal="clear_all" from="UI/right_panel" to="." method="_on_right_panel_clear_all"]
 [connection signal="clear_last" from="UI/right_panel" to="." method="_on_right_panel_clear_last"]
 [connection signal="shook" from="UI/active_panel" to="." method="_on_active_panel_shook"]
-[connection signal="round_start" from="State_machine/player_turn" to="." method="_on_player_turn_round_start"]

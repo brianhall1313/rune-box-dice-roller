@@ -1,6 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://bkpru0m1tdexl"]
+[gd_scene load_steps=4 format=3 uid="uid://bkpru0m1tdexl"]
 
 [ext_resource type="Texture2D" uid="uid://cd3b2tlaaeucf" path="res://textures/Spell_Effects/Life_Temper/heal_particle.png" id="1_knie0"]
+[ext_resource type="Script" path="res://resources/spell_animations/life_temper.gd" id="2_dngvk"]
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_uagsa"]
 lifetime_randomness = 1.0
@@ -18,4 +19,11 @@ amount = 35
 process_material = SubResource("ParticleProcessMaterial_uagsa")
 texture = ExtResource("1_knie0")
 lifetime = 2.0
+preprocess = 2.0
 randomness = 1.0
+script = ExtResource("2_dngvk")
+
+[node name="effect_life" type="Timer" parent="."]
+autostart = true
+
+[connection signal="timeout" from="effect_life" to="." method="_on_effect_life_timeout"]
