@@ -4,15 +4,27 @@
 [ext_resource type="Script" path="res://scenes/player_avatar.gd" id="2_73wwl"]
 
 [node name="player_base" type="TextureRect"]
+custom_minimum_size = Vector2(32, 32)
+offset_right = 32.0
+offset_bottom = 32.0
 texture = ExtResource("1_r4tr3")
 expand_mode = 2
 script = ExtResource("2_73wwl")
 
 [node name="ears" type="TextureRect" parent="."]
 layout_mode = 0
+expand_mode = 2
 
 [node name="outfit" type="TextureRect" parent="."]
 layout_mode = 0
+expand_mode = 2
 
 [node name="hat" type="TextureRect" parent="."]
 layout_mode = 0
+expand_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+expand_mode = 2

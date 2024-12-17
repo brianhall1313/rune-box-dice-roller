@@ -1,13 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://un86ip0c1s75"]
+[gd_scene load_steps=6 format=3 uid="uid://un86ip0c1s75"]
 
 [ext_resource type="PackedScene" uid="uid://wrja75sijyfj" path="res://scenes/dice_inventory.tscn" id="1_biodx"]
 [ext_resource type="Script" path="res://scenes/player_info_element.gd" id="1_i6yfk"]
-
-[sub_resource type="Gradient" id="Gradient_ohbm4"]
-
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_5cfcg"]
-gradient = SubResource("Gradient_ohbm4")
-width = 32
+[ext_resource type="PackedScene" uid="uid://d4cwcx7qmonnv" path="res://scenes/player_avatar.tscn" id="2_va32h"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_o6cdi"]
 bg_color = Color(0, 0, 0, 1)
@@ -40,11 +35,9 @@ layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 0
 
-[node name="player_portrait" type="TextureRect" parent="VBoxContainer/player_info"]
-custom_minimum_size = Vector2(32, 32)
+[node name="player_portrait" parent="VBoxContainer/player_info" instance=ExtResource("2_va32h")]
 layout_mode = 2
-size_flags_horizontal = 2
-texture = SubResource("GradientTexture1D_5cfcg")
+size_flags_horizontal = 3
 
 [node name="player_name" type="Label" parent="VBoxContainer/player_info"]
 layout_mode = 2

@@ -40,5 +40,5 @@ func reward(rewards) -> void:
 
 func create_player(info:Dictionary) -> void:
 	player_name = info["name"]
-	#health exp and such will use the default values
+	custom_options = info["portrait"].duplicate()
 	set_player_to_default()

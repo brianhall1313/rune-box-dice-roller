@@ -56,8 +56,9 @@ func _on_confirm_button_up() -> void:
 		return
 	PlayerManager.create_player({
 		"name":name_entry.text,
-		"portrait":null
+		"portrait":custom_options.duplicate()
 		})
+	get_tree().change_scene_to_file("res://scenes/liminal.tscn")
 
 
 func _on_name_entry_text_changed(_new_text: String) -> void:
