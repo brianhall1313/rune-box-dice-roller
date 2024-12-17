@@ -6,6 +6,14 @@ var health:int = max_health
 var experience:int = 0
 var stories:int = 0
 
+
+var custom_options:Dictionary ={
+	"Body":0,
+	"Outfit":0,
+	"Ears":0,
+	"Hat":0
+}
+
 func set_player_to_default() -> void:
 	max_health = 100
 	health = max_health

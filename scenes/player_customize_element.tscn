@@ -1,0 +1,29 @@
+[gd_scene load_steps=2 format=3 uid="uid://cy5tj2wrwuslc"]
+
+[ext_resource type="Script" path="res://scenes/player_customize_element.gd" id="1_6t5mq"]
+
+[node name="player_customize_element" type="VBoxContainer"]
+script = ExtResource("1_6t5mq")
+
+[node name="slot_label" type="Label" parent="."]
+layout_mode = 2
+text = "Body"
+horizontal_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="decrement" type="Button" parent="HBoxContainer"]
+layout_mode = 2
+text = "<-"
+
+[node name="selected_bit" type="Label" parent="HBoxContainer"]
+layout_mode = 2
+text = "0/0"
+
+[node name="increment" type="Button" parent="HBoxContainer"]
+layout_mode = 2
+text = "->"
+
+[connection signal="button_up" from="HBoxContainer/decrement" to="." method="_on_decrement_button_up"]
+[connection signal="button_up" from="HBoxContainer/increment" to="." method="_on_increment_button_up"]

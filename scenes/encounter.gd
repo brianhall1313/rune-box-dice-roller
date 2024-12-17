@@ -143,11 +143,10 @@ func play_animation(animation:PackedScene,is_player:bool=false) -> void:
 	add_child(ani)
 	ani.play("default")
 	await ani.animation_looped
-	print("ANIMATION FINISHED")
 	GlobalSignalBus.emit_action_finished()
 	ani.queue_free()
-	print("animation deleted....reverting state")
 	GlobalSignalBus.emit_revert_state()
+	action_delay.stop()
 
 func add_effect(effect:PackedScene,is_player:bool=false) -> void:
 	GlobalSignalBus.emit_state_change("animation_playing")
@@ -155,6 +154,7 @@ func add_effect(effect:PackedScene,is_player:bool=false) -> void:
 		ui.add_effect_to_player(effect)
 	GlobalSignalBus.emit_revert_state()
 	GlobalSignalBus.emit_action_finished()
+	action_delay.stop()
 
 func enemy_selected(enemy:Monster) -> void:
 	if current_enemy:

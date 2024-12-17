@@ -21,6 +21,28 @@ extends Node
 	}
 }
 
+@onready var player_customization: Dictionary = {
+	"Body":[
+		preload("res://textures/character/char base_1.png"),
+		],
+	"Ears":[
+		null,
+		preload("res://textures/character/char base_floppy_ears.png"),
+		preload("res://textures/character/char base_pointy_ears.png")
+		],
+	"Outfit":[
+		null,
+		preload("res://textures/character/char base_mantle.png"),
+		preload("res://textures/character/char base_sage_hood.png"),
+		],
+		"Hat":[
+			null,
+			preload("res://textures/character/char base_scarf.png"),
+			preload("res://textures/character/char base_witch_hat.png")
+		]
+	
+}
+
 @onready var damage = preload("res://resources/damage.gd")
 
 var current_state:String = "none"

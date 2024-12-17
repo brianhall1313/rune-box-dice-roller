@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://d4cwcx7qmonnv"]
+
+[ext_resource type="Texture2D" uid="uid://b234k0jv82b3x" path="res://textures/character/char base_1.png" id="1_r4tr3"]
+[ext_resource type="Script" path="res://scenes/player_avatar.gd" id="2_73wwl"]
+
+[node name="player_base" type="TextureRect"]
+texture = ExtResource("1_r4tr3")
+expand_mode = 2
+script = ExtResource("2_73wwl")
+
+[node name="ears" type="TextureRect" parent="."]
+layout_mode = 0
+
+[node name="outfit" type="TextureRect" parent="."]
+layout_mode = 0
+
+[node name="hat" type="TextureRect" parent="."]
+layout_mode = 0
