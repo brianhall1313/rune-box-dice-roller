@@ -39,17 +39,7 @@ func _process(_delta: float) -> void:
 		action_delay.start()
 		var action = action_queue.pop_back()
 		for item in action.keys():
-			if item == "spell":
-				cast_spell(action["spell"])
-			if item == "turn_end":
-				print("turn end in process!")
-				action[item].call()
-			if item == "monster_action":
-				monster_action(action[item])
-			if item == "attack_animation":
-				play_animation(action[item])
-			if item == "defense_animation":
-				add_effect(action[item],true)
+			action[item].call()
 		#take action
 	if win_state:
 		player_wins()
@@ -81,6 +71,7 @@ func player_wins() -> void:
 	print("player wins")
 	PlayerManager.import(scene_player.export())
 	PlayerManager.reward(rewards)
+	PlayerManager.save_player()
 	get_tree().change_scene_to_file("res://scenes/liminal.tscn")
 
 func player_loses() -> void:
@@ -229,7 +220,7 @@ func enemy_turn() -> void:
 	print("enemy turn start")
 	for monster:Monster in monster_manager.get_children():
 		print("monster turn added to queue ", monster)
-		add_action_to_queue({"monster_action":monster})
+		add_action_to_queue({"monster_action":func (): monster_action(monster)})
 	add_action_to_queue({"turn_end": func (): enemy_turn_end()})
 
 func monster_action(monster:Monster) -> void:
@@ -259,10 +250,10 @@ func _on_right_panel_cast() -> void:
 			var effect = SpellManager.effect_generation(spell)
 			print("effect: ",effect)
 			if effect.keys().has("attack_animation"):
-				add_action_to_queue({"attack_animation":effect.attack_animation})
+				add_action_to_queue({"attack_animation":func (): play_animation(effect.attack_animation)})
 			if effect.keys().has("defense_animation"):
-				add_action_to_queue({"defense_animation":effect.defense_animation})
-			add_action_to_queue({"spell":effect})
+				add_action_to_queue({"defense_animation":func(): add_effect(effect.defense_animation,true)})
+			add_action_to_queue({"spell":func(): cast_spell(effect)})
 		add_action_to_queue({"turn_end":func ():player_turn_end()})
 		_update_ui()
 	else:

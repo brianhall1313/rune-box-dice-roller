@@ -21,10 +21,51 @@ func set_player_to_default() -> void:
 	stories = 0
 
 func load_player() -> void:
-	pass
+	var data:Dictionary = SaveAndLoad.load_game()
+	if data.keys().has("inventory"):
+		InventoryManager.build_inventory(data["inventory"])
+	else:
+		print("inventory not found! loading default")
+		InventoryManager.build_inventory()
+	if data.keys().has("custom_options"):
+		custom_options = data["custom_options"].duplicate()
+	else:
+		print("custom_options not found! loading default")
+	if data.keys().has("player_name"):
+		player_name = data["player_name"]
+	else:
+		print("player_name not found! loading default")
+	if data.keys().has("max_health"):
+		max_health = data["max_health"]
+	else:
+		print("max_health not found! loading default")
+	if data.keys().has("health"):
+		max_health = data["health"]
+	else:
+		print("health not found! loading default")
+	if data.keys().has("experience"):
+		experience = data["experience"]
+	else:
+		print("experience not found! loading default")
+	if data.keys().has("stories"):
+		stories = data["stories"]
+	else:
+		print("stories not found! loading default")
+	print("PLAYER LOADED")
+	
+	
 
 func save_player() -> void:
-	pass
+	SaveAndLoad.save_game({
+		"inventory":InventoryManager.inventory.duplicate(),
+		"custom_options":custom_options.duplicate(),
+		"player_name":player_name,
+		"max_health":max_health,
+		"health":health,
+		"experience":experience,
+		"stories":stories
+	})
+	print("PLAYER SAVED")
 
 func export() -> Dictionary:
 	return {"health":health,"max_health":max_health}
