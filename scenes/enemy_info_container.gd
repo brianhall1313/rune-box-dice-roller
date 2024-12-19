@@ -6,6 +6,7 @@ extends VBoxContainer
 @onready var status_effects: Label = $VBoxContainer/status_effects
 @onready var health_label: Label = $VBoxContainer/health_label
 @onready var effects_info: Label = $VBoxContainer/effects_info
+@onready var defense_label: Label = $VBoxContainer/defense_label
 
 
 func update(enemy:Monster) -> void:
@@ -15,6 +16,10 @@ func update(enemy:Monster) -> void:
 	enemy_name.text = enemy.monster_name
 	health_label.text = "HP: " + str(enemy.health.health)+" / " + str(enemy.health.max_health)
 	effects_info.text = ""
+	if enemy.health.defense > 0:
+		defense_label.text = str(enemy.health.defense) + " Defense"
+	else:
+		defense_label.text = ""
 	for effect in enemy.status:
 		effects_info.text += effect + ": " + str(enemy.status[effect]) + "\n"
 

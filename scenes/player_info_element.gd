@@ -8,6 +8,8 @@ extends Control
 @onready var effect_point: Control = $effect_point
 @onready var health_label: Label = $VBoxContainer/health_label
 @onready var effects_info: Label = $VBoxContainer/effects_info
+@onready var defense_label: Label = $VBoxContainer/defense_label
+
 
 var dice_list = []
 func _ready() -> void:
@@ -24,6 +26,10 @@ func update_player_information(scene_player:player)->void:
 	player_health.value = scene_player.health.health
 	health_label.text = "HP: " + str(scene_player.health.health)+" / " + str(scene_player.health.max_health)
 	effects_info.text = ""
+	if scene_player.health.defense > 0:
+		defense_label.text = str(scene_player.health.defense) + " Defense"
+	else:
+		defense_label.text = ""
 	for effect in scene_player.status:
 		effects_info.text += effect + ": " + str(scene_player.status[effect]) + "\n"
 

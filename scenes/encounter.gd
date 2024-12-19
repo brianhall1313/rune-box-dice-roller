@@ -213,6 +213,9 @@ func round_start() -> void:
 func player_turn_end() -> void:
 	print("player turn end")
 	GlobalSignalBus.emit_state_change("enemy_turn")
+	#I feel like I should find a better place to reset defense
+	for enemy:Monster in monster_manager.get_children():
+		enemy.reset_defense()
 	enemy_turn()
 	GlobalSignalBus.emit_action_finished()
 

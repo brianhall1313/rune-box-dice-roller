@@ -30,7 +30,6 @@ func is_alive() -> bool:
 	return health.health > 0
 
 func start_turn() -> void:
-	health.reset_defense()
 	update_status()
 	select_action()
 
@@ -65,3 +64,5 @@ func damage_effet() -> void:
 	await tween.finished
 	sprite.play("idle")
 	
+func reset_defense() -> void:
+	health.reset_defense()

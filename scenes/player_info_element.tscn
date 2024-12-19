@@ -57,6 +57,9 @@ show_percentage = false
 [node name="health_label" type="Label" parent="VBoxContainer"]
 layout_mode = 2
 
+[node name="defense_label" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+
 [node name="effects_info" type="Label" parent="VBoxContainer"]
 layout_mode = 2
 
