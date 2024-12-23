@@ -1,0 +1,59 @@
+[gd_scene load_steps=2 format=3 uid="uid://cih65yifpf8d0"]
+
+[ext_resource type="Script" path="res://scenes/main.gd" id="1_qou41"]
+
+[node name="main" type="Node2D"]
+script = ExtResource("1_qou41")
+
+[node name="UI" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Background" type="ColorRect" parent="UI"]
+layout_mode = 0
+offset_right = 512.0
+offset_bottom = 288.0
+color = Color(0.321569, 0.321569, 0.666667, 1)
+
+[node name="menu" type="VBoxContainer" parent="UI"]
+layout_mode = 0
+offset_right = 512.0
+offset_bottom = 288.0
+
+[node name="Label" type="Label" parent="UI/menu"]
+layout_mode = 2
+text = "Rune Game"
+horizontal_alignment = 1
+
+[node name="seperator" type="Control" parent="UI/menu"]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.5
+
+[node name="new" type="Button" parent="UI/menu"]
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+text = "New"
+
+[node name="continue" type="Button" parent="UI/menu"]
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Continue"
+
+[node name="quit" type="Button" parent="UI/menu"]
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Quit"
+
+[node name="seperator2" type="Control" parent="UI/menu"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[connection signal="button_up" from="UI/menu/new" to="." method="_on_new_button_up"]
+[connection signal="button_up" from="UI/menu/continue" to="." method="_on_continue_button_up"]
+[connection signal="button_up" from="UI/menu/quit" to="." method="_on_quit_button_up"]

@@ -19,6 +19,7 @@ func set_player_to_default() -> void:
 	health = max_health
 	experience = 0
 	stories = 0
+	InventoryManager.build_inventory()
 
 func load_player() -> void:
 	var data:Dictionary = SaveAndLoad.load_game()

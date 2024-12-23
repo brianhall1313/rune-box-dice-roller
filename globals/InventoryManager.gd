@@ -71,7 +71,7 @@ var default_inventory: Array[Dictionary] = [
 		}
 	]
 
-var inventory: Array[Dictionary] = []
+var inventory: Array = []
 
 func _ready() -> void:
 	build_inventory()
