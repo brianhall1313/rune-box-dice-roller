@@ -19,7 +19,7 @@ func set_player_to_default() -> void:
 	health = max_health
 	experience = 0
 	stories = 0
-	InventoryManager.build_inventory()
+	InventoryManager.build_inventory()#no args = set to default inv
 
 func load_player() -> void:
 	var data:Dictionary = SaveAndLoad.load_game()
@@ -41,7 +41,7 @@ func load_player() -> void:
 	else:
 		print("max_health not found! loading default")
 	if data.keys().has("health"):
-		max_health = data["health"]
+		health = data["health"]
 	else:
 		print("health not found! loading default")
 	if data.keys().has("experience"):
