@@ -37,8 +37,12 @@ offset_bottom = 40.0
 script = ExtResource("2_dtx1n")
 
 [node name="player_info_element" parent="UI" instance=ExtResource("1_62fm1")]
+offset_right = 112.0
 
 [node name="right_panel" parent="UI" instance=ExtResource("2_yr2bm")]
+layout_mode = 0
+offset_left = 416.0
+offset_right = 528.0
 
 [node name="active_panel" parent="UI" instance=ExtResource("3_5nnk0")]
 offset_top = 139.0

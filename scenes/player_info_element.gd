@@ -1,14 +1,17 @@
 extends Control
-@onready var player_portrait: TextureRect = $VBoxContainer/player_info/player_portrait
 
-@onready var player_name = $VBoxContainer/player_info/player_name
+@onready var player_portrait: TextureRect = $container_parent/MarginContainer/VBoxContainer/player_info/player_portrait
+@onready var player_name: Label = $container_parent/MarginContainer/VBoxContainer/player_info/player_name
+
 # Called when the node enters the scene tree for the first time.
-@onready var player_health: ProgressBar = $VBoxContainer/player_health
+@onready var player_health: ProgressBar = $container_parent/MarginContainer/VBoxContainer/player_health
+
 # this is so you can add and delete effects easily
 @onready var effect_point: Control = $effect_point
-@onready var health_label: Label = $VBoxContainer/health_label
-@onready var effects_info: Label = $VBoxContainer/effects_info
-@onready var defense_label: Label = $VBoxContainer/defense_label
+@onready var health_label: Label = $container_parent/MarginContainer/VBoxContainer/health_label
+@onready var defense_label: Label = $container_parent/MarginContainer/VBoxContainer/defense_label
+@onready var effects_info: Label = $container_parent/MarginContainer/VBoxContainer/effects_info
+
 
 
 var dice_list = []

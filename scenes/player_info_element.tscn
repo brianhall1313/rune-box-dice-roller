@@ -1,8 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://un86ip0c1s75"]
+[gd_scene load_steps=7 format=3 uid="uid://un86ip0c1s75"]
 
 [ext_resource type="PackedScene" uid="uid://wrja75sijyfj" path="res://scenes/dice_inventory.tscn" id="1_biodx"]
 [ext_resource type="Script" path="res://scenes/player_info_element.gd" id="1_i6yfk"]
 [ext_resource type="PackedScene" uid="uid://d4cwcx7qmonnv" path="res://scenes/player_avatar.tscn" id="2_va32h"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jwng1"]
+bg_color = Color(0.192556, 0.192556, 0.192556, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_o6cdi"]
 bg_color = Color(0, 0, 0, 1)
@@ -11,59 +14,74 @@ bg_color = Color(0, 0, 0, 1)
 bg_color = Color(0.901961, 0, 0, 1)
 
 [node name="player_info_element" type="Control"]
+clip_contents = true
 layout_mode = 3
 anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
+offset_right = 117.0
+offset_bottom = 287.0
 script = ExtResource("1_i6yfk")
 
-[node name="ColorRect" type="ColorRect" parent="."]
-layout_mode = 2
-offset_top = 1.0
-offset_right = 108.0
-offset_bottom = 288.0
-color = Color(0.144063, 0.144063, 0.144063, 1)
-
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
+[node name="container_parent" type="PanelContainer" parent="."]
 layout_mode = 0
-offset_right = 108.0
+offset_right = 118.0
 offset_bottom = 288.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_jwng1")
+
+[node name="MarginContainer" type="MarginContainer" parent="container_parent"]
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="VBoxContainer" type="VBoxContainer" parent="container_parent/MarginContainer"]
+layout_mode = 2
 theme_override_constants/separation = 0
 
-[node name="player_info" type="HBoxContainer" parent="VBoxContainer"]
+[node name="player_info" type="HBoxContainer" parent="container_parent/MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 0
 
-[node name="player_portrait" parent="VBoxContainer/player_info" instance=ExtResource("2_va32h")]
+[node name="player_portrait" parent="container_parent/MarginContainer/VBoxContainer/player_info" instance=ExtResource("2_va32h")]
 layout_mode = 2
-size_flags_horizontal = 3
+stretch_mode = 4
 
-[node name="player_name" type="Label" parent="VBoxContainer/player_info"]
+[node name="player_name" type="Label" parent="container_parent/MarginContainer/VBoxContainer/player_info"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 8
 text = "Defaulty Defaulter
 "
 
-[node name="player_health" type="ProgressBar" parent="VBoxContainer"]
-custom_minimum_size = Vector2(0, 10)
+[node name="player_health" type="ProgressBar" parent="container_parent/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(100, 10)
 layout_mode = 2
+size_flags_horizontal = 0
 theme_override_styles/background = SubResource("StyleBoxFlat_o6cdi")
 theme_override_styles/fill = SubResource("StyleBoxFlat_n4knb")
 step = 1.0
 value = 50.0
 show_percentage = false
 
-[node name="health_label" type="Label" parent="VBoxContainer"]
+[node name="health_label" type="Label" parent="container_parent/MarginContainer/VBoxContainer"]
 layout_mode = 2
+size_flags_horizontal = 0
+theme_override_font_sizes/font_size = 12
+text = "100/100"
 
-[node name="defense_label" type="Label" parent="VBoxContainer"]
+[node name="defense_label" type="Label" parent="container_parent/MarginContainer/VBoxContainer"]
 layout_mode = 2
+size_flags_horizontal = 0
+theme_override_font_sizes/font_size = 12
+text = "0"
 
-[node name="effects_info" type="Label" parent="VBoxContainer"]
+[node name="effects_info" type="Label" parent="container_parent/MarginContainer/VBoxContainer"]
 layout_mode = 2
+size_flags_horizontal = 0
+theme_override_font_sizes/font_size = 12
+text = "none"
 
-[node name="dice_inventory" parent="VBoxContainer" instance=ExtResource("1_biodx")]
+[node name="dice_inventory" parent="container_parent/MarginContainer/VBoxContainer" instance=ExtResource("1_biodx")]
 layout_mode = 2
 
 [node name="effect_point" type="Control" parent="."]

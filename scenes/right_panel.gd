@@ -1,14 +1,14 @@
 extends Control
 
-@onready var active_spell: VBoxContainer = $VBoxContainer/spell_information/active_spell
-@onready var queued_spells: VBoxContainer = $VBoxContainer/spell_information/queued_spells
+@onready var active_spell: VBoxContainer = $PanelContainer/MarginContainer/VBoxContainer/spell_information/active_spell
+@onready var queued_spells: VBoxContainer = $PanelContainer/MarginContainer/VBoxContainer/spell_information/queued_spells
+
 
 @onready var active_spell_box: PackedScene=preload("res://scenes/active_spell.tscn")
 @onready var queued_spell_box: PackedScene = preload("res://scenes/queued_spell.tscn")
 
-@onready var enemy_info_container: VBoxContainer = $VBoxContainer/enemy_info_container
+@onready var enemy_info_container: VBoxContainer = $PanelContainer/MarginContainer/VBoxContainer/enemy_info_container
 
-@onready var cast_button: Button = $VBoxContainer/interact_buttons/cast
 
 signal cast
 signal clear_all

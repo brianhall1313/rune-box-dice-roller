@@ -1,65 +1,76 @@
-[gd_scene load_steps=5 format=3 uid="uid://dka5ft4cxosrs"]
+[gd_scene load_steps=6 format=3 uid="uid://dka5ft4cxosrs"]
 
 [ext_resource type="Script" path="res://scenes/right_panel.gd" id="1_ojs6q"]
 [ext_resource type="PackedScene" uid="uid://cxvm65rnq0he1" path="res://scenes/active_spell.tscn" id="2_66hhk"]
 [ext_resource type="PackedScene" uid="uid://ccb4jaydyjrbl" path="res://scenes/enemy_info_container.tscn" id="2_a0wsg"]
 [ext_resource type="PackedScene" uid="uid://du30i2smjir4w" path="res://scenes/queued_spell.tscn" id="3_a6yu1"]
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_50sc1"]
+bg_color = Color(0.278431, 0.25098, 0.25098, 1)
+
 [node name="right_panel" type="Control"]
+clip_contents = true
 layout_mode = 3
 anchors_preset = 0
-offset_left = 300.0
-offset_right = 300.0
+offset_right = 112.0
+offset_bottom = 289.0
 script = ExtResource("1_ojs6q")
 
-[node name="ColorRect" type="ColorRect" parent="."]
-layout_mode = 2
-offset_left = 112.0
-offset_right = 212.0
-offset_bottom = 288.0
-color = Color(0.277368, 0.250268, 0.250357, 1)
-
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
+[node name="PanelContainer" type="PanelContainer" parent="."]
 layout_mode = 0
-offset_left = 112.0
-offset_right = 212.0
-offset_bottom = 288.0
+offset_right = 100.0
+offset_bottom = 287.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_50sc1")
 
-[node name="enemy_info_container" parent="VBoxContainer" instance=ExtResource("2_a0wsg")]
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer"]
 layout_mode = 2
 
-[node name="spell_information" type="VBoxContainer" parent="VBoxContainer"]
+[node name="enemy_info_container" parent="PanelContainer/MarginContainer/VBoxContainer" instance=ExtResource("2_a0wsg")]
+layout_mode = 2
+
+[node name="spell_information" type="VBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 size_flags_stretch_ratio = 2.0
 
-[node name="active_spell" parent="VBoxContainer/spell_information" instance=ExtResource("2_66hhk")]
+[node name="active_spell" parent="PanelContainer/MarginContainer/VBoxContainer/spell_information" instance=ExtResource("2_66hhk")]
 layout_mode = 2
 
-[node name="queued_spells" type="VBoxContainer" parent="VBoxContainer/spell_information"]
+[node name="queued_spells" type="VBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer/spell_information"]
 layout_mode = 2
 
-[node name="powerable_spell" parent="VBoxContainer/spell_information/queued_spells" instance=ExtResource("3_a6yu1")]
+[node name="powerable_spell" parent="PanelContainer/MarginContainer/VBoxContainer/spell_information/queued_spells" instance=ExtResource("3_a6yu1")]
 layout_mode = 2
 
-[node name="interact_buttons" type="HBoxContainer" parent="VBoxContainer"]
+[node name="VScrollBar" type="VScrollBar" parent="PanelContainer/MarginContainer/VBoxContainer/spell_information/queued_spells"]
+custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
 
-[node name="clear_all" type="Button" parent="VBoxContainer/interact_buttons"]
+[node name="interact_buttons" type="HBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="clear_all" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer/interact_buttons"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 5
 text = "clear all"
 
-[node name="clear_last" type="Button" parent="VBoxContainer/interact_buttons"]
+[node name="clear_last" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer/interact_buttons"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 5
 text = "clear last"
 
-[node name="cast" type="Button" parent="VBoxContainer/interact_buttons"]
+[node name="cast" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer/interact_buttons"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 5
 text = "Cast"
 
-[connection signal="button_up" from="VBoxContainer/interact_buttons/clear_all" to="." method="_on_clear_all_button_up"]
-[connection signal="button_up" from="VBoxContainer/interact_buttons/clear_last" to="." method="_on_clear_last_button_up"]
-[connection signal="button_up" from="VBoxContainer/interact_buttons/cast" to="." method="_on_cast_button_up"]
+[connection signal="button_up" from="PanelContainer/MarginContainer/VBoxContainer/interact_buttons/clear_all" to="." method="_on_clear_all_button_up"]
+[connection signal="button_up" from="PanelContainer/MarginContainer/VBoxContainer/interact_buttons/clear_last" to="." method="_on_clear_last_button_up"]
+[connection signal="button_up" from="PanelContainer/MarginContainer/VBoxContainer/interact_buttons/cast" to="." method="_on_cast_button_up"]

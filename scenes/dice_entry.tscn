@@ -19,10 +19,12 @@ expand_mode = 2
 
 [node name="glyph_title" type="Label" parent="dice_summary"]
 layout_mode = 2
+theme_override_font_sizes/font_size = 8
 text = "default"
 
 [node name="count" type="Label" parent="dice_summary"]
 layout_mode = 2
+theme_override_font_sizes/font_size = 8
 text = "0
 "
 
