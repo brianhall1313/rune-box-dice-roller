@@ -1,7 +1,10 @@
 extends Node2D
 
+@onready var continue_button: Button = $UI/menu/continue
+
 func _ready() -> void:
-	pass
+	if !SaveAndLoad.load_game():
+		continue_button.disabled = true
 
 
 func _on_new_button_up() -> void:
