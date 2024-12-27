@@ -103,3 +103,9 @@ func _on_ears_decrement() -> void:
 func _on_ears_increment() -> void:
 	increment("Ears")
 	ears.update(custom_options["Ears"])
+
+
+func _on_randomize_button_up() -> void:
+	for slot in custom_options.keys():
+		custom_options[slot] = randi_range(0,len(Global.player_customization[slot])-1)
+	update_portrait()

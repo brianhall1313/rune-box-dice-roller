@@ -91,6 +91,10 @@ text = "Create Character"
 layout_mode = 2
 text = "Go Back"
 
+[node name="randomize" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer/interact_buttons"]
+layout_mode = 2
+text = "Randomize Selection"
+
 [connection signal="text_changed" from="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/name_entry" to="." method="_on_name_entry_text_changed"]
 [connection signal="text_submitted" from="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/name_entry" to="." method="_on_name_entry_text_submitted"]
 [connection signal="decrement" from="PanelContainer/MarginContainer/VBoxContainer/portrait_editor/GridContainer/body" to="." method="_on_body_decrement"]
@@ -102,3 +106,4 @@ text = "Go Back"
 [connection signal="decrement" from="PanelContainer/MarginContainer/VBoxContainer/portrait_editor/GridContainer/ears" to="." method="_on_ears_decrement"]
 [connection signal="increment" from="PanelContainer/MarginContainer/VBoxContainer/portrait_editor/GridContainer/ears" to="." method="_on_ears_increment"]
 [connection signal="button_up" from="PanelContainer/MarginContainer/VBoxContainer/interact_buttons/confirm" to="." method="_on_confirm_button_up"]
+[connection signal="button_up" from="PanelContainer/MarginContainer/VBoxContainer/interact_buttons/randomize" to="." method="_on_randomize_button_up"]
