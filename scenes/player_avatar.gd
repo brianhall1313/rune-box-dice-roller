@@ -5,6 +5,7 @@ extends TextureRect
 @onready var outfit: TextureRect = $outfit
 
 
+
 func setup(args:Dictionary) -> void:
 	self_modulate = Global.colors[args["Body"]]
 	eyes.texture = Global.player_customization["Eyes"][0]

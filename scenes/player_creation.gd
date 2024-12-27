@@ -19,10 +19,16 @@ var custom_options:Dictionary ={
 	"Hat":0,
 	"Eyes":0
 }
+var update = true
 
-func _ready() -> void:
-	to_default()
-	update_portrait()
+#func _ready() -> void:
+	#to_default()
+
+func _process(_delta: float) -> void:
+	if update:
+		update = false
+		update_portrait()
+
 
 func to_default() -> void:
 	for item in custom_options.keys():
