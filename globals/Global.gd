@@ -1,5 +1,17 @@
 extends Node
 
+@onready var colors: Array = [
+	Color("light gray"),
+	Color("red"),
+	Color("orange"),
+	Color("yellow"),
+	Color("green"),
+	Color("blue"),
+	Color("plum"),
+	Color("lavender"),
+]
+
+
 @onready var glyph_list:Dictionary = {
 	"nature":{
 		"":preload("res://textures/Nature_blank.png"),
@@ -39,6 +51,9 @@ extends Node
 			null,
 			preload("res://textures/character/char base_scarf.png"),
 			preload("res://textures/character/char base_witch_hat.png")
+		],
+		"Eyes":[
+			preload("res://textures/character/eyes.png")
 		]
 	
 }

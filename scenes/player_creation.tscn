@@ -61,7 +61,7 @@ layout_mode = 2
 
 [node name="GridContainer" type="GridContainer" parent="PanelContainer/MarginContainer/VBoxContainer/portrait_editor"]
 layout_mode = 2
-columns = 2
+columns = 3
 
 [node name="body" parent="PanelContainer/MarginContainer/VBoxContainer/portrait_editor/GridContainer" instance=ExtResource("3_7tymm")]
 layout_mode = 2
@@ -79,6 +79,10 @@ slot = "Hat"
 layout_mode = 2
 slot = "Ears"
 
+[node name="eyes" parent="PanelContainer/MarginContainer/VBoxContainer/portrait_editor/GridContainer" instance=ExtResource("3_7tymm")]
+layout_mode = 2
+slot = "Eyes"
+
 [node name="interact_buttons" type="HBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
@@ -95,6 +99,10 @@ text = "Go Back"
 layout_mode = 2
 text = "Randomize Selection"
 
+[node name="default" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer/interact_buttons"]
+layout_mode = 2
+text = "default"
+
 [connection signal="text_changed" from="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/name_entry" to="." method="_on_name_entry_text_changed"]
 [connection signal="text_submitted" from="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/name_entry" to="." method="_on_name_entry_text_submitted"]
 [connection signal="decrement" from="PanelContainer/MarginContainer/VBoxContainer/portrait_editor/GridContainer/body" to="." method="_on_body_decrement"]
@@ -105,5 +113,9 @@ text = "Randomize Selection"
 [connection signal="increment" from="PanelContainer/MarginContainer/VBoxContainer/portrait_editor/GridContainer/hat" to="." method="_on_hat_increment"]
 [connection signal="decrement" from="PanelContainer/MarginContainer/VBoxContainer/portrait_editor/GridContainer/ears" to="." method="_on_ears_decrement"]
 [connection signal="increment" from="PanelContainer/MarginContainer/VBoxContainer/portrait_editor/GridContainer/ears" to="." method="_on_ears_increment"]
+[connection signal="decrement" from="PanelContainer/MarginContainer/VBoxContainer/portrait_editor/GridContainer/eyes" to="." method="_on_eyes_decrement"]
+[connection signal="increment" from="PanelContainer/MarginContainer/VBoxContainer/portrait_editor/GridContainer/eyes" to="." method="_on_eyes_increment"]
 [connection signal="button_up" from="PanelContainer/MarginContainer/VBoxContainer/interact_buttons/confirm" to="." method="_on_confirm_button_up"]
+[connection signal="button_up" from="PanelContainer/MarginContainer/VBoxContainer/interact_buttons/go back" to="." method="_on_go_back_button_up"]
 [connection signal="button_up" from="PanelContainer/MarginContainer/VBoxContainer/interact_buttons/randomize" to="." method="_on_randomize_button_up"]
+[connection signal="button_up" from="PanelContainer/MarginContainer/VBoxContainer/interact_buttons/default" to="." method="_on_default_button_up"]

@@ -6,6 +6,7 @@ extends Control
 @onready var outfit: VBoxContainer = $PanelContainer/MarginContainer/VBoxContainer/portrait_editor/GridContainer/outfit
 @onready var hat: VBoxContainer = $PanelContainer/MarginContainer/VBoxContainer/portrait_editor/GridContainer/hat
 @onready var ears: VBoxContainer = $PanelContainer/MarginContainer/VBoxContainer/portrait_editor/GridContainer/ears
+@onready var eyes: VBoxContainer = $PanelContainer/MarginContainer/VBoxContainer/portrait_editor/GridContainer/eyes
 
 @onready var player_portrait: TextureRect = $PanelContainer/MarginContainer/VBoxContainer/portrait_editor/player_portrait
 
@@ -15,11 +16,13 @@ var custom_options:Dictionary ={
 	"Body":0,
 	"Outfit":0,
 	"Ears":0,
-	"Hat":0
+	"Hat":0,
+	"Eyes":0
 }
 
 func _ready() -> void:
-	pass
+	to_default()
+	update_portrait()
 
 func to_default() -> void:
 	for item in custom_options.keys():
@@ -31,14 +34,18 @@ func update_portrait() -> void:
 	player_portrait.setup(custom_options)
 
 func decrement(slot) -> void:
-	if custom_options[slot] == 0:
+	if (slot == "Body" or slot == "Eyes") and custom_options[slot] == 0:
+		custom_options[slot] = len(Global.colors)-1
+	elif custom_options[slot] == 0:
 		custom_options[slot] = len(Global.player_customization[slot])-1
 	else:
 		custom_options[slot] -= 1
 	update_portrait()
 
 func increment(slot) -> void:
-	if custom_options[slot] == len(Global.player_customization[slot])-1:
+	if (slot == "Body" or slot == "Eyes") and custom_options[slot] == len(Global.colors)-1:
+		custom_options[slot] = 0
+	elif slot != "Body" and slot != "Eyes" and custom_options[slot] == len(Global.player_customization[slot])-1:
 		custom_options[slot] = 0
 	else:
 		custom_options[slot] += 1
@@ -107,5 +114,32 @@ func _on_ears_increment() -> void:
 
 func _on_randomize_button_up() -> void:
 	for slot in custom_options.keys():
-		custom_options[slot] = randi_range(0,len(Global.player_customization[slot])-1)
+		if slot == "Body" or slot == "Eyes":
+			custom_options[slot] = randi_range(0,len(Global.colors)-1)
+		else:
+			custom_options[slot] = randi_range(0,len(Global.player_customization[slot])-1)
+	
+	body.update(custom_options["Body"])
+	outfit.update(custom_options["Outfit"])
+	hat.update(custom_options["Hat"])
+	ears.update(custom_options["Ears"])
+	eyes.update(custom_options["Eyes"])
 	update_portrait()
+
+
+func _on_go_back_button_up() -> void:
+	get_tree().change_scene_to_file("res://scenes/main.tscn")
+
+
+func _on_eyes_decrement() -> void:
+	decrement("Eyes")
+	eyes.update(custom_options["Eyes"])
+
+
+func _on_eyes_increment() -> void:
+	increment("Eyes")
+	eyes.update(custom_options["Eyes"])
+
+
+func _on_default_button_up() -> void:
+	to_default()

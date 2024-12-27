@@ -11,6 +11,11 @@ texture = ExtResource("1_r4tr3")
 expand_mode = 2
 script = ExtResource("2_73wwl")
 
+[node name="eyes" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 40.0
+expand_mode = 2
+
 [node name="ears" type="TextureRect" parent="."]
 layout_mode = 0
 expand_mode = 2
@@ -21,10 +26,4 @@ expand_mode = 2
 
 [node name="hat" type="TextureRect" parent="."]
 layout_mode = 0
-expand_mode = 2
-
-[node name="TextureRect" type="TextureRect" parent="."]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
 expand_mode = 2

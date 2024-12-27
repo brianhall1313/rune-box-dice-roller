@@ -14,7 +14,10 @@ func _ready() -> void:
 	update(0)
 	
 func update(index) -> void:
-	selected_bit.text = str(index+1) + " / " + str(len(Global.player_customization[slot]))
+	if slot == "Body" or slot == "Eyes":
+		selected_bit.text = str(index+1) + " / " + str(len(Global.colors))
+	else:
+		selected_bit.text = str(index+1) + " / " + str(len(Global.player_customization[slot]))
 
 
 func _on_decrement_button_up() -> void:
