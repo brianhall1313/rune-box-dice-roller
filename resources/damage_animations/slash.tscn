@@ -1,0 +1,31 @@
+[gd_scene load_steps=6 format=3 uid="uid://b74tw8jm2caok"]
+
+[ext_resource type="Texture2D" uid="uid://x43ir7m2wb1x" path="res://textures/damage/Slash/slash_1.png" id="1_2b6il"]
+[ext_resource type="Texture2D" uid="uid://cuxroty33h2n8" path="res://textures/damage/Slash/slash_2.png" id="2_4hex8"]
+[ext_resource type="Texture2D" uid="uid://dd2pafx181rkn" path="res://textures/damage/Slash/slash_3.png" id="3_tvbp0"]
+[ext_resource type="Texture2D" uid="uid://bcfjcwvxbj4tv" path="res://textures/damage/Slash/slash_4.png" id="4_ejpvq"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ifbgi"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_2b6il")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_4hex8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_tvbp0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_ejpvq")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="slash" type="AnimatedSprite2D"]
+sprite_frames = SubResource("SpriteFrames_ifbgi")
+frame_progress = 0.948892
+offset = Vector2(32, 32)

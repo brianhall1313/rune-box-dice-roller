@@ -128,7 +128,8 @@ func play_animation(animation:PackedScene,is_player:bool=false) -> void:
 	GlobalSignalBus.emit_state_change("animation_playing")
 	var ani = animation.instantiate()
 	if is_player:
-		pass
+		print("animation effecting player")
+		ani.global_position = ui.player_point.global_position
 	else:
 		ani.global_position = current_enemy.hit_position.global_position
 	add_child(ani)
@@ -220,6 +221,8 @@ func enemy_turn() -> void:
 	print("enemy turn start")
 	for monster:Monster in monster_manager.get_children():
 		print("monster turn added to queue ", monster)
+		add_action_to_queue({"monster_attack_animation":func():monster.play_animation("attack")})
+		add_action_to_queue({"attack_animation":func ():play_animation(Global.damage_animations[monster.actions[monster.current_action_index]["damage_animation"]],true)})
 		add_action_to_queue({"monster_action":func (): monster_action(monster)})
 	add_action_to_queue({"turn_end": func (): enemy_turn_end()})
 

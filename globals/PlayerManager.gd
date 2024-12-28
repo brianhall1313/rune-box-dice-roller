@@ -11,7 +11,8 @@ var custom_options:Dictionary ={
 	"Body":0,
 	"Outfit":0,
 	"Ears":0,
-	"Hat":0
+	"Hat":0,
+	"Eyes":0
 }
 
 func set_player_to_default() -> void:

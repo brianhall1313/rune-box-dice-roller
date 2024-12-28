@@ -58,6 +58,8 @@ extends Node
 	
 }
 
-@onready var damage = preload("res://resources/damage.gd")
-
+@onready var damage_animations:Dictionary = {
+	"slash": preload("res://resources/damage_animations/slash.tscn"),
+	"bite": preload("res://resources/damage_animations/bite.tscn")
+}
 var current_state:String = "none"

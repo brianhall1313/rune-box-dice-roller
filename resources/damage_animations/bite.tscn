@@ -1,0 +1,29 @@
+[gd_scene load_steps=5 format=3 uid="uid://dhfkd3liyxu5d"]
+
+[ext_resource type="Texture2D" uid="uid://duf6yr1cufild" path="res://textures/damage/Bite/bite_1.png" id="1_4oxs1"]
+[ext_resource type="Texture2D" uid="uid://dtg3rqc0byamy" path="res://textures/damage/Bite/bite_2.png" id="2_j2n66"]
+[ext_resource type="Texture2D" uid="uid://diyqshx1qgoy8" path="res://textures/damage/Bite/bite_3.png" id="3_tugui"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_mk4bt"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_4oxs1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_j2n66")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_tugui")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="bite" type="AnimatedSprite2D"]
+sprite_frames = SubResource("SpriteFrames_mk4bt")
+frame_progress = 0.211029
+offset = Vector2(32, 32)
+
+[connection signal="animation_finished" from="." to="." method="_on_animation_finished"]

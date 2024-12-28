@@ -36,6 +36,7 @@ func update_player_information(scene_player:player)->void:
 	for effect in scene_player.status:
 		effects_info.text += effect + ": " + str(scene_player.status[effect]) + "\n"
 
+
 func add_effect(effect:PackedScene) -> void:
 	var ani = effect.instantiate()
 	effect_point.add_child(ani)

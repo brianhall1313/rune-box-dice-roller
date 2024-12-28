@@ -16,19 +16,22 @@ var actions:Array[Dictionary] = [
 	{#be agressive, be be agressive
 		"name":"Viscous Claw",
 		"attack":func ():return do_damage(attack+10,"physical"),
-		"animation":"attack",
+		"damage_animation":"slash",
+		"animation":"attack"
 	},
 	{#attack and defend
 		"name":"Evasive Strike",
 		"attack":func ():return do_damage(attack,"physical"),
 		"defence":10, #armor
-		"animation":"attack",
+		"damage_animation":"slash",
+		"animation":"attack"
 	},
 	{#poison the player and do a tiny amount of damage
 		"name":"Dirty Claw",
 		"attack":func (): return do_damage(3,"physical"),#is a function cause callables are necessary for the current build
 		"effect":{"poison":5},
-		"animation":"attack",
+		"damage_animation":"slash",
+		"animation":"attack"
 	}
 ]
 
