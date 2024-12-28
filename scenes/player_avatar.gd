@@ -8,6 +8,7 @@ extends TextureRect
 
 func setup(args:Dictionary) -> void:
 	self_modulate = Global.colors[args["Body"]]
+	ears.self_modulate = Global.colors[args["Body"]]
 	eyes.texture = Global.player_customization["Eyes"][0]
 	eyes.modulate = Global.colors[args["Eyes"]]
 	ears.texture = Global.player_customization["Ears"][args["Ears"]]
