@@ -4,6 +4,71 @@ var default_inventory: Array[Dictionary] = [
 		{#1
 			"name":"Elemental",
 			"type":"nature",
+			"faces":["fire","fire","fire","fire","fire","fire",]
+		},
+		{#2
+			"name":"Elemental",
+			"type":"nature",
+			"faces":["water","water","water","water","water","water",]
+		},
+		{#3
+			"name":"Elemental",
+			"type":"nature",
+			"faces":["earth","earth","earth","earth","earth","earth",]
+		},
+		{#4
+			"name":"Elemental",
+			"type":"nature",
+			"faces":["sky","sky","sky","sky","sky","sky",]
+		},
+		{#5
+			"name":"Elemental",
+			"type":"nature",
+			"faces":["life","life","life","life","life","life",]
+
+		},
+		{#6
+			"name":"Physical",
+			"type":"craft",
+			"faces":["lob","lob","lob","lob","lob","lob",]
+
+		},
+		{#7
+			"name":"Physical",
+			"type":"craft",
+			"faces":["temper","temper","temper","temper","temper","temper",]
+
+		},
+		{#8
+			"name":"Physical",
+			"type":"craft",
+			"faces":["lob","lob","lob","lob","lob","lob",]
+		},
+		{#9
+			"name":"Physical",
+			"type":"craft",
+			"faces":["temper","temper","temper","temper","temper","temper",]
+		},
+		{#10
+			"name":"Physical",
+			"type":"craft",
+			"faces":["lob","lob","lob","lob","lob","lob",]
+		},
+		{#11
+			"name":"Physical",
+			"type":"craft",
+			"faces":["temper","temper","temper","temper","temper","temper",]
+		},
+		{#12
+			"name":"Elemental",
+			"type":"nature",
+			"faces":["fire","fire","fire","fire","fire","fire",]
+		},
+	]
+var backup_inventory: Array[Dictionary] = [
+		{#1
+			"name":"Elemental",
+			"type":"nature",
 			"faces":["fire","water","earth","sky","life",""]
 		},
 		{#2

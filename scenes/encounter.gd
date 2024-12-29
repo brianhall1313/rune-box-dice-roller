@@ -221,8 +221,7 @@ func enemy_turn() -> void:
 	print("enemy turn start")
 	for monster:Monster in monster_manager.get_children():
 		print("monster turn added to queue ", monster)
-		add_action_to_queue({"monster_attack_animation":func():monster.play_animation("attack")})
-		add_action_to_queue({"attack_animation":func ():play_animation(Global.damage_animations[monster.actions[monster.current_action_index]["damage_animation"]],true)})
+		add_action_to_queue({"damage_animation":func ():play_animation(Global.damage_animations[monster.actions[monster.current_action_index]["damage_animation"]],true),"monster_attack_animation":func():monster.play_animation("attack")})
 		add_action_to_queue({"monster_action":func (): monster_action(monster)})
 	add_action_to_queue({"turn_end": func (): enemy_turn_end()})
 

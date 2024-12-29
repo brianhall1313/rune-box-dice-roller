@@ -1,15 +1,23 @@
-[gd_scene load_steps=7 format=3 uid="uid://coa7n5qj86rml"]
+[gd_scene load_steps=10 format=3 uid="uid://coa7n5qj86rml"]
 
 [ext_resource type="Texture2D" uid="uid://d0sqaqqow2jha" path="res://textures/Bumblebear/Bumble_Strike.png" id="1_werpa"]
 [ext_resource type="Texture2D" uid="uid://dkmjmr3apv74e" path="res://textures/Bumblebear/Bumble_Base.png" id="2_godqu"]
+[ext_resource type="PackedScene" uid="uid://c3kej11nt2ksr" path="res://scenes/selected_box.tscn" id="2_lsbgh"]
+[ext_resource type="PackedScene" uid="uid://c5d41p3om6lvl" path="res://resources/health.tscn" id="3_1t4im"]
 [ext_resource type="Texture2D" uid="uid://b7au6ekk6dsvn" path="res://textures/Bumblebear/Bumble_2.png" id="3_8iu55"]
 [ext_resource type="Texture2D" uid="uid://n7ql4kysvsca" path="res://textures/Bumblebear/Bumble_3.png" id="4_1c3hi"]
 [ext_resource type="Script" path="res://scenes/bumblebear.gd" id="5_va1v8"]
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_nws6w"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5yecb"]
+size = Vector2(78, 102)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_xfbvs"]
 animations = [{
 "frames": [{
-"duration": 1.0,
+"duration": 2.0,
+"texture": ExtResource("4_1c3hi")
+}, {
+"duration": 2.0,
 "texture": ExtResource("1_werpa")
 }],
 "loop": true,
@@ -31,8 +39,31 @@ animations = [{
 "speed": 5.0
 }]
 
-[node name="bumblebear" type="AnimatedSprite2D"]
-sprite_frames = SubResource("SpriteFrames_nws6w")
-animation = &"idle"
-frame_progress = 0.91378
+[node name="bumblebear" type="Node2D" node_paths=PackedStringArray("health", "sprite")]
 script = ExtResource("5_va1v8")
+monster_name = "Bumblebear"
+health = NodePath("Health")
+sprite = NodePath("sprite")
+
+[node name="click_box" type="Area2D" parent="."]
+
+[node name="click_box_colide" type="CollisionShape2D" parent="click_box"]
+position = Vector2(1, 5)
+shape = SubResource("RectangleShape2D_5yecb")
+
+[node name="selected_box" parent="." instance=ExtResource("2_lsbgh")]
+
+[node name="Health" parent="." instance=ExtResource("3_1t4im")]
+max_health = 40
+health = 40
+
+[node name="sprite" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_xfbvs")
+animation = &"idle"
+frame_progress = 0.714328
+
+[node name="hit_position" type="Marker2D" parent="."]
+position = Vector2(0, -20)
+gizmo_extents = 20.0
+
+[connection signal="input_event" from="click_box" to="." method="_on_click_box_input_event"]

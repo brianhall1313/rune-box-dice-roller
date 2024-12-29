@@ -1,0 +1,107 @@
+[gd_scene load_steps=17 format=3 uid="uid://cqncy2kjcr0d"]
+
+[ext_resource type="Script" path="res://scenes/wretched_stalker.gd" id="1_ksksi"]
+[ext_resource type="PackedScene" uid="uid://c3kej11nt2ksr" path="res://scenes/selected_box.tscn" id="2_cx5c0"]
+[ext_resource type="PackedScene" uid="uid://c5d41p3om6lvl" path="res://resources/health.tscn" id="3_crgo6"]
+[ext_resource type="Texture2D" uid="uid://3rvhxj86onc4" path="res://textures/Wretched Stalker/Wretched_1.png" id="4_c506j"]
+[ext_resource type="Texture2D" uid="uid://ctjnh5sqt5qwv" path="res://textures/Wretched Stalker/Wretched_2.png" id="5_vwu7o"]
+[ext_resource type="Texture2D" uid="uid://b6vvrcs35ywkb" path="res://textures/Wretched Stalker/Wretched_3.png" id="6_hppx4"]
+[ext_resource type="Texture2D" uid="uid://d2ij0st16uebn" path="res://textures/Wretched Stalker/Wretched_Base.png" id="7_kvnth"]
+[ext_resource type="Texture2D" uid="uid://d3mnmw48ock53" path="res://textures/Wretched Stalker/Wretched_Claws_1.png" id="8_wcbke"]
+[ext_resource type="Texture2D" uid="uid://dapvqelaqnitm" path="res://textures/Wretched Stalker/Wretched_Claws_2.png" id="9_w22yd"]
+[ext_resource type="Texture2D" uid="uid://cjpnqg3xf603k" path="res://textures/Wretched Stalker/Wretched_Claws_3.png" id="10_dbt0r"]
+[ext_resource type="Texture2D" uid="uid://cjh8ueolqtjjs" path="res://textures/Wretched Stalker/Wretched_Regen.png" id="11_jh52i"]
+[ext_resource type="Texture2D" uid="uid://c3y2t6x2s4cf1" path="res://textures/Wretched Stalker/Wretched_Regen_1.png" id="12_b0y66"]
+[ext_resource type="Texture2D" uid="uid://cp8o6p8g7rxat" path="res://textures/Wretched Stalker/Wretched_Regen_2.png" id="13_xhp0w"]
+[ext_resource type="Texture2D" uid="uid://vmonal3m6bqr" path="res://textures/Wretched Stalker/Wretched_Regen_3.png" id="14_lg8w7"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5yecb"]
+size = Vector2(78, 102)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_xfbvs"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_c506j")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_vwu7o")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_hppx4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_kvnth")
+}],
+"loop": true,
+"name": &"attack",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("8_wcbke")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_w22yd")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_dbt0r")
+}],
+"loop": true,
+"name": &"claw_attack",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("7_kvnth")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("11_jh52i")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_b0y66")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_xhp0w")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_lg8w7")
+}],
+"loop": true,
+"name": &"regen_attack",
+"speed": 5.0
+}]
+
+[node name="wretched_stalker" type="Node2D" node_paths=PackedStringArray("health", "sprite")]
+script = ExtResource("1_ksksi")
+monster_name = "Wretched Stalker"
+health = NodePath("Health")
+sprite = NodePath("sprite")
+
+[node name="click_box" type="Area2D" parent="."]
+
+[node name="click_box_colide" type="CollisionShape2D" parent="click_box"]
+position = Vector2(1, 5)
+shape = SubResource("RectangleShape2D_5yecb")
+
+[node name="selected_box" parent="." instance=ExtResource("2_cx5c0")]
+
+[node name="Health" parent="." instance=ExtResource("3_crgo6")]
+max_health = 40
+health = 40
+
+[node name="sprite" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_xfbvs")
+animation = &"claw_attack"
+frame_progress = 0.330398
+
+[node name="hit_position" type="Marker2D" parent="."]
+position = Vector2(0, -20)
+gizmo_extents = 20.0
+
+[connection signal="input_event" from="click_box" to="." method="_on_click_box_input_event"]
