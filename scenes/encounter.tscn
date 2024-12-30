@@ -63,6 +63,7 @@ wait_time = 3.0
 one_shot = true
 
 [connection signal="defense_gone" from="player" to="." method="_on_player_defense_gone"]
+[connection signal="took_damage" from="player" to="." method="_on_player_took_damage"]
 [connection signal="cast" from="UI/right_panel" to="." method="_on_right_panel_cast"]
 [connection signal="clear_all" from="UI/right_panel" to="." method="_on_right_panel_clear_all"]
 [connection signal="clear_last" from="UI/right_panel" to="." method="_on_right_panel_clear_last"]

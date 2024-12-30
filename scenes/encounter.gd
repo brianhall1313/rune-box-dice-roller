@@ -281,3 +281,7 @@ func _on_active_panel_shook() -> void:
 
 func _on_player_defense_gone() -> void:
 	ui.remove_effect_from_player()
+
+
+func _on_player_took_damage() -> void:
+	ui.player_took_damage()

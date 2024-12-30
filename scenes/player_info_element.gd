@@ -45,3 +45,10 @@ func add_effect(effect:PackedScene) -> void:
 func remove_effect() -> void:
 	for child in effect_point.get_children():
 		child.queue_free()
+
+func player_damage_effect() -> void:
+	var tween = create_tween()
+	tween.tween_property(player_portrait,"modulate",Color("red"),.1)
+	tween.tween_property(player_portrait,"modulate",Color("white"),.1)
+	tween.tween_property(player_portrait,"modulate",Color("red"),.1)
+	tween.tween_property(player_portrait,"modulate",Color("white"),.1)
