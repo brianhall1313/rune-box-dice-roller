@@ -1,14 +1,31 @@
-[gd_scene load_steps=8 format=3 uid="uid://3n4f1mfsf51b"]
+[gd_scene load_steps=12 format=3 uid="uid://3n4f1mfsf51b"]
 
 [ext_resource type="Texture2D" uid="uid://copbjgtr6y0g3" path="res://textures/War Jumpet/War_Jumpet_1.png" id="1_asydt"]
+[ext_resource type="Script" path="res://scenes/war_jumpet.gd" id="1_raqm0"]
 [ext_resource type="Texture2D" uid="uid://bhgks23axk76t" path="res://textures/War Jumpet/War_Jumpet_2.png" id="2_0r0tv"]
+[ext_resource type="PackedScene" uid="uid://c3kej11nt2ksr" path="res://scenes/selected_box.tscn" id="2_2nqjq"]
 [ext_resource type="Texture2D" uid="uid://4cw4wnwj8g23" path="res://textures/War Jumpet/War_Jumpet_3.png" id="3_14akb"]
+[ext_resource type="PackedScene" uid="uid://c5d41p3om6lvl" path="res://resources/health.tscn" id="3_d33y6"]
 [ext_resource type="Texture2D" uid="uid://dai8c4qj2815m" path="res://textures/War Jumpet/War_Jumpet_4.png" id="4_aw0m2"]
 [ext_resource type="Texture2D" uid="uid://cjlbv7ejlpxyf" path="res://textures/War Jumpet/War_Jumpet_5.png" id="5_1nqq4"]
 [ext_resource type="Texture2D" uid="uid://0ys7j3mr7op3" path="res://textures/War Jumpet/War_Jumpet_Strike.png" id="6_kf3h3"]
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_5a6cc"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ukax0"]
+size = Vector2(132, 159)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_hurys"]
 animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_1nqq4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_kf3h3")
+}],
+"loop": true,
+"name": &"attack",
+"speed": 5.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": ExtResource("1_asydt")
@@ -26,19 +43,38 @@ animations = [{
 "texture": ExtResource("5_1nqq4")
 }],
 "loop": true,
-"name": &"Idle",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("6_kf3h3")
-}],
-"loop": true,
-"name": &"strike",
+"name": &"idle",
 "speed": 5.0
 }]
 
-[node name="war_jumpet" type="AnimatedSprite2D"]
-sprite_frames = SubResource("SpriteFrames_5a6cc")
-animation = &"strike"
-frame_progress = 0.355246
+[node name="war_jumpet" type="Node2D" node_paths=PackedStringArray("health", "sprite")]
+script = ExtResource("1_raqm0")
+monster_name = "War Jumpet"
+health = NodePath("Health")
+sprite = NodePath("sprite")
+
+[node name="click_box" type="Area2D" parent="."]
+
+[node name="click_box_colide" type="CollisionShape2D" parent="click_box"]
+position = Vector2(4, 35.5)
+shape = SubResource("RectangleShape2D_ukax0")
+
+[node name="selected_box" parent="." instance=ExtResource("2_2nqjq")]
+
+[node name="Health" parent="." instance=ExtResource("3_d33y6")]
+max_health = 20
+health = 20
+resistances = {
+"fire": 150.0
+}
+
+[node name="sprite" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_hurys")
+animation = &"idle"
+frame_progress = 0.117517
+
+[node name="hit_position" type="Marker2D" parent="."]
+position = Vector2(0, 55)
+gizmo_extents = 20.0
+
+[connection signal="input_event" from="click_box" to="." method="_on_click_box_input_event"]
