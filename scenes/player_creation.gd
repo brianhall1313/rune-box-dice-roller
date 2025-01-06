@@ -71,7 +71,7 @@ func _on_confirm_button_up() -> void:
 		"name":name_entry.text,
 		"portrait":custom_options.duplicate()
 		})
-	get_tree().change_scene_to_file("res://scenes/liminal.tscn")
+	get_tree().change_scene_to_file("res://scenes/overworld.tscn")
 
 
 func _on_name_entry_text_changed(_new_text: String) -> void:

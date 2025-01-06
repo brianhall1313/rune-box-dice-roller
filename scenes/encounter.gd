@@ -72,7 +72,7 @@ func player_wins() -> void:
 	PlayerManager.import(scene_player.export())
 	PlayerManager.reward(rewards)
 	PlayerManager.save_player()
-	get_tree().change_scene_to_file("res://scenes/liminal.tscn")
+	get_tree().change_scene_to_file("res://scenes/overworld.tscn")
 
 func player_loses() -> void:
 	print("YOU LOSE")

@@ -13,7 +13,7 @@ func _on_new_button_up() -> void:
 
 func _on_continue_button_up() -> void:
 	PlayerManager.load_player()
-	get_tree().change_scene_to_file("res://scenes/liminal.tscn")
+	get_tree().change_scene_to_file("res://scenes/overworld.tscn")
 
 
 func _on_quit_button_up() -> void:

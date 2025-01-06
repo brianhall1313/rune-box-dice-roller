@@ -1,0 +1,78 @@
+[gd_scene load_steps=4 format=3 uid="uid://dtgo6b08mslch"]
+
+[ext_resource type="Script" path="res://scenes/encounter_icon.gd" id="1_eqaq2"]
+[ext_resource type="Script" path="res://scenes/overworld.gd" id="1_kg70p"]
+[ext_resource type="Texture2D" uid="uid://bwhoo3gmq0sse" path="res://icon.svg" id="1_uib5v"]
+
+[node name="overworld" type="Node2D"]
+script = ExtResource("1_kg70p")
+
+[node name="ui" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 512.0
+offset_bottom = 289.0
+
+[node name="ColorRect" type="ColorRect" parent="ui"]
+offset_right = 512.0
+offset_bottom = 288.0
+color = Color(0.558954, 0.558954, 0.558954, 1)
+
+[node name="main_ui" type="VBoxContainer" parent="ui"]
+layout_mode = 0
+offset_right = 512.0
+offset_bottom = 288.0
+
+[node name="player_info" type="Label" parent="ui/main_ui"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 8
+
+[node name="Control" type="Control" parent="ui/main_ui"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="interact_buttons" type="HBoxContainer" parent="ui/main_ui"]
+layout_mode = 2
+
+[node name="quit_button" type="Button" parent="ui/main_ui/interact_buttons"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 8
+text = "Quit"
+
+[node name="levels" type="Control" parent="ui"]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="jumpet_encounter_link" type="VBoxContainer" parent="ui/levels"]
+layout_mode = 0
+offset_left = 44.0
+offset_top = 88.0
+offset_right = 94.0
+offset_bottom = 144.0
+mouse_filter = 0
+mouse_default_cursor_shape = 2
+script = ExtResource("1_eqaq2")
+metadata/_edit_group_ = true
+
+[node name="TextureRect" type="TextureRect" parent="ui/levels/jumpet_encounter_link"]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("1_uib5v")
+expand_mode = 1
+stretch_mode = 4
+
+[node name="Label" type="Label" parent="ui/levels/jumpet_encounter_link"]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 8
+text = "Jumpet"
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[connection signal="button_up" from="ui/main_ui/interact_buttons/quit_button" to="." method="_on_quit_button_button_up"]
+[connection signal="gui_input" from="ui/levels/jumpet_encounter_link" to="ui/levels/jumpet_encounter_link" method="_on_gui_input"]
