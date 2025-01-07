@@ -166,8 +166,39 @@ text = "War Jumpet"
 horizontal_alignment = 1
 autowrap_mode = 2
 
+[node name="double_jumpet" type="VBoxContainer" parent="ui/levels"]
+layout_mode = 0
+offset_left = 102.0
+offset_top = 34.0
+offset_right = 152.0
+offset_bottom = 105.0
+mouse_filter = 0
+mouse_default_cursor_shape = 2
+script = ExtResource("1_eqaq2")
+encounterID = 4
+metadata/_edit_group_ = true
+
+[node name="TextureRect" type="TextureRect" parent="ui/levels/double_jumpet"]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("1_uib5v")
+expand_mode = 1
+stretch_mode = 4
+
+[node name="Label" type="Label" parent="ui/levels/double_jumpet"]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 8
+text = "Double Jumpet"
+horizontal_alignment = 1
+autowrap_mode = 2
+
 [connection signal="button_up" from="ui/main_ui/interact_buttons/quit_button" to="." method="_on_quit_button_button_up"]
 [connection signal="gui_input" from="ui/levels/jumpet_encounter_link" to="ui/levels/jumpet_encounter_link" method="_on_gui_input"]
 [connection signal="gui_input" from="ui/levels/bumble_bear_encounter" to="ui/levels/bumble_bear_encounter" method="_on_gui_input"]
 [connection signal="gui_input" from="ui/levels/wretched_stalker_encounter" to="ui/levels/wretched_stalker_encounter" method="_on_gui_input"]
 [connection signal="gui_input" from="ui/levels/war_jumpet" to="ui/levels/war_jumpet" method="_on_gui_input"]
+[connection signal="gui_input" from="ui/levels/double_jumpet" to="ui/levels/double_jumpet" method="_on_gui_input"]

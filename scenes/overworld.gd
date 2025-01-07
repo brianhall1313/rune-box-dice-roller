@@ -4,10 +4,10 @@ extends Node2D
 
 var level_dir: Array[String] =[
 	"res://scenes/encounter.tscn",
-	"res://scenes/encounter.tscn_2",
-	"res://scenes/encounter.tscn_3",
-	"res://scenes/encounter.tscn_4",
-	"res://scenes/encounter.tscn_5",
+	"res://scenes/encounter_2.tscn",
+	"res://scenes/encounter_3.tscn",
+	"res://scenes/encounter_4.tscn",
+	"res://scenes/encounter_5.tscn",
 ]
 
 

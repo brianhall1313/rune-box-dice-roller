@@ -1,9 +1,8 @@
-[gd_scene load_steps=14 format=3 uid="uid://d0igrfdjcsq6u"]
+[gd_scene load_steps=14 format=3 uid="uid://cssox7b737qq0"]
 
 [ext_resource type="Script" path="res://scenes/encounter.gd" id="1_8p46q"]
 [ext_resource type="Texture2D" uid="uid://xpx6jbv8k0qe" path="res://textures/BG/BG.png" id="2_3upnm"]
 [ext_resource type="PackedScene" uid="uid://bafdqhpqe7b6q" path="res://scenes/player.tscn" id="3_2qry0"]
-[ext_resource type="PackedScene" uid="uid://c32sargkrku8f" path="res://scenes/jumpet.tscn" id="4_x738u"]
 [ext_resource type="Script" path="res://scenes/ui.gd" id="5_4khhs"]
 [ext_resource type="PackedScene" uid="uid://un86ip0c1s75" path="res://scenes/player_info_element.tscn" id="6_gpdvp"]
 [ext_resource type="PackedScene" uid="uid://dka5ft4cxosrs" path="res://scenes/right_panel.tscn" id="7_lyuh6"]
@@ -12,6 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://ku0noy5beus2" path="res://resources/pause.tscn" id="10_xvcl2"]
 [ext_resource type="PackedScene" uid="uid://dvhx8smwwrc76" path="res://resources/player_turn.tscn" id="11_45fr0"]
 [ext_resource type="PackedScene" uid="uid://bw12jjsij082b" path="res://resources/enemy_turn.tscn" id="12_2yp7p"]
+[ext_resource type="PackedScene" uid="uid://3n4f1mfsf51b" path="res://scenes/war_jumpet.tscn" id="13_6n02s"]
 [ext_resource type="PackedScene" uid="uid://dameuo7fjvddb" path="res://resources/animation_playing.tscn" id="13_ay60o"]
 
 [node name="encounter" type="Node2D"]
@@ -26,12 +26,6 @@ texture = ExtResource("2_3upnm")
 
 [node name="monster_manager" type="Node2D" parent="."]
 position = Vector2(265, 34)
-
-[node name="Jumpet" parent="monster_manager" instance=ExtResource("4_x738u")]
-position = Vector2(-73, -2)
-
-[node name="Jumpet2" parent="monster_manager" instance=ExtResource("4_x738u")]
-position = Vector2(71, -2)
 
 [node name="UI" type="Control" parent="."]
 layout_mode = 3
@@ -65,6 +59,10 @@ offset_bottom = 287.0
 [node name="action_delay" type="Timer" parent="."]
 wait_time = 3.0
 one_shot = true
+
+[node name="war_jumpet" parent="." instance=ExtResource("13_6n02s")]
+position = Vector2(272, 48)
+scale = Vector2(0.75, 0.75)
 
 [connection signal="defense_gone" from="player" to="." method="_on_player_defense_gone"]
 [connection signal="took_damage" from="player" to="." method="_on_player_took_damage"]

@@ -58,9 +58,9 @@ func show_enemy_information()->void:
 
 func enemy_death(enemy:Monster) -> void:
 	if enemy == current_enemy:
-		current_enemy = null
+		current_enemy = get_next_alive_enemy()
 	print("enemy died")
-	if monster_manager.get_child_count() == 1:
+	if current_enemy == null:
 		enemy.queue_free()
 		win_state = true
 	else:
@@ -81,6 +81,12 @@ func player_loses() -> void:
 func process_finished_action() -> void:
 	busy = false
 
+func get_next_alive_enemy():
+	for monster in monster_manager.get_children():
+		if monster.health.health > 0:
+			enemy_selected(monster)
+			return monster
+	return null
 
 func queue_spell() -> void:
 	# if spell valid
