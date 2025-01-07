@@ -3,7 +3,11 @@ extends Node2D
 @onready var player_info: Label = $ui/main_ui/player_info
 
 var level_dir: Array[String] =[
-	"res://scenes/encounter.tscn"
+	"res://scenes/encounter.tscn",
+	"res://scenes/encounter.tscn_2",
+	"res://scenes/encounter.tscn_3",
+	"res://scenes/encounter.tscn_4",
+	"res://scenes/encounter.tscn_5",
 ]
 
 

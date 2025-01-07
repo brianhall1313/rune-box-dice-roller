@@ -16,7 +16,7 @@
 [ext_resource type="Texture2D" uid="uid://vmonal3m6bqr" path="res://textures/Wretched Stalker/Wretched_Regen_3.png" id="14_lg8w7"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5yecb"]
-size = Vector2(78, 102)
+size = Vector2(90, 104)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_xfbvs"]
 animations = [{
@@ -79,17 +79,19 @@ animations = [{
 
 [node name="wretched_stalker" type="Node2D" node_paths=PackedStringArray("health", "sprite")]
 script = ExtResource("1_ksksi")
-monster_name = "Wretched Stalker"
 health = NodePath("Health")
 sprite = NodePath("sprite")
 
 [node name="click_box" type="Area2D" parent="."]
 
 [node name="click_box_colide" type="CollisionShape2D" parent="click_box"]
-position = Vector2(1, 5)
+position = Vector2(-3, -1)
 shape = SubResource("RectangleShape2D_5yecb")
 
 [node name="selected_box" parent="." instance=ExtResource("2_cx5c0")]
+offset_top = -56.0
+offset_right = 45.0
+offset_bottom = 54.0
 
 [node name="Health" parent="." instance=ExtResource("3_crgo6")]
 max_health = 40
@@ -97,8 +99,7 @@ health = 40
 
 [node name="sprite" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_xfbvs")
-animation = &"claw_attack"
-frame_progress = 0.330398
+animation = &"regen_attack"
 
 [node name="hit_position" type="Marker2D" parent="."]
 position = Vector2(0, -20)

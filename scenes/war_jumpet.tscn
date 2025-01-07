@@ -11,7 +11,7 @@
 [ext_resource type="Texture2D" uid="uid://0ys7j3mr7op3" path="res://textures/War Jumpet/War_Jumpet_Strike.png" id="6_kf3h3"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ukax0"]
-size = Vector2(132, 159)
+size = Vector2(123, 151)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_hurys"]
 animations = [{
@@ -56,10 +56,14 @@ sprite = NodePath("sprite")
 [node name="click_box" type="Area2D" parent="."]
 
 [node name="click_box_colide" type="CollisionShape2D" parent="click_box"]
-position = Vector2(4, 35.5)
+position = Vector2(-0.5, 34.5)
 shape = SubResource("RectangleShape2D_ukax0")
 
 [node name="selected_box" parent="." instance=ExtResource("2_2nqjq")]
+offset_left = -64.0
+offset_top = -42.0
+offset_right = 62.0
+offset_bottom = 110.0
 
 [node name="Health" parent="." instance=ExtResource("3_d33y6")]
 max_health = 20
