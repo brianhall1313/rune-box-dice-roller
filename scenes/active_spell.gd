@@ -9,17 +9,16 @@ extends VBoxContainer
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	setup([])
+	setup({"spell":[],"target":null})
 
-func setup(spell:Array) -> void:
+func setup(spell_package:Dictionary) -> void:
+	var spell = spell_package.spell
+	var target = spell_package.target
 	SpellManager.get_ui_info(spell)
-	rune_spell.setup(spell)
-	if len(spell) == 0:
-		confirm.disabled = true
-		cancel.disabled = true
-	elif len(spell) == 1:
-		confirm.disabled = true
-		cancel.disabled = false
-	else:
+	rune_spell.setup(spell_package)
+	if SpellManager.is_spell(spell):
 		confirm.disabled = false
 		cancel.disabled = false
+	else:
+		confirm.disabled = true
+		cancel.disabled = true

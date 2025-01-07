@@ -8,7 +8,7 @@ extends Node2D
 var battle_round:int = 0
 var displayed: Array[Die] = []
 var current_spell_selection: Array[Die] = []
-var spell_queue: Array[Array] = []
+var spell_queue: Array[Dictionary] = []
 var last_glyph_selected: Die
 var action_queue:Array[Dictionary] = []
 var busy:bool = false
@@ -90,8 +90,12 @@ func get_next_alive_enemy():
 
 func queue_spell() -> void:
 	# if spell valid
-	if len(current_spell_selection) > 1 and SpellManager.is_spell(current_spell_selection):
-		spell_queue.append(current_spell_selection)
+	if SpellManager.is_spell(current_spell_selection):
+		var spell = {
+			"spell":current_spell_selection,
+			"target":current_enemy
+		}
+		spell_queue.append(spell)
 		current_spell_selection = []
 		_update_ui()
 	ui.toggle_shake(false)
@@ -127,17 +131,17 @@ func rune_interaction(die) -> void:
 
 func _update_ui():
 	show_enemy_information()
-	ui.update_right_panel({"queue":spell_queue,"active":current_spell_selection})
+	ui.update_right_panel({"queue":spell_queue,"active":{"spell":current_spell_selection,"target":current_enemy}})
 	ui.update_player_information(scene_player)
 
-func play_animation(animation:PackedScene,is_player:bool=false) -> void:
+func play_animation(animation:PackedScene,target=null,is_player:bool=false) -> void:
 	GlobalSignalBus.emit_state_change("animation_playing")
 	var ani = animation.instantiate()
 	if is_player:
 		print("animation effecting player")
 		ani.global_position = ui.player_point.global_position
 	else:
-		ani.global_position = current_enemy.hit_position.global_position
+		ani.global_position = target.hit_position.global_position
 	add_child(ani)
 	ani.play("default")
 	await ani.animation_looped
@@ -163,7 +167,7 @@ func enemy_selected(enemy:Monster) -> void:
 
 func clear_queue() -> void:
 	for spell in spell_queue:
-		for die:Die in spell:
+		for die:Die in spell.spell:
 			die.set_selected(false)
 	spell_queue = []
 	print("queue cleared")
@@ -179,10 +183,12 @@ func clear_last_spell() -> void:
 	if len(spell_queue) == 0:
 		ui.toggle_shake(true)
 
-func cast_spell(spell)->void:
+func cast_spell(spell_package)->void:
+	var spell = spell_package.spell
+	var target = spell_package.target
 	if spell.has("damage"):
-		if current_enemy and current_enemy.health.health > 0:
-			current_enemy.take_damage(spell["damage"].call())
+		if target and target.health.health > 0:
+			target.take_damage(spell["damage"].call())
 	if spell.has("heal"):
 		scene_player.heal(spell["heal"])
 	if spell.has("defend"):
@@ -193,7 +199,7 @@ func cast_spell(spell)->void:
 	if spell.has("effect"):
 		for effect in spell["effect"]:
 			print("Effect added ", {effect:spell["effect"][effect]})
-			StatusManager.increase_effect(current_enemy,effect,spell["effect"][effect])
+			StatusManager.increase_effect(target,effect,spell["effect"][effect])
 	_update_ui()
 	GlobalSignalBus.emit_action_finished()
 
@@ -227,7 +233,7 @@ func enemy_turn() -> void:
 	print("enemy turn start")
 	for monster:Monster in monster_manager.get_children():
 		print("monster turn added to queue ", monster)
-		add_action_to_queue({"damage_animation":func ():play_animation(Global.damage_animations[monster.actions[monster.current_action_index]["damage_animation"]],true),"monster_attack_animation":func():monster.play_animation("attack")})
+		add_action_to_queue({"damage_animation":func ():play_animation(Global.damage_animations[monster.actions[monster.current_action_index]["damage_animation"]],player,true),"monster_attack_animation":func():monster.play_animation("attack")})
 		add_action_to_queue({"monster_action":func (): monster_action(monster)})
 	add_action_to_queue({"turn_end": func (): enemy_turn_end()})
 
@@ -255,13 +261,13 @@ func _on_right_panel_cast() -> void:
 	if current_enemy and Global.current_state == "player_turn":
 		print("SPELL C-C-C-C-C-C-COMBO")
 		for spell in spell_queue:
-			var effect = SpellManager.effect_generation(spell)
+			var effect = SpellManager.effect_generation(spell.spell)
 			print("effect: ",effect)
 			if effect.keys().has("attack_animation"):
-				add_action_to_queue({"attack_animation":func (): play_animation(effect.attack_animation)})
+				add_action_to_queue({"attack_animation":func (): play_animation(effect.attack_animation,spell.target)})
 			if effect.keys().has("defense_animation"):
 				add_action_to_queue({"defense_animation":func(): add_effect(effect.defense_animation,true)})
-			add_action_to_queue({"spell":func(): cast_spell(effect)})
+			add_action_to_queue({"spell":func(): cast_spell({"spell":effect,"target":spell.target})})
 		add_action_to_queue({"turn_end":func ():player_turn_end()})
 		_update_ui()
 	else:

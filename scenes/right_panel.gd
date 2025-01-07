@@ -16,7 +16,7 @@ signal clear_last
 
 
 func _ready() -> void:
-	update({"spell":{"queue":[],"active":[]}})
+	update({"spell":{"queue":[],"active":{"spell":[],"target":null}}})
 
 func update(args:Dictionary)->void:
 	if args.has("spell"):

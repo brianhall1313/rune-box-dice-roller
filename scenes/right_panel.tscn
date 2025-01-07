@@ -49,10 +49,6 @@ layout_mode = 2
 [node name="powerable_spell" parent="PanelContainer/MarginContainer/VBoxContainer/spell_information/queued_spells" instance=ExtResource("3_a6yu1")]
 layout_mode = 2
 
-[node name="VScrollBar" type="VScrollBar" parent="PanelContainer/MarginContainer/VBoxContainer/spell_information/queued_spells"]
-custom_minimum_size = Vector2(0, 50)
-layout_mode = 2
-
 [node name="interact_buttons" type="HBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 

@@ -11,9 +11,11 @@ extends VBoxContainer
 @onready var power_ups: Label = $"power-ups"
 
 func _ready() -> void:
-	setup([])
+	setup({"spell":[],"target":null})
 
-func setup(spell)->void:
+func setup(spell_package:Dictionary)->void:
+	var spell = spell_package.spell
+	var target = spell_package.target
 	#print("called setup for rune spell")
 	#print("the spell is ",spell)
 	for i in 4:
