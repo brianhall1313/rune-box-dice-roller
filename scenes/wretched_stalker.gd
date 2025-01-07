@@ -6,7 +6,7 @@ extends Monster
 @export var resistances:Dictionary = {
 }
 @export var attack:int = 10
-@export var monster_name:String = "Jumpet"
+@export var monster_name:String = "Wretched Stalker"
 @export var portrait:Image
 
 var current_action_index:int
@@ -15,20 +15,24 @@ var current_action_index:int
 
 var actions:Array[Dictionary] = [
 	{#be agressive, be be agressive
-		"name":"Proboscis",
-		"attack":func ():return attack+25,
+		"name":"Swipe",
+		"attack":func ():return do_damage(attack+10,"physical"),
 		"animation":"attack",
+		"damage_animation":"slash",
 	},
 	{#attack and defend
-		"name":"Evasive Strike",
-		"defence":40, #armor
-		"animation":"none",
+		"name":"Reach Advantage",
+		"defence":20,#armor
+		"attack":func ():return do_damage(attack-5,"physical"),
+		"animation":"attack",
+		"damage_animation":"slash",
 	},
 	{#poison the player and do a tiny amount of damage
-		"name":"Hooked Claws",
-		"attack":func():return attack,
-		"effect":{"bleed":5},
+		"name":"Soul Feast",
+		"attack":func():return do_damage(attack,"physical"),
+		"effect":{"disabled dice":5},
 		"animation":"attack",
+		"damage_animation":"bite",
 	}
 ]
 

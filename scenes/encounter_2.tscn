@@ -1,0 +1,71 @@
+[gd_scene load_steps=14 format=3 uid="uid://b1foc23yf6c4a"]
+
+[ext_resource type="Script" path="res://scenes/encounter.gd" id="1_nae5c"]
+[ext_resource type="Texture2D" uid="uid://xpx6jbv8k0qe" path="res://textures/BG/BG.png" id="2_toiyv"]
+[ext_resource type="PackedScene" uid="uid://bafdqhpqe7b6q" path="res://scenes/player.tscn" id="3_5dfrf"]
+[ext_resource type="Script" path="res://scenes/ui.gd" id="5_pftfv"]
+[ext_resource type="PackedScene" uid="uid://un86ip0c1s75" path="res://scenes/player_info_element.tscn" id="6_8bckg"]
+[ext_resource type="PackedScene" uid="uid://dka5ft4cxosrs" path="res://scenes/right_panel.tscn" id="7_yxtja"]
+[ext_resource type="PackedScene" uid="uid://h587v4triyb6" path="res://scenes/active_panel.tscn" id="8_f1ahe"]
+[ext_resource type="PackedScene" uid="uid://dii5npi80kow4" path="res://resources/state_machine.tscn" id="9_jsi5a"]
+[ext_resource type="PackedScene" uid="uid://ku0noy5beus2" path="res://resources/pause.tscn" id="10_7k2ux"]
+[ext_resource type="PackedScene" uid="uid://dvhx8smwwrc76" path="res://resources/player_turn.tscn" id="11_pfr1k"]
+[ext_resource type="PackedScene" uid="uid://bw12jjsij082b" path="res://resources/enemy_turn.tscn" id="12_akfyp"]
+[ext_resource type="PackedScene" uid="uid://dameuo7fjvddb" path="res://resources/animation_playing.tscn" id="13_kd63x"]
+[ext_resource type="PackedScene" uid="uid://coa7n5qj86rml" path="res://scenes/bumblebear.tscn" id="13_ovi0x"]
+
+[node name="encounter" type="Node2D"]
+script = ExtResource("1_nae5c")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+offset_right = 512.0
+offset_bottom = 286.0
+texture = ExtResource("2_toiyv")
+
+[node name="player" parent="." instance=ExtResource("3_5dfrf")]
+
+[node name="monster_manager" type="Node2D" parent="."]
+position = Vector2(265, 34)
+
+[node name="bumblebear" parent="monster_manager" instance=ExtResource("13_ovi0x")]
+position = Vector2(-1, 30)
+
+[node name="UI" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("5_pftfv")
+
+[node name="player_info_element" parent="UI" instance=ExtResource("6_8bckg")]
+offset_right = 112.0
+
+[node name="right_panel" parent="UI" instance=ExtResource("7_yxtja")]
+layout_mode = 0
+offset_left = 416.0
+offset_right = 528.0
+
+[node name="active_panel" parent="UI" instance=ExtResource("8_f1ahe")]
+offset_top = 139.0
+offset_bottom = 287.0
+
+[node name="State_machine" parent="." instance=ExtResource("9_jsi5a")]
+
+[node name="Pause" parent="State_machine" instance=ExtResource("10_7k2ux")]
+
+[node name="player_turn" parent="State_machine" instance=ExtResource("11_pfr1k")]
+
+[node name="enemy_turn" parent="State_machine" instance=ExtResource("12_akfyp")]
+
+[node name="animation_playing" parent="State_machine" instance=ExtResource("13_kd63x")]
+
+[node name="action_delay" type="Timer" parent="."]
+wait_time = 3.0
+one_shot = true
+
+[connection signal="defense_gone" from="player" to="." method="_on_player_defense_gone"]
+[connection signal="took_damage" from="player" to="." method="_on_player_took_damage"]
+[connection signal="cast" from="UI/right_panel" to="." method="_on_right_panel_cast"]
+[connection signal="clear_all" from="UI/right_panel" to="." method="_on_right_panel_clear_all"]
+[connection signal="clear_last" from="UI/right_panel" to="." method="_on_right_panel_clear_last"]
+[connection signal="shook" from="UI/active_panel" to="." method="_on_active_panel_shook"]
