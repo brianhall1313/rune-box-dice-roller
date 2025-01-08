@@ -6,7 +6,7 @@ extends Monster
 @export var resistances:Dictionary = {
 }
 @export var attack:int = 10
-@export var monster_name:String = "Jumpet"
+@export var monster_name:String = "War Jumpet"
 @export var portrait:Image
 
 var current_action_index:int

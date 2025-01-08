@@ -43,10 +43,15 @@ size_flags_stretch_ratio = 2.0
 [node name="active_spell" parent="PanelContainer/MarginContainer/VBoxContainer/spell_information" instance=ExtResource("2_66hhk")]
 layout_mode = 2
 
-[node name="queued_spells" type="VBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer/spell_information"]
+[node name="queued_spells_container" type="ScrollContainer" parent="PanelContainer/MarginContainer/VBoxContainer/spell_information"]
+layout_mode = 2
+size_flags_vertical = 3
+horizontal_scroll_mode = 0
+
+[node name="queued_spells" type="VBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer/spell_information/queued_spells_container"]
 layout_mode = 2
 
-[node name="powerable_spell" parent="PanelContainer/MarginContainer/VBoxContainer/spell_information/queued_spells" instance=ExtResource("3_a6yu1")]
+[node name="powerable_spell" parent="PanelContainer/MarginContainer/VBoxContainer/spell_information/queued_spells_container/queued_spells" instance=ExtResource("3_a6yu1")]
 layout_mode = 2
 
 [node name="interact_buttons" type="HBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer"]

@@ -9,15 +9,20 @@ extends VBoxContainer
 @onready var glyphs = [glyph, glyph_2, glyph_3,glyph_4]
 @onready var effects: Label = $effects
 @onready var power_ups: Label = $"power-ups"
+@onready var target_label: Label = $target
 
 func _ready() -> void:
-	setup({"spell":[],"target":null})
+	setup({"spell":[],"target":''})
 
 func setup(spell_package:Dictionary)->void:
 	var spell = spell_package.spell
 	var target = spell_package.target
 	#print("called setup for rune spell")
 	#print("the spell is ",spell)
+	if target and spell != []:
+		target_label.text = "Target: " + target.monster_name
+	else:
+		target_label.text = ''
 	for i in 4:
 		if len(spell) > i:
 			glyphs[i].texture = spell[i].texture

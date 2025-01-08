@@ -21,4 +21,7 @@ func setup(spell_package:Dictionary) -> void:
 		cancel.disabled = false
 	else:
 		confirm.disabled = true
-		cancel.disabled = true
+		if len(spell) > 0:
+			cancel.disabled = false
+		else:
+			cancel.disabled = true

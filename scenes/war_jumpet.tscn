@@ -49,7 +49,6 @@ animations = [{
 
 [node name="war_jumpet" type="Node2D" node_paths=PackedStringArray("health", "sprite")]
 script = ExtResource("1_raqm0")
-monster_name = "War Jumpet"
 health = NodePath("Health")
 sprite = NodePath("sprite")
 

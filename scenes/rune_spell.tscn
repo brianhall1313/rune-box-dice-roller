@@ -48,3 +48,7 @@ visible = false
 layout_mode = 2
 theme_override_font_sizes/font_size = 6
 text = "+1"
+
+[node name="target" type="Label" parent="."]
+layout_mode = 2
+theme_override_font_sizes/font_size = 8

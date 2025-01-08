@@ -1,7 +1,7 @@
 extends Control
 
 @onready var active_spell: VBoxContainer = $PanelContainer/MarginContainer/VBoxContainer/spell_information/active_spell
-@onready var queued_spells: VBoxContainer = $PanelContainer/MarginContainer/VBoxContainer/spell_information/queued_spells
+@onready var queued_spells: VBoxContainer = $PanelContainer/MarginContainer/VBoxContainer/spell_information/queued_spells_container/queued_spells
 
 
 @onready var active_spell_box: PackedScene=preload("res://scenes/active_spell.tscn")
