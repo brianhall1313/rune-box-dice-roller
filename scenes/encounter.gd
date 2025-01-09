@@ -106,6 +106,12 @@ func clear_spell() -> void:
 	current_spell_selection = []
 	_update_ui()
 
+func check_per_action(actor) ->void:
+	for status in actor.status.keys():
+		if StatusManager.per_action.keys().has(status):
+			StatusManager.per_action[status].call(actor)
+
+
 func rune_interaction(die) -> void:
 	if Global.current_state == "player_turn":
 		if die in current_spell_selection:
@@ -184,6 +190,7 @@ func clear_last_spell() -> void:
 		ui.toggle_shake(true)
 
 func cast_spell(spell_package)->void:
+	check_per_action(scene_player)
 	var spell = spell_package.spell
 	var target = spell_package.target
 	if spell.has("damage"):

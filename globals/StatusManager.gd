@@ -38,6 +38,5 @@ func regen(target) -> void:
 	reduce_effect(target,REGEN)
 
 func bleed(target) -> void:
-	target.take_damage(1,true)
-	target.status[BLEED] -= 1
+	target.take_damage(Damage.new(1,BLEED),true)
 	reduce_effect(target,BLEED)
