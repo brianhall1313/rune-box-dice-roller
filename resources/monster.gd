@@ -36,23 +36,17 @@ func is_alive() -> bool:
 	return health.health > 0
 
 func start_turn() -> void:
-	update_status()
+	countdown_status()
 	select_action()
 
 func select_action()->void:
 	pass#overwrite on individual monsters
 
-func update_status() -> void:
-	print("status")
+func countdown_status() -> void:
+	#print("status")
 	for effect in status.keys():
-		if StatusManager.status_directory.keys().has(effect):
-			StatusManager.status_directory[effect].call(self)
-
-func add_effect(effect_name:String, effect_value:int) -> void:
-	if status.keys().has(effect_name):
-		status[effect_name] += effect_value
-		return
-	status[effect_name] = effect_value
+		if StatusManager.countdown.keys().has(effect):
+			StatusManager.countdown[effect].call(self)
 
 func damage_effet() -> void:
 	if sprite.sprite_frames.get_animation_names().has("hit"):

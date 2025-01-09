@@ -14,7 +14,7 @@ func setup(info) -> void:
 	health.setup(info["max_health"],info["health"])
 
 func start_turn() -> void:
-	update_status()
+	countdown_status()
 	if health.defense > 0:
 		defense_gone.emit()
 	health.reset_defense()
@@ -24,11 +24,11 @@ func start_turn() -> void:
 func defend(shield:int) -> void:
 	health.defend(shield)
 
-func update_status() -> void:
-	print("status")
+func countdown_status() -> void:
+	#print("status")
 	for effect in status.keys():
-		if StatusManager.status_directory.keys().has(effect):
-			StatusManager.status_directory[effect].call(self)
+		if StatusManager.countdown.keys().has(effect):
+			StatusManager.countdown[effect].call(self)
 
 
 func take_damage(incomming_damage:Damage,direct:bool=false) -> void:
