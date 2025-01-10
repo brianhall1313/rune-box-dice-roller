@@ -41,6 +41,7 @@ func add_effect(effect:PackedScene) -> void:
 	var ani = effect.instantiate()
 	effect_point.add_child(ani)
 	ani.global_position = effect_point.global_position
+	ani.restart()
 
 func remove_effect() -> void:
 	for child in effect_point.get_children():

@@ -5,6 +5,10 @@ const POISON:String = "poison"
 const REGEN:String = "regen"
 
 
+var effects_list:Dictionary={
+	POISON:preload("res://resources/damage_animations/poison_damage_effect.tscn"),
+}
+
 var countdown:Dictionary = {
 	POISON:func (target):poison(target),
 	REGEN:func (target):regen(target),

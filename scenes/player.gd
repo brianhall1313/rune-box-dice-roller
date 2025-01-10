@@ -5,7 +5,7 @@ class_name player
 
 var player_name:String = "Default"
 var shifts:int = 0
-var status:Dictionary = {}
+var status:Dictionary = {"poison":2}
 
 signal defense_gone
 signal took_damage
@@ -29,6 +29,8 @@ func countdown_status() -> void:
 	for effect in status.keys():
 		if StatusManager.countdown.keys().has(effect):
 			StatusManager.countdown[effect].call(self)
+			if StatusManager.effects_list.keys().has(effect):
+				GlobalSignalBus.emit_add_effect(StatusManager.effects_list[effect],self)
 
 
 func take_damage(incomming_damage:Damage,direct:bool=false) -> void:

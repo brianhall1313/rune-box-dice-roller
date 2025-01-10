@@ -35,6 +35,11 @@ var actions:Array[Dictionary] = [
 	}
 ]
 
+func add_effect(effect:PackedScene) -> void:
+	var ani = effect.instantiate()
+	hit_position.add_child(ani)
+	ani.global_position = hit_position.global_position
+	ani.restart()
 
 func _ready() -> void:
 	health.setup(health.max_health,health.max_health)

@@ -52,6 +52,7 @@ func connect_to_global_signal_bus() -> void:
 	GlobalSignalBus.connect("enemy_death",enemy_death)
 	GlobalSignalBus.connect("player_death",player_loses)
 	GlobalSignalBus.connect("action_finished",process_finished_action)
+	GlobalSignalBus.connect("add_effect",add_effect)
 
 func show_enemy_information()->void:
 	ui.update_enemy_info(current_enemy)
@@ -110,6 +111,10 @@ func check_per_action(actor) ->void:
 	for status in actor.status.keys():
 		if StatusManager.per_action.keys().has(status):
 			StatusManager.per_action[status].call(actor)
+			if StatusManager.effects_list.keys().has(status):
+				print("playing effect")
+				add_effect(StatusManager.effects_list[status],actor)
+	_update_ui()
 
 
 func rune_interaction(die) -> void:
@@ -156,10 +161,12 @@ func play_animation(animation:PackedScene,target=null,is_player:bool=false) -> v
 	GlobalSignalBus.emit_revert_state()
 	action_delay.stop()
 
-func add_effect(effect:PackedScene,is_player:bool=false) -> void:
+func add_effect(effect:PackedScene,target:Node) -> void:
 	GlobalSignalBus.emit_state_change("animation_playing")
-	if is_player:
+	if target == scene_player:
 		ui.add_effect_to_player(effect)
+	else:
+		target.add_effect(effect)
 	GlobalSignalBus.emit_revert_state()
 	GlobalSignalBus.emit_action_finished()
 	action_delay.stop()
@@ -249,6 +256,8 @@ func monster_action(monster:Monster) -> void:
 		print(monster.monster_name, " takes its turn")
 		#TODO damage to player
 		var action = monster.actions[monster.current_action_index]
+		if action:
+			check_per_action(monster)
 		print(monster.monster_name, " takes the action: ",action["name"])
 		if action.keys().has("attack"):
 			scene_player.take_damage(action["attack"].call())
@@ -273,7 +282,7 @@ func _on_right_panel_cast() -> void:
 			if effect.keys().has("attack_animation"):
 				add_action_to_queue({"attack_animation":func (): play_animation(effect.attack_animation,spell.target)})
 			if effect.keys().has("defense_animation"):
-				add_action_to_queue({"defense_animation":func(): add_effect(effect.defense_animation,true)})
+				add_action_to_queue({"defense_animation":func(): add_effect(effect.defense_animation,scene_player)})
 			add_action_to_queue({"spell":func(): cast_spell({"spell":effect,"target":spell.target})})
 		add_action_to_queue({"turn_end":func ():player_turn_end()})
 		_update_ui()

@@ -57,3 +57,8 @@ func _on_click_box_input_event(_viewport: Node, event: InputEvent, _shape_idx: i
 	if event.is_action_released("click"):
 		GlobalSignalBus.emit_enemy_interaction(self)
 		
+func add_effect(effect:PackedScene) -> void:
+	var ani = effect.instantiate()
+	hit_position.add_child(ani)
+	ani.global_position = hit_position.global_position
+	ani.restart()

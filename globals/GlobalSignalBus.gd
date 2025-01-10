@@ -8,6 +8,8 @@ signal revert_state
 signal enemy_interaction(enemy:Monster)
 signal rune_interaction(rune)
 
+signal add_effect(effect:PackedScene,target)
+
 signal spell_confirm
 signal spell_cancel
 signal player_death
@@ -38,3 +40,5 @@ func emit_action_finished() -> void:
 	action_finished.emit()
 func emit_level_selected(levelID:int) -> void:
 	level_selected.emit(levelID)
+func emit_add_effect(effect:PackedScene,target) -> void:
+	add_effect.emit(effect,target)

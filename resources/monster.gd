@@ -47,6 +47,8 @@ func countdown_status() -> void:
 	for effect in status.keys():
 		if StatusManager.countdown.keys().has(effect):
 			StatusManager.countdown[effect].call(self)
+			if StatusManager.effects_list.keys().has(effect):
+				GlobalSignalBus.emit_add_effect(StatusManager.effects_list[effect],self)
 
 func damage_effet() -> void:
 	if sprite.sprite_frames.get_animation_names().has("hit"):
