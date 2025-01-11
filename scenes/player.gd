@@ -5,7 +5,7 @@ class_name player
 
 var player_name:String = "Default"
 var shifts:int = 0
-var status:Dictionary = {"poison":2}
+var status:Dictionary = {}
 
 signal defense_gone
 signal took_damage

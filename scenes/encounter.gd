@@ -217,6 +217,9 @@ func cast_spell(spell_package)->void:
 	_update_ui()
 	GlobalSignalBus.emit_action_finished()
 
+func display_message(message:String) -> void:
+	ui.display_message(message)
+
 func round_start() -> void:
 	clear_queue()
 	battle_round += 1
@@ -247,7 +250,9 @@ func enemy_turn() -> void:
 	print("enemy turn start")
 	for monster:Monster in monster_manager.get_children():
 		print("monster turn added to queue ", monster)
-		add_action_to_queue({"damage_animation":func ():play_animation(Global.damage_animations[monster.actions[monster.current_action_index]["damage_animation"]],player,true),"monster_attack_animation":func():monster.play_animation("attack")})
+		add_action_to_queue({"damage_animation":func ():
+			display_message(monster.actions[monster.current_action_index]["name"])
+			play_animation(Global.damage_animations[monster.actions[monster.current_action_index]["damage_animation"]],player,true),"monster_attack_animation":func():monster.play_animation("attack")})
 		add_action_to_queue({"monster_action":func (): monster_action(monster)})
 	add_action_to_queue({"turn_end": func (): enemy_turn_end()})
 
@@ -280,9 +285,16 @@ func _on_right_panel_cast() -> void:
 			var effect = SpellManager.effect_generation(spell.spell)
 			print("effect: ",effect)
 			if effect.keys().has("attack_animation"):
-				add_action_to_queue({"attack_animation":func (): play_animation(effect.attack_animation,spell.target)})
+				add_action_to_queue({"attack_animation":
+					func (): 
+						display_message(effect.name)
+						play_animation(effect.attack_animation,spell.target)
+						})
 			if effect.keys().has("defense_animation"):
-				add_action_to_queue({"defense_animation":func(): add_effect(effect.defense_animation,scene_player)})
+				add_action_to_queue({"defense_animation":
+					func(): 
+						display_message(effect.name)
+						add_effect(effect.defense_animation,scene_player)})
 			add_action_to_queue({"spell":func(): cast_spell({"spell":effect,"target":spell.target})})
 		add_action_to_queue({"turn_end":func ():player_turn_end()})
 		_update_ui()

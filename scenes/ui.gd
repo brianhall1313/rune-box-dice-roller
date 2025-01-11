@@ -4,6 +4,7 @@ extends Control
 @onready var right_panel: Control = $right_panel
 @onready var active_panel: Control = $active_panel
 @onready var player_point = player_info_element.effect_point
+@onready var message_label: Label = $message_label
 
 func update_player(player_information)->void:
 	player_info_element.update(player_information)
@@ -33,3 +34,17 @@ func shake_box() -> void:
 
 func player_took_damage() -> void:
 	player_info_element.player_damage_effect()
+
+func display_message(message:String) -> void:
+	print(message)
+	var tween = create_tween()
+	message_label.modulate = Color("white",0.0)
+	message_label.text = message
+	tween.tween_property(message_label,"modulate",Color("white",1.0),.2)
+	await get_tree().create_timer(1.0).timeout
+	tween = create_tween()
+	tween.tween_property(message_label,"modulate",Color("white",0.0),1)
+	
+	
+	
+	
