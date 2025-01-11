@@ -62,4 +62,7 @@ extends Node
 	"slash": preload("res://resources/damage_animations/slash.tscn"),
 	"bite": preload("res://resources/damage_animations/bite.tscn")
 }
+
 var current_state:String = "none"
+
+var damage_number_label = preload("res://resources/damage_number_label.tscn")
