@@ -3,6 +3,7 @@ extends Node
 const BLEED:String = "bleed"
 const POISON:String = "poison"
 const REGEN:String = "regen"
+const SV:String = "Stalker Vigor"
 
 
 var effects_list:Dictionary={
@@ -12,6 +13,7 @@ var effects_list:Dictionary={
 var countdown:Dictionary = {
 	POISON:func (target):poison(target),
 	REGEN:func (target):regen(target),
+	SV:func (target):sv(target),
 }
 
 var per_action: Dictionary= {
@@ -40,6 +42,11 @@ func regen(target) -> void:
 	var regen_amount:int = target.status[REGEN]
 	target.heal(regen_amount)
 	reduce_effect(target,REGEN)
+
+func sv(target) -> void:
+	var regen_amount:int = target.status[SV]
+	target.heal(regen_amount)
+	
 
 func bleed(target) -> void:
 	target.take_damage(Damage.new(1,BLEED),true)

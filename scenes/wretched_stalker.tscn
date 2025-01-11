@@ -99,7 +99,8 @@ health = 40
 
 [node name="sprite" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_xfbvs")
-animation = &"regen_attack"
+animation = &"claw_attack"
+frame_progress = 0.95551
 
 [node name="hit_position" type="Marker2D" parent="."]
 position = Vector2(0, -20)

@@ -11,6 +11,11 @@ extends Monster
 
 var current_action_index:int
 
+enum {BASE, REGEN, CLAW}
+
+var final_form:bool=false
+
+var creature_state = BASE
 
 
 var actions:Array[Dictionary] = [
@@ -36,6 +41,29 @@ var actions:Array[Dictionary] = [
 	}
 ]
 
+var special_actions:Array[Dictionary] = [
+	{#be agressive, be be agressive
+		"name":"Swipe",
+		"attack":func ():return do_damage(attack+10,"physical"),
+		"animation":"attack",
+		"damage_animation":"slash",
+	},
+	{#attack and defend
+		"name":"Reach Advantage",
+		"defence":20,#armor
+		"attack":func ():return do_damage(attack-5,"physical"),
+		"animation":"attack",
+		"damage_animation":"slash",
+	},
+	{#poison the player and do a tiny amount of damage
+		"name":"Soul Feast",
+		"attack":func():return do_damage(attack,"physical"),
+		"effect":{"disabled dice":5},
+		"animation":"attack",
+		"damage_animation":"bite",
+	},
+	
+]
 
 func _ready() -> void:
 	health.setup(health.max_health,health.max_health)
@@ -48,6 +76,13 @@ func take_turn() -> void:
 	pass
 
 func select_action()-> void:
+	if health.health <= roundi(health.max_health/2) and !final_form:
+		final_form = true
+		if randi_range(0,1) == 0:
+			creature_state = REGEN
+			StatusManager.increase_effect(self,"Stalker Vigor",5)
+		else:
+			creature_state = CLAW
 	current_action_index = randi_range(0,len(actions)-1)
 
 
