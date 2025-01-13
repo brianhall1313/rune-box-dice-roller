@@ -32,8 +32,8 @@ func remove_effect_from_player() -> void:
 func shake_box() -> void:
 	active_panel.shake_box()
 
-func player_took_damage() -> void:
-	player_info_element.player_damage_effect()
+func player_took_damage(damage) -> void:
+	player_info_element.player_damage_effect(damage)
 
 func display_message(message:String) -> void:
 	print(message)

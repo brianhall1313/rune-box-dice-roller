@@ -2,13 +2,6 @@ extends Node2D
 
 @onready var player_info: Label = $ui/main_ui/player_info
 
-var level_dir: Array[String] =[
-	"res://scenes/encounter.tscn",
-	"res://scenes/encounter_2.tscn",
-	"res://scenes/encounter_3.tscn",
-	"res://scenes/encounter_4.tscn",
-	"res://scenes/encounter_5.tscn",
-]
 
 
 func _ready() -> void:
@@ -25,8 +18,9 @@ func connect_to_gobalsignalbus() -> void:
 
 
 func level_selector(level_ID:int) -> void:
-	if level_ID < len(level_dir):
-		get_tree().change_scene_to_file(level_dir[level_ID])
+	if level_ID < len(EncounterDirectory.encounters):
+		Global.next_level = level_ID
+		get_tree().change_scene_to_file("res://scenes/encounter.tscn")
 
 
 func _on_quit_button_button_up() -> void:

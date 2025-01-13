@@ -19,8 +19,13 @@ func setup(spell_package:Dictionary)->void:
 	var target = spell_package.target
 	#print("called setup for rune spell")
 	#print("the spell is ",spell)
-	if target and spell != []:
-		target_label.text = "Target: " + target.monster_name
+	if is_instance_valid(target) and target and spell != []:
+		var name_text:String
+		if target is Monster:
+			name_text = target.monster_name
+		else:
+			name_text = target.player_name
+		target_label.text = "Target: " + name_text
 	else:
 		target_label.text = ''
 	for i in 4:

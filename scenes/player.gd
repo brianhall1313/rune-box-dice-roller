@@ -8,7 +8,7 @@ var shifts:int = 0
 var status:Dictionary = {}
 
 signal defense_gone
-signal took_damage
+signal took_damage(damage:Damage)
 
 func setup(info) -> void:
 	health.setup(info["max_health"],info["health"])
@@ -39,7 +39,11 @@ func take_damage(incomming_damage:Damage,direct:bool=false) -> void:
 	if health.defense == 0:
 		defense_gone.emit()
 	if pre_damage_health != health.health:
-		took_damage.emit()
+		var d = Damage.new(pre_damage_health-health.health,incomming_damage.type)
+		took_damage.emit(d)
+	else:
+		var d = Damage.new(0,incomming_damage.type)
+		took_damage.emit(d)
 
 func heal(heal_amount:int) -> void:
 	health.heal(heal_amount)

@@ -44,6 +44,7 @@ func add_effect(effect:PackedScene) -> void:
 func _ready() -> void:
 	health.setup(health.max_health,health.max_health)
 	sprite.play("idle")
+	print(global_position)
 
 func plan_turn() -> void:
 	select_action()

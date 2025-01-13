@@ -24,9 +24,9 @@ var win_state:bool = false
 func _ready() -> void:
 	connect_to_global_signal_bus()
 	#TODO setup combact: however we are going to do that
+	setup()
 	GlobalSignalBus.emit_state_change("player_turn")
 	scene_player.setup(PlayerManager.export())
-	print(monster_manager.get_child(0).health)
 	enemy_selected(monster_manager.get_child(0))
 	round_start()
 	_update_ui()
@@ -43,6 +43,14 @@ func _process(_delta: float) -> void:
 		#take action
 	if win_state:
 		player_wins()
+
+func setup() -> void:
+	var encounter = EncounterDirectory.encounters[Global.next_level]
+	for enemy in encounter.enemies:
+		var new = EncounterDirectory.monster_directory[enemy.enemy].instantiate()
+		new.monster_name = enemy.name
+		monster_manager.add_child(new)
+		new.global_position = enemy.position
 
 func connect_to_global_signal_bus() -> void:
 	GlobalSignalBus.connect("rune_interaction",rune_interaction)
@@ -92,9 +100,14 @@ func get_next_alive_enemy():
 func queue_spell() -> void:
 	# if spell valid
 	if SpellManager.is_spell(current_spell_selection):
+		var target
+		if SpellManager.effect_generation(current_spell_selection).keys().has("attack_animation"):
+			target = current_enemy
+		else:
+			target = scene_player
 		var spell = {
 			"spell":current_spell_selection,
-			"target":current_enemy
+			"target":target
 		}
 		spell_queue.append(spell)
 		current_spell_selection = []
@@ -152,6 +165,8 @@ func play_animation(animation:PackedScene,target=null,is_player:bool=false) -> v
 		print("animation effecting player")
 		ani.global_position = ui.player_point.global_position
 	else:
+		if !target:
+			target = get_next_alive_enemy()
 		ani.global_position = target.hit_position.global_position
 	add_child(ani)
 	ani.play("default")
@@ -200,6 +215,8 @@ func cast_spell(spell_package)->void:
 	check_per_action(scene_player)
 	var spell = spell_package.spell
 	var target = spell_package.target
+	if !is_instance_valid(target):
+		target = get_next_alive_enemy()
 	if spell.has("damage"):
 		if target and target.health.health > 0:
 			target.take_damage(spell["damage"].call())
@@ -323,5 +340,5 @@ func _on_player_defense_gone() -> void:
 	ui.remove_effect_from_player()
 
 
-func _on_player_took_damage() -> void:
-	ui.player_took_damage()
+func _on_player_took_damage(damage:Damage) -> void:
+	ui.player_took_damage(damage)

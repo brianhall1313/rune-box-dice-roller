@@ -65,4 +65,6 @@ extends Node
 
 var current_state:String = "none"
 
-var damage_number_label = preload("res://resources/damage_number_label.tscn")
+var damage_number_label:PackedScene = preload("res://resources/damage_number_label.tscn")
+
+var next_level:int = 0

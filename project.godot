@@ -26,6 +26,7 @@ MonsterManager="*res://globals/MonsterManager.gd"
 SpellManager="*res://globals/SpellManager.gd"
 StatusManager="*res://globals/StatusManager.gd"
 SaveAndLoad="*res://globals/SaveAndLoad.gd"
+EncounterDirectory="*res://globals/EncounterDirectory.gd"
 
 [display]
 
