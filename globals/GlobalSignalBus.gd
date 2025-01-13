@@ -15,6 +15,8 @@ signal spell_cancel
 signal player_death
 signal enemy_death(enemy:Monster)
 
+signal display_damage(damage:Damage, pos:Vector2)
+
 signal level_selected(levelID:int)
 
 signal action_finished
@@ -42,3 +44,5 @@ func emit_level_selected(levelID:int) -> void:
 	level_selected.emit(levelID)
 func emit_add_effect(effect:PackedScene,target) -> void:
 	add_effect.emit(effect,target)
+func emit_display_damage(damage:Damage,pos:Vector2) -> void:
+	display_damage.emit(damage,pos)

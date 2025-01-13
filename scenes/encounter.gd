@@ -61,6 +61,7 @@ func connect_to_global_signal_bus() -> void:
 	GlobalSignalBus.connect("player_death",player_loses)
 	GlobalSignalBus.connect("action_finished",process_finished_action)
 	GlobalSignalBus.connect("add_effect",add_effect)
+	GlobalSignalBus.connect("display_damage",display_damage)
 
 func show_enemy_information()->void:
 	ui.update_enemy_info(current_enemy)
@@ -342,3 +343,9 @@ func _on_player_defense_gone() -> void:
 
 func _on_player_took_damage(damage:Damage) -> void:
 	ui.player_took_damage(damage)
+
+func display_damage(damage:Damage,pos:Vector2) -> void:
+	var new = Global.damage_number_label.instantiate()
+	add_child(new)
+	new.global_position = pos
+	new.display(damage)

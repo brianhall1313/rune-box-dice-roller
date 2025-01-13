@@ -28,10 +28,10 @@ func take_damage(initial_damage:Damage, direct:bool = false)->void:
 	if initial_hp != health.health:
 		damage_effet()
 		var d = Damage.new(initial_hp - health.health,initial_damage.type)
-		damage_display(d)
+		GlobalSignalBus.emit_display_damage(d,global_position)
 	else:
 		var d = Damage.new(0,initial_damage.type)
-		damage_display(d)
+		GlobalSignalBus.emit_display_damage(d,global_position)
 	if health.health == 0:
 		GlobalSignalBus.emit_enemy_death(self)
 
@@ -77,9 +77,3 @@ func damage_effet() -> void:
 	
 func reset_defense() -> void:
 	health.reset_defense()
-
-func damage_display(damage:Damage) -> void:
-	var new = Global.damage_number_label.instantiate()
-	add_child(new)
-	new.global_position = self.global_position
-	new.display(damage)
