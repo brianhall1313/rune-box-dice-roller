@@ -34,7 +34,7 @@ func increase_effect(target,effect_name:String,amount:int=1) -> void:
 
 func poison(target) -> void:
 	var poison_damage:Damage = Damage.new(target.status[POISON],POISON)
-	print("takes poison damage ",poison_damage.damage)
+	#print("takes poison damage ",poison_damage.damage)
 	target.take_damage(poison_damage,true)
 	reduce_effect(target,POISON)
 

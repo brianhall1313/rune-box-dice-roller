@@ -67,7 +67,7 @@ func set_adjacency()->void:
 		d.set_adjacent(adjacent)
 
 func shake_box()->void:
-	print("poke")
+	#print("poke")
 	box_inventory = InventoryManager.inventory.duplicate(true)
 	box_inventory.shuffle()
 	var i:int = 0

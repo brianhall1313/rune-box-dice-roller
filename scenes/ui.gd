@@ -36,7 +36,7 @@ func player_took_damage(damage) -> void:
 	player_info_element.player_damage_effect(damage)
 
 func display_message(message:String) -> void:
-	print(message)
+	#print(message)
 	var tween = create_tween()
 	message_label.modulate = Color("white",0.0)
 	message_label.text = message

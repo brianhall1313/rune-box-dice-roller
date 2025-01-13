@@ -9,13 +9,10 @@ class_name Monster
 
 func play_animation(animation_name:String)->void:
 	if sprite.sprite_frames.get_animation_names().has(animation_name):
-		GlobalSignalBus.emit_state_change("animation_playing")
 		print("playing damage animation~~~~~~~~~")
 		sprite.play(animation_name)
 		await sprite.animation_looped
 		print("~~~~~~~~~~~~~~~~Done with animation")
-		GlobalSignalBus.emit_action_finished()
-		GlobalSignalBus.emit_revert_state()
 		sprite.play("idle")
 
 func do_damage(attack_val:int, type:String) -> Damage:

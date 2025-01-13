@@ -35,6 +35,7 @@ func _process(_delta: float) -> void:
 	if not busy and (len(action_queue) > 0) and action_delay.is_stopped():
 		for a in action_queue:
 			print("action: ", a)
+		print("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
 		busy = true
 		action_delay.start()
 		var action = action_queue.pop_back()
@@ -69,23 +70,23 @@ func show_enemy_information()->void:
 func enemy_death(enemy:Monster) -> void:
 	if enemy == current_enemy:
 		current_enemy = get_next_alive_enemy()
-	print("enemy died")
+	#print("enemy died")
 	if current_enemy == null:
 		enemy.queue_free()
 		win_state = true
 	else:
-		print("oh wow an anemy died! there are still more to fight!")
+		#print("oh wow an anemy died! there are still more to fight!")
 		enemy.queue_free()
 
 func player_wins() -> void:
-	print("player wins")
+	#print("player wins")
 	PlayerManager.import(scene_player.export())
 	PlayerManager.reward(rewards)
 	PlayerManager.save_player()
 	get_tree().change_scene_to_file("res://scenes/overworld.tscn")
 
 func player_loses() -> void:
-	print("YOU LOSE")
+	#print("YOU LOSE")
 	get_tree().quit()
 
 func process_finished_action() -> void:
@@ -126,7 +127,7 @@ func check_per_action(actor) ->void:
 		if StatusManager.per_action.keys().has(status):
 			StatusManager.per_action[status].call(actor)
 			if StatusManager.effects_list.keys().has(status):
-				print("playing effect")
+				#print("playing effect")
 				add_effect(StatusManager.effects_list[status],actor)
 	_update_ui()
 
@@ -163,7 +164,7 @@ func play_animation(animation:PackedScene,target=null,is_player:bool=false) -> v
 	GlobalSignalBus.emit_state_change("animation_playing")
 	var ani = animation.instantiate()
 	if is_player:
-		print("animation effecting player")
+		#print("animation effecting player")
 		ani.global_position = ui.player_point.global_position
 	else:
 		if !target:
@@ -199,7 +200,7 @@ func clear_queue() -> void:
 		for die:Die in spell.spell:
 			die.set_selected(false)
 	spell_queue = []
-	print("queue cleared")
+	#print("queue cleared")
 	_update_ui()
 	ui.toggle_shake(true)
 
@@ -230,7 +231,7 @@ func cast_spell(spell_package)->void:
 			print("echooooooo")
 	if spell.has("effect"):
 		for effect in spell["effect"]:
-			print("Effect added ", {effect:spell["effect"][effect]})
+			#print("Effect added ", {effect:spell["effect"][effect]})
 			StatusManager.increase_effect(target,effect,spell["effect"][effect])
 	_update_ui()
 	GlobalSignalBus.emit_action_finished()
@@ -243,6 +244,10 @@ func round_start() -> void:
 	battle_round += 1
 	ui.shake_box()
 	print("Round ", battle_round, " ~start!~ ")
+	print("this is the only revert that should happen at the end of a turn")
+	#this should revery enemy turn to player turn
+	if battle_round > 1:
+		GlobalSignalBus.emit_revert_state()
 	scene_player.start_turn()
 	for monster:Monster in monster_manager.get_children():
 		monster.start_turn()
@@ -260,14 +265,13 @@ func player_turn_end() -> void:
 
 func enemy_turn_end() -> void:
 	GlobalSignalBus.emit_action_finished()
-	GlobalSignalBus.emit_revert_state()
 	round_start()
 
 
 func enemy_turn() -> void:
 	print("enemy turn start")
 	for monster:Monster in monster_manager.get_children():
-		print("monster turn added to queue ", monster)
+		#print("monster turn added to queue ", monster)
 		add_action_to_queue({"damage_animation":func ():
 			display_message(monster.actions[monster.current_action_index]["name"])
 			play_animation(Global.damage_animations[monster.actions[monster.current_action_index]["damage_animation"]],player,true),"monster_attack_animation":func():monster.play_animation("attack")})
@@ -276,32 +280,31 @@ func enemy_turn() -> void:
 
 func monster_action(monster:Monster) -> void:
 	if monster.is_alive():
-		print(monster.monster_name, " takes its turn")
-		#TODO damage to player
+		#print(monster.monster_name, " takes its turn")
 		var action = monster.actions[monster.current_action_index]
 		if action:
 			check_per_action(monster)
-		print(monster.monster_name, " takes the action: ",action["name"])
+		#print(monster.monster_name, " takes the action: ",action["name"])
 		if action.keys().has("attack"):
 			scene_player.take_damage(action["attack"].call())
-			print(scene_player.health, " health left")
+			#print(scene_player.health, " health left")
 		if action.keys().has("defence"):
 			monster.defend(action["defence"])
 		if action.keys().has("heal"):
 			monster.heal(action["heal"])
 		if action.keys().has("effect"):
 			for effect in action["effect"].keys():
-				print("Effect added ", {effect:action["effect"][effect]})
+				#print("Effect added ", {effect:action["effect"][effect]})
 				StatusManager.increase_effect(scene_player,effect,action["effect"][effect])
 	_update_ui()
 	GlobalSignalBus.emit_action_finished()
 
 func _on_right_panel_cast() -> void:
 	if current_enemy and Global.current_state == "player_turn":
-		print("SPELL C-C-C-C-C-C-COMBO")
+		#print("SPELL C-C-C-C-C-C-COMBO")
 		for spell in spell_queue:
 			var effect = SpellManager.effect_generation(spell.spell)
-			print("effect: ",effect)
+			#print("effect: ",effect)
 			if effect.keys().has("attack_animation"):
 				add_action_to_queue({"attack_animation":
 					func (): 

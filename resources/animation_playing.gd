@@ -7,5 +7,5 @@ func enter()->void:
 func exit()->void:
 	pass
 
-func handle_input(event:InputEvent)->void:
-	print(event, " ignored")
+func handle_input(_event:InputEvent)->void:
+	pass

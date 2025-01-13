@@ -20,19 +20,19 @@ func reset_defense() -> void:
 	defense = 0
 
 func get_damage_multiplier(type:String) -> float:
-	print("the damage type is ", type)
-	print("My resistances are ", self.resistances)
+	#print("the damage type is ", type)
+	#print("My resistances are ", self.resistances)
 	if type in self.resistances.keys():
-		print("match!")
+		#print("match!")
 		return resistances[type]/100.0
 	return 1.0
 
 func take_damage(incoming_damage:Damage, direct:bool = false)->void:
 	var multiplier: float = get_damage_multiplier(incoming_damage.type)
-	print("multiplier for damage is: ",multiplier)
+	#print("multiplier for damage is: ",multiplier)
 	var damage = roundi(incoming_damage.damage * multiplier)
-	print("my damage taken is ",damage, " of the type: ",incoming_damage.type)
-	print(damage, " damage vs ", defense)
+	#print("my damage taken is ",damage, " of the type: ",incoming_damage.type)
+	#print(damage, " damage vs ", defense)
 	var current_damage:int=0
 	if not direct:
 		if damage < defense:
@@ -46,7 +46,7 @@ func take_damage(incoming_damage:Damage, direct:bool = false)->void:
 		health = 0
 		return
 	health -= current_damage
-	print(get_parent().name," says ouch! I got hit for ", damage, " and took ", current_damage )
+	#print(get_parent().name," says ouch! I got hit for ", damage, " and took ", current_damage )
 
 func heal(heal_amount:int)->void:
 	if health + heal_amount > max_health:
