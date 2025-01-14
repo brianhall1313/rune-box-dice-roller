@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://d3mnmw48ock53"
-path="res://.godot/imported/Wretched_Claws_1.png-40073986de6b4ecbd985441f3d953a5e.ctex"
+uid="uid://b5cxpe6q0di85"
+path="res://.godot/imported/Wretched_Regen_Idle_2.png-75b1497d05b990e3f7730a160118c98d.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://textures/Wretched Stalker/Wretched_Claws_1.png"
-dest_files=["res://.godot/imported/Wretched_Claws_1.png-40073986de6b4ecbd985441f3d953a5e.ctex"]
+source_file="res://textures/Wretched Stalker/Regen/Wretched_Regen_Idle_2.png"
+dest_files=["res://.godot/imported/Wretched_Regen_Idle_2.png-75b1497d05b990e3f7730a160118c98d.ctex"]
 
 [params]
 

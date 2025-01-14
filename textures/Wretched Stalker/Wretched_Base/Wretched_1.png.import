@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ctjnh5sqt5qwv"
-path="res://.godot/imported/Wretched_2.png-e1381949e016a61300d7f2015ffa8ea8.ctex"
+uid="uid://byy0y0j8hyect"
+path="res://.godot/imported/Wretched_1.png-1a6c68ebe0bb035d325e0bd3f33c6d59.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://textures/Wretched Stalker/Wretched_2.png"
-dest_files=["res://.godot/imported/Wretched_2.png-e1381949e016a61300d7f2015ffa8ea8.ctex"]
+source_file="res://textures/Wretched Stalker/Wretched_Base/Wretched_1.png"
+dest_files=["res://.godot/imported/Wretched_1.png-1a6c68ebe0bb035d325e0bd3f33c6d59.ctex"]
 
 [params]
 

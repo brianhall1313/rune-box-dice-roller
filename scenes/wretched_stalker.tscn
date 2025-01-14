@@ -1,19 +1,24 @@
-[gd_scene load_steps=17 format=3 uid="uid://cqncy2kjcr0d"]
+[gd_scene load_steps=22 format=3 uid="uid://cqncy2kjcr0d"]
 
 [ext_resource type="Script" path="res://scenes/wretched_stalker.gd" id="1_ksksi"]
 [ext_resource type="PackedScene" uid="uid://c3kej11nt2ksr" path="res://scenes/selected_box.tscn" id="2_cx5c0"]
 [ext_resource type="PackedScene" uid="uid://c5d41p3om6lvl" path="res://resources/health.tscn" id="3_crgo6"]
-[ext_resource type="Texture2D" uid="uid://3rvhxj86onc4" path="res://textures/Wretched Stalker/Wretched_1.png" id="4_c506j"]
-[ext_resource type="Texture2D" uid="uid://ctjnh5sqt5qwv" path="res://textures/Wretched Stalker/Wretched_2.png" id="5_vwu7o"]
-[ext_resource type="Texture2D" uid="uid://b6vvrcs35ywkb" path="res://textures/Wretched Stalker/Wretched_3.png" id="6_hppx4"]
-[ext_resource type="Texture2D" uid="uid://d2ij0st16uebn" path="res://textures/Wretched Stalker/Wretched_Base.png" id="7_kvnth"]
-[ext_resource type="Texture2D" uid="uid://d3mnmw48ock53" path="res://textures/Wretched Stalker/Wretched_Claws_1.png" id="8_wcbke"]
-[ext_resource type="Texture2D" uid="uid://dapvqelaqnitm" path="res://textures/Wretched Stalker/Wretched_Claws_2.png" id="9_w22yd"]
-[ext_resource type="Texture2D" uid="uid://cjpnqg3xf603k" path="res://textures/Wretched Stalker/Wretched_Claws_3.png" id="10_dbt0r"]
-[ext_resource type="Texture2D" uid="uid://cjh8ueolqtjjs" path="res://textures/Wretched Stalker/Wretched_Regen.png" id="11_jh52i"]
-[ext_resource type="Texture2D" uid="uid://c3y2t6x2s4cf1" path="res://textures/Wretched Stalker/Wretched_Regen_1.png" id="12_b0y66"]
-[ext_resource type="Texture2D" uid="uid://cp8o6p8g7rxat" path="res://textures/Wretched Stalker/Wretched_Regen_2.png" id="13_xhp0w"]
-[ext_resource type="Texture2D" uid="uid://vmonal3m6bqr" path="res://textures/Wretched Stalker/Wretched_Regen_3.png" id="14_lg8w7"]
+[ext_resource type="Texture2D" uid="uid://byy0y0j8hyect" path="res://textures/Wretched Stalker/Wretched_Base/Wretched_1.png" id="4_c506j"]
+[ext_resource type="Texture2D" uid="uid://cmqgf44il8jds" path="res://textures/Wretched Stalker/Wretched_Base/Wretched_2.png" id="5_vwu7o"]
+[ext_resource type="Texture2D" uid="uid://b108ewqacmwsd" path="res://textures/Wretched Stalker/Wretched_Base/Wretched_3.png" id="6_hppx4"]
+[ext_resource type="Texture2D" uid="uid://clagrajdbm6hh" path="res://textures/Wretched Stalker/Wretched_Base/Wretched_Base.png" id="7_kvnth"]
+[ext_resource type="Texture2D" uid="uid://ftxyh1l8jba5" path="res://textures/Wretched Stalker/Claws/Wretched_Claws_1.png" id="8_wcbke"]
+[ext_resource type="Texture2D" uid="uid://dywchxngaiuid" path="res://textures/Wretched Stalker/Claws/Wretched_Claws_2.png" id="9_w22yd"]
+[ext_resource type="Texture2D" uid="uid://6uaiwwlynqym" path="res://textures/Wretched Stalker/Claws/Wretched_Claws_3.png" id="10_dbt0r"]
+[ext_resource type="Texture2D" uid="uid://bx6kjifpupff0" path="res://textures/Wretched Stalker/Claws/Wretched_Claws_Idle.png" id="11_cgpjl"]
+[ext_resource type="Texture2D" uid="uid://bqafyow881tt8" path="res://textures/Wretched Stalker/Regen/Wretched_Regen.png" id="11_jh52i"]
+[ext_resource type="Texture2D" uid="uid://cx102ga7re1uh" path="res://textures/Wretched Stalker/Regen/Wretched_Regen_1.png" id="12_b0y66"]
+[ext_resource type="Texture2D" uid="uid://vplgo0n5ghj1" path="res://textures/Wretched Stalker/Claws/Wretched_Claw_Idle_2.png" id="12_vdx5u"]
+[ext_resource type="Texture2D" uid="uid://dsk1thgw5vbqy" path="res://textures/Wretched Stalker/Regen/Wretched_Regen_2.png" id="13_xhp0w"]
+[ext_resource type="Texture2D" uid="uid://slff1g6u3l5i" path="res://textures/Wretched Stalker/Regen/Wretched_Regen_3.png" id="14_lg8w7"]
+[ext_resource type="Texture2D" uid="uid://bgkr568s86s1m" path="res://textures/Wretched Stalker/Regen/Wretched_Regen_Idle.png" id="17_ag0p6"]
+[ext_resource type="Texture2D" uid="uid://b5cxpe6q0di85" path="res://textures/Wretched Stalker/Regen/Wretched_Regen_Idle_2.png" id="18_3unf1"]
+[ext_resource type="Texture2D" uid="uid://ck2oixbtmhx4q" path="res://textures/Wretched Stalker/Regen/Wretched_Regen_Idle_3.png" id="19_a3eb3"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5yecb"]
 size = Vector2(90, 104)
@@ -22,13 +27,13 @@ size = Vector2(90, 104)
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("4_c506j")
+"texture": ExtResource("6_hppx4")
 }, {
 "duration": 1.0,
 "texture": ExtResource("5_vwu7o")
 }, {
 "duration": 1.0,
-"texture": ExtResource("6_hppx4")
+"texture": ExtResource("4_c506j")
 }, {
 "duration": 1.0,
 "texture": ExtResource("7_kvnth")
@@ -53,6 +58,17 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
+"texture": ExtResource("11_cgpjl")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_vdx5u")
+}],
+"loop": true,
+"name": &"claw_idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": ExtResource("7_kvnth")
 }],
 "loop": true,
@@ -61,19 +77,33 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("11_jh52i")
-}, {
-"duration": 1.0,
-"texture": ExtResource("12_b0y66")
+"texture": ExtResource("14_lg8w7")
 }, {
 "duration": 1.0,
 "texture": ExtResource("13_xhp0w")
 }, {
 "duration": 1.0,
-"texture": ExtResource("14_lg8w7")
+"texture": ExtResource("12_b0y66")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_jh52i")
 }],
 "loop": true,
 "name": &"regen_attack",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("17_ag0p6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("18_3unf1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("19_a3eb3")
+}],
+"loop": true,
+"name": &"regen_idle",
 "speed": 5.0
 }]
 
@@ -99,8 +129,8 @@ health = 40
 
 [node name="sprite" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_xfbvs")
-animation = &"claw_attack"
-frame_progress = 0.95551
+animation = &"regen_idle"
+frame_progress = 0.808988
 
 [node name="hit_position" type="Marker2D" parent="."]
 position = Vector2(0, -20)
