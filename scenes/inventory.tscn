@@ -1,0 +1,48 @@
+[gd_scene load_steps=2 format=3 uid="uid://oenstrbbkm55"]
+
+[ext_resource type="Script" path="res://scenes/inventory.gd" id="1_u5om2"]
+
+[node name="Inventory" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_u5om2")
+
+[node name="main" type="PanelContainer" parent="."]
+layout_mode = 0
+offset_right = 512.0
+offset_bottom = 288.0
+
+[node name="inventory" type="VBoxContainer" parent="main"]
+layout_mode = 2
+
+[node name="inventory_margin" type="MarginContainer" parent="main/inventory"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="inventory_display" type="HBoxContainer" parent="main/inventory/inventory_margin"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="inventory_scroll" type="ScrollContainer" parent="main/inventory/inventory_margin/inventory_display"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="inventory_container" type="GridContainer" parent="main/inventory/inventory_margin/inventory_display/inventory_scroll"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="bottom_menu" type="HBoxContainer" parent="main/inventory"]
+layout_mode = 2
+size_flags_vertical = 8
+
+[node name="exit_button" type="Button" parent="main/inventory/bottom_menu"]
+layout_mode = 2
+text = "Exit
+"
+
+[connection signal="button_up" from="main/inventory/bottom_menu/exit_button" to="." method="_on_exit_button_button_up"]
