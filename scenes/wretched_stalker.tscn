@@ -141,7 +141,7 @@ health = 40
 [node name="sprite" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_xfbvs")
 animation = &"idle"
-frame_progress = 0.836582
+frame_progress = 0.982216
 
 [node name="hit_position" type="Marker2D" parent="."]
 position = Vector2(0, -20)

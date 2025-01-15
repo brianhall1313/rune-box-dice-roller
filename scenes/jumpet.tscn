@@ -91,7 +91,7 @@ resistances = {
 
 [node name="sprite" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_q1wro")
-animation = &"hit"
+animation = &"idle"
 
 [node name="hit_position" type="Marker2D" parent="."]
 position = Vector2(0, 55)

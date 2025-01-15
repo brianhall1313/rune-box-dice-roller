@@ -51,7 +51,7 @@ func setup() -> void:
 		var new = EncounterDirectory.monster_directory[enemy.enemy].instantiate()
 		new.monster_name = enemy.name
 		monster_manager.add_child(new)
-		new.global_position = enemy.position
+		new.position += enemy.position
 
 func connect_to_global_signal_bus() -> void:
 	GlobalSignalBus.connect("rune_interaction",rune_interaction)
@@ -329,7 +329,7 @@ func add_action_to_queue(item:Dictionary) -> void:
 	action_queue.insert(0,item)
 
 func add_interrupt_action_to_queue(item:Dictionary) -> void:
-	action_queue.insert(len(action_queue),item)
+	action_queue.append(item)
 
 func _on_right_panel_clear_all() -> void:
 	clear_queue()
