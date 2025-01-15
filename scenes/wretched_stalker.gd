@@ -64,6 +64,26 @@ var regen_actions:Array[Dictionary] = [
 ]
 
 var claw_actions:Array[Dictionary] = [
+	{#be agressive, be be agressive
+		"name":"Bash",
+		"attack":func ():return do_damage(attack+10,"physical"),
+		"animation":"regen_attack",
+		"damage_animation":"slash",
+	},
+	{#attack and defend
+		"name":"Reach Advantage",
+		"defence":20,#armor
+		"attack":func ():return do_damage(attack-5,"physical"),
+		"animation":"regen_attack",
+		"damage_animation":"slash",
+	},
+	{#poison the player and do a tiny amount of damage
+		"name":"Soul Feast",
+		"attack":func():return do_damage(attack,"physical"),
+		"effect":{"disabled dice":5},
+		"animation":"regen_attack",
+		"damage_animation":"bite",
+	},
 	{
 		"name":"Claw  Grasp",
 		"attack":func():return do_damage(attack+5,"physical"),
@@ -96,7 +116,7 @@ func select_action()-> void:
 
 func get_action() -> Dictionary:
 	if creature_state == CLAW:
-		return claw_actions[0]#[current_action_index]
+		return claw_actions[current_action_index]
 	if creature_state == REGEN:
 		return regen_actions[current_action_index]
 	return actions[current_action_index]

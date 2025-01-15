@@ -63,6 +63,7 @@ func connect_to_global_signal_bus() -> void:
 	GlobalSignalBus.connect("action_finished",process_finished_action)
 	GlobalSignalBus.connect("add_effect",add_effect)
 	GlobalSignalBus.connect("display_damage",display_damage)
+	GlobalSignalBus.connect("interrupt_action",add_interrupt_action_to_queue)
 
 func show_enemy_information()->void:
 	ui.update_enemy_info(current_enemy)
@@ -327,6 +328,8 @@ func _on_right_panel_cast() -> void:
 func add_action_to_queue(item:Dictionary) -> void:
 	action_queue.insert(0,item)
 
+func add_interrupt_action_to_queue(item:Dictionary) -> void:
+	action_queue.insert(len(action_queue),item)
 
 func _on_right_panel_clear_all() -> void:
 	clear_queue()

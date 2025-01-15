@@ -21,6 +21,8 @@ signal level_selected(levelID:int)
 
 signal action_finished
 
+signal interrupt_action(action:Dictionary)
+
 func emit_state_change(new_state:String) -> void:
 	state_change.emit(new_state)
 
@@ -46,3 +48,5 @@ func emit_add_effect(effect:PackedScene,target) -> void:
 	add_effect.emit(effect,target)
 func emit_display_damage(damage:Damage,pos:Vector2) -> void:
 	display_damage.emit(damage,pos)
+func emit_interrupt_action(action:Dictionary) -> void:
+	interrupt_action.emit(action)

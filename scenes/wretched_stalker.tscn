@@ -97,10 +97,19 @@ animations = [{
 "texture": ExtResource("17_ag0p6")
 }, {
 "duration": 1.0,
+"texture": ExtResource("11_jh52i")
+}, {
+"duration": 1.0,
 "texture": ExtResource("18_3unf1")
 }, {
 "duration": 1.0,
+"texture": ExtResource("11_jh52i")
+}, {
+"duration": 1.0,
 "texture": ExtResource("19_a3eb3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_jh52i")
 }],
 "loop": true,
 "name": &"regen_idle",
@@ -131,8 +140,8 @@ health = 40
 
 [node name="sprite" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_xfbvs")
-animation = &"regen_idle"
-frame_progress = 0.808988
+animation = &"idle"
+frame_progress = 0.836582
 
 [node name="hit_position" type="Marker2D" parent="."]
 position = Vector2(0, -20)
