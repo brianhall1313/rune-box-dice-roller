@@ -13,7 +13,7 @@ func play_animation(animation_name:String)->void:
 		sprite.play(animation_name)
 		await sprite.animation_looped
 		print("~~~~~~~~~~~~~~~~Done with animation")
-		sprite.play("idle")
+		goto_idle()
 
 func do_damage(attack_val:int, type:String) -> Damage:
 	return Damage.new(attack_val,type)
@@ -70,7 +70,10 @@ func damage_effet() -> void:
 	tween.tween_property(sprite,"position",Vector2(init_pos.x,init_pos.y+offset),.1)
 	tween.tween_property(sprite,"position",init_pos,.1)
 	await tween.finished
-	sprite.play("idle")
+	goto_idle()
 	
 func reset_defense() -> void:
 	health.reset_defense()
+
+func goto_idle():
+	sprite.play("idle")

@@ -272,19 +272,20 @@ func enemy_turn() -> void:
 	print("enemy turn start")
 	for monster:Monster in monster_manager.get_children():
 		#print("monster turn added to queue ", monster)
+		var action = monster.get_action()
 		add_action_to_queue({"damage_animation":func ():
-			display_message(monster.actions[monster.current_action_index]["name"])
-			play_animation(Global.damage_animations[monster.actions[monster.current_action_index]["damage_animation"]],player,true),"monster_attack_animation":func():monster.play_animation("attack")})
+			display_message(action["name"])
+			play_animation(Global.damage_animations[action["damage_animation"]],player,true),"monster_attack_animation":func():monster.play_animation("attack")})
 		add_action_to_queue({"monster_action":func (): monster_action(monster)})
 	add_action_to_queue({"turn_end": func (): enemy_turn_end()})
 
 func monster_action(monster:Monster) -> void:
 	if monster.is_alive():
 		#print(monster.monster_name, " takes its turn")
-		var action = monster.actions[monster.current_action_index]
+		var action = monster.get_action()
 		if action:
 			check_per_action(monster)
-		#print(monster.monster_name, " takes the action: ",action["name"])
+		print(monster.monster_name, " takes the action: ",action["name"])
 		if action.keys().has("attack"):
 			scene_player.take_damage(action["attack"].call())
 			#print(scene_player.health, " health left")

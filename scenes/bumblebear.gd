@@ -49,6 +49,8 @@ func take_turn() -> void:
 func select_action()-> void:
 	current_action_index = randi_range(0,len(actions)-1)
 
+func get_action() -> Dictionary:
+	return actions[current_action_index]
 
 func selected()->void:
 	selected_box.visible = !selected_box.visible

@@ -7,6 +7,7 @@ class_name Health
 @export var defense:int = 0
 @export var resistances:Dictionary = {}
 
+signal taken_damage
 
 #this is probably only for the player character, but it needs to be here
 func setup(new_max_health:int,new_health:int) -> void:
@@ -46,6 +47,7 @@ func take_damage(incoming_damage:Damage, direct:bool = false)->void:
 		health = 0
 		return
 	health -= current_damage
+	taken_damage.emit()
 	#print(get_parent().name," says ouch! I got hit for ", damage, " and took ", current_damage )
 
 func heal(heal_amount:int)->void:

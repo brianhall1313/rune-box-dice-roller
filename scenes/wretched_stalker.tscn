@@ -108,9 +108,11 @@ animations = [{
 }]
 
 [node name="wretched_stalker" type="Node2D" node_paths=PackedStringArray("health", "sprite")]
+position = Vector2(0, 36)
 script = ExtResource("1_ksksi")
 health = NodePath("Health")
 sprite = NodePath("sprite")
+metadata/_edit_group_ = true
 
 [node name="click_box" type="Area2D" parent="."]
 
@@ -137,3 +139,4 @@ position = Vector2(0, -20)
 gizmo_extents = 20.0
 
 [connection signal="input_event" from="click_box" to="." method="_on_click_box_input_event"]
+[connection signal="taken_damage" from="Health" to="." method="_on_health_taken_damage"]

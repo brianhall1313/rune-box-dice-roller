@@ -45,6 +45,9 @@ func _ready() -> void:
 	health.setup(health.max_health,health.max_health)
 	sprite.play("idle")
 
+func get_action() -> Dictionary:
+	return actions[current_action_index]
+
 func plan_turn() -> void:
 	select_action()
 
