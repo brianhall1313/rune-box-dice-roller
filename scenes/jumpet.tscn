@@ -1,26 +1,30 @@
-[gd_scene load_steps=15 format=3 uid="uid://c32sargkrku8f"]
+[gd_scene load_steps=13 format=3 uid="uid://c32sargkrku8f"]
 
-[ext_resource type="Texture2D" uid="uid://bw60bsywso33s" path="res://textures/Jumpet/Jumpet_Grumpet_1.png" id="1_bnmjv"]
-[ext_resource type="Texture2D" uid="uid://bmenpsck08rev" path="res://textures/Jumpet/Jumpet_Grumpet_2.png" id="2_uvt6t"]
-[ext_resource type="Texture2D" uid="uid://4buuffubxam2" path="res://textures/Jumpet/Jumpet_Grumpet__3.png" id="3_dtsuu"]
 [ext_resource type="PackedScene" uid="uid://c5d41p3om6lvl" path="res://resources/health.tscn" id="3_qukoe"]
-[ext_resource type="Texture2D" uid="uid://cxfw5cjysq8y6" path="res://textures/Jumpet/Jumpet_Grumpet_4.png" id="4_xne1u"]
-[ext_resource type="Texture2D" uid="uid://cqm2f0fprirs5" path="res://textures/Jumpet/Jumpet_Impact.png" id="5_v3725"]
-[ext_resource type="Texture2D" uid="uid://cexr36qskn4k1" path="res://textures/Jumpet/Jumpet_Struck.png" id="6_oqd8r"]
-[ext_resource type="Texture2D" uid="uid://sujff8mp0abt" path="res://textures/Jumpet/Jumpet_Base.png" id="7_lodbp"]
-[ext_resource type="Texture2D" uid="uid://ciie1qki66yie" path="res://textures/Jumpet/Jumpet_Base_2.png" id="8_gsf41"]
-[ext_resource type="Texture2D" uid="uid://dqdnu51ty1peo" path="res://textures/Jumpet/Jumpet_Base.3.png" id="9_ny7gr"]
+[ext_resource type="Texture2D" uid="uid://bnwcm0hmorbrs" path="res://textures/Jumpet/Jumpet_Layeres_3.png" id="4_1xndk"]
+[ext_resource type="Texture2D" uid="uid://cyi6h7upkx4yn" path="res://textures/Jumpet/Jumpet_Layeres_4.png" id="5_4o8qy"]
+[ext_resource type="Texture2D" uid="uid://4akaubsta5ua" path="res://textures/Jumpet/Jumpet_Layeres_5.png" id="6_dyd55"]
+[ext_resource type="Texture2D" uid="uid://d0mxxs27hyeaa" path="res://textures/Jumpet/Jumpet_Layeres.png" id="7_1cdxd"]
+[ext_resource type="Texture2D" uid="uid://4w0troohwi1t" path="res://textures/Jumpet/Jumpet_dead.png" id="7_5y03i"]
+[ext_resource type="Texture2D" uid="uid://dscdvyjx2nhk1" path="res://textures/Jumpet/Jumpet_Layeres_2.png" id="8_bfupo"]
+[ext_resource type="Texture2D" uid="uid://bxvq5n8d8vrge" path="res://textures/Jumpet/Jumpet_Dead_2.png" id="8_meoq5"]
 [ext_resource type="Script" path="res://scenes/jumpet.gd" id="15_7pbo0"]
 [ext_resource type="PackedScene" uid="uid://c3kej11nt2ksr" path="res://scenes/selected_box.tscn" id="16_wyp31"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hdaes"]
-size = Vector2(96, 136)
+size = Vector2(96, 96)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_q1wro"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("5_v3725")
+"texture": ExtResource("4_1xndk")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_4o8qy")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_dyd55")
 }],
 "loop": true,
 "name": &"attack",
@@ -28,38 +32,21 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("1_bnmjv")
+"texture": ExtResource("7_5y03i")
 }, {
 "duration": 1.0,
-"texture": ExtResource("2_uvt6t")
-}, {
-"duration": 1.0,
-"texture": ExtResource("3_dtsuu")
-}, {
-"duration": 1.0,
-"texture": ExtResource("4_xne1u")
+"texture": ExtResource("8_meoq5")
 }],
 "loop": true,
-"name": &"grump",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 3.0,
-"texture": ExtResource("6_oqd8r")
-}],
-"loop": true,
-"name": &"hit",
+"name": &"death",
 "speed": 5.0
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("7_lodbp")
+"texture": ExtResource("7_1cdxd")
 }, {
 "duration": 1.0,
-"texture": ExtResource("8_gsf41")
-}, {
-"duration": 1.0,
-"texture": ExtResource("9_ny7gr")
+"texture": ExtResource("8_bfupo")
 }],
 "loop": true,
 "name": &"idle",
@@ -77,10 +64,12 @@ sprite = NodePath("sprite")
 [node name="click_box" type="Area2D" parent="."]
 
 [node name="click_box_colide" type="CollisionShape2D" parent="click_box"]
-position = Vector2(0, 36)
+position = Vector2(0, 8)
 shape = SubResource("RectangleShape2D_hdaes")
 
 [node name="selected_box" parent="." instance=ExtResource("16_wyp31")]
+offset_top = -40.0
+offset_bottom = 56.0
 
 [node name="Health" parent="." instance=ExtResource("3_qukoe")]
 max_health = 20
@@ -91,10 +80,11 @@ resistances = {
 
 [node name="sprite" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_q1wro")
-animation = &"idle"
+animation = &"death"
+frame_progress = 0.58309
 
 [node name="hit_position" type="Marker2D" parent="."]
-position = Vector2(0, 55)
+position = Vector2(0, 8)
 gizmo_extents = 20.0
 
 [connection signal="input_event" from="click_box" to="." method="_on_click_box_input_event"]

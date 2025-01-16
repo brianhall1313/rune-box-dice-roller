@@ -13,7 +13,7 @@ func _ready() -> void:
 
 func setup(spell_package:Dictionary) -> void:
 	var spell = spell_package.spell
-	var target = spell_package.target
+	var _target = spell_package.target
 	SpellManager.get_ui_info(spell)
 	rune_spell.setup(spell_package)
 	if SpellManager.is_spell(spell):

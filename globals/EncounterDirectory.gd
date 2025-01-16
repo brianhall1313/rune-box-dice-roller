@@ -8,7 +8,7 @@ var encounters: Array[Dictionary] = [
 			{
 				"enemy":"jumpet",
 				"name":"Jumpet",
-				"position":Vector2(0, 0)
+				"position":Vector2(8, 37)
 			}
 		]
 	},
@@ -52,12 +52,12 @@ var encounters: Array[Dictionary] = [
 			{
 				"enemy":"jumpet",
 				"name":"George",
-				"position":Vector2(-57, 14)
+				"position":Vector2(-59, 47)
 			},
 			{
 				"enemy":"jumpet",
 				"name":"Paul",
-				"position":Vector2(63, 14)
+				"position":Vector2(70, 47)
 			},
 		]
 	},
