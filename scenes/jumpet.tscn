@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://c32sargkrku8f"]
+[gd_scene load_steps=14 format=3 uid="uid://c32sargkrku8f"]
 
 [ext_resource type="PackedScene" uid="uid://c5d41p3om6lvl" path="res://resources/health.tscn" id="3_qukoe"]
 [ext_resource type="Texture2D" uid="uid://bnwcm0hmorbrs" path="res://textures/Jumpet/Jumpet_Layeres_3.png" id="4_1xndk"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://4akaubsta5ua" path="res://textures/Jumpet/Jumpet_Layeres_5.png" id="6_dyd55"]
 [ext_resource type="Texture2D" uid="uid://d0mxxs27hyeaa" path="res://textures/Jumpet/Jumpet_Layeres.png" id="7_1cdxd"]
 [ext_resource type="Texture2D" uid="uid://4w0troohwi1t" path="res://textures/Jumpet/Jumpet_dead.png" id="7_5y03i"]
+[ext_resource type="Texture2D" uid="uid://cyap3yujaw5yf" path="res://textures/Jumpet/Jumpet_Dead_3.png" id="7_gtq4y"]
 [ext_resource type="Texture2D" uid="uid://dscdvyjx2nhk1" path="res://textures/Jumpet/Jumpet_Layeres_2.png" id="8_bfupo"]
 [ext_resource type="Texture2D" uid="uid://bxvq5n8d8vrge" path="res://textures/Jumpet/Jumpet_Dead_2.png" id="8_meoq5"]
 [ext_resource type="Script" path="res://scenes/jumpet.gd" id="15_7pbo0"]
@@ -32,10 +33,21 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
+"texture": ExtResource("7_gtq4y")
+}],
+"loop": true,
+"name": &"dead",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": ExtResource("7_5y03i")
 }, {
 "duration": 1.0,
 "texture": ExtResource("8_meoq5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_gtq4y")
 }],
 "loop": true,
 "name": &"death",
@@ -80,8 +92,7 @@ resistances = {
 
 [node name="sprite" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_q1wro")
-animation = &"death"
-frame_progress = 0.58309
+animation = &"dead"
 
 [node name="hit_position" type="Marker2D" parent="."]
 position = Vector2(0, 8)

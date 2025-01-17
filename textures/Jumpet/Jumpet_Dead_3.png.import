@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dqdnu51ty1peo"
-path="res://.godot/imported/Jumpet_Base.3.png-dc9f16a32262f68be7f1448c18bc89f5.ctex"
+uid="uid://cyap3yujaw5yf"
+path="res://.godot/imported/Jumpet_Dead_3.png-9828b9f6efabfa851f425f4bd467cd5e.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://textures/Jumpet/Jumpet_Base.3.png"
-dest_files=["res://.godot/imported/Jumpet_Base.3.png-dc9f16a32262f68be7f1448c18bc89f5.ctex"]
+source_file="res://textures/Jumpet/Jumpet_Dead_3.png"
+dest_files=["res://.godot/imported/Jumpet_Dead_3.png-9828b9f6efabfa851f425f4bd467cd5e.ctex"]
 
 [params]
 
