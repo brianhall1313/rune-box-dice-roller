@@ -73,11 +73,7 @@ func enemy_death(enemy:Monster) -> void:
 		current_enemy = get_next_alive_enemy()
 	#print("enemy died")
 	if current_enemy == null:
-		enemy.queue_free()
 		win_state = true
-	else:
-		#print("oh wow an anemy died! there are still more to fight!")
-		enemy.queue_free()
 
 func player_wins() -> void:
 	#print("player wins")

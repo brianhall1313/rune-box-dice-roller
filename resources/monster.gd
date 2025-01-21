@@ -20,17 +20,18 @@ func do_damage(attack_val:int, type:String) -> Damage:
 
 func take_damage(initial_damage:Damage, direct:bool = false)->void:
 	var initial_hp = health.health
-	damage_effet()
 	health.take_damage(initial_damage,direct)
 	if initial_hp != health.health:
-		damage_effet()
 		var d = Damage.new(initial_hp - health.health,initial_damage.type)
 		GlobalSignalBus.emit_display_damage(d,global_position)
+		if health.health <= 0:
+			death()
+			GlobalSignalBus.emit_enemy_death(self)
+		else:
+			damage_effet()
 	else:
 		var d = Damage.new(0,initial_damage.type)
 		GlobalSignalBus.emit_display_damage(d,global_position)
-	if health.health == 0:
-		GlobalSignalBus.emit_enemy_death(self)
 
 func defend(defend_amount:int) -> void:
 	health.defend(defend_amount)
@@ -77,3 +78,22 @@ func reset_defense() -> void:
 
 func goto_idle():
 	sprite.play("idle")
+
+func death() -> void:
+	#overwrite
+	if sprite.sprite_frames.get_animation_names().has("death"):
+		sprite.play("death")
+		await sprite.animation_looped
+		sprite.play("dead")
+		await get_tree().create_timer(1.0).timeout
+		var tween = create_tween()
+		tween.tween_property(sprite,"modulate",Color("WHITE",0),1)
+		await tween.finished
+		queue_free()
+	else:
+		sprite.stop()
+		await get_tree().create_timer(1.0).timeout
+		var tween = create_tween()
+		tween.tween_property(sprite,"modulate",Color("WHITE",0),1)
+		await tween.finished
+		queue_free()
