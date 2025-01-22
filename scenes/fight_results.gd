@@ -23,15 +23,15 @@ func ending(win:bool,player_rewards:Dictionary) -> void:
 	return_to_map.disabled = false
 	quit.disabled = false
 
-func setup(win:bool,player_rewards:Dictionary={}) -> void:
+func setup(win:bool,player_rewards:Dictionary) -> void:
 	if win:
 		title.text = "You Won The Battle!"
 		quit.hide()
 		rewards.text = "Rewards: \n"
 		for i in player_rewards.keys():
-			rewards.text += i + " : " + player_rewards[i]+ "\n"
+			rewards.text += i + " : " + str(player_rewards[i])+ "\n"
 	else:
-		return_to_map.text = "retry"
+		return_to_map.text = "Retry"
 		title.text = "You Died!"
 		rewards.text = ""
 		quit.show()

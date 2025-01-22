@@ -77,18 +77,15 @@ func enemy_death(enemy:Monster) -> void:
 
 func player_wins() -> void:
 	#print("player wins")
-	PlayerManager.import(scene_player.export())
-	PlayerManager.reward(rewards)
-	PlayerManager.save_player()
-	get_tree().change_scene_to_file("res://scenes/overworld.tscn")
+	fight_over()
 
 func player_loses() -> void:
-	#print("YOU LOSE")
-	get_tree().quit()
+	fight_over()
 
 func fight_over() -> void:
-	if win_state:
-		pass
+	add_interrupt_action_to_queue({"the end":func():
+		GlobalSignalBus.emit_state_change("end")
+		ui.show_end(win_state,rewards)})
 
 func process_finished_action() -> void:
 	busy = false

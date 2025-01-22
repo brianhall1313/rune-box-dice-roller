@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://onto76ada87d"]
+[gd_scene load_steps=15 format=3 uid="uid://onto76ada87d"]
 
 [ext_resource type="PackedScene" uid="uid://un86ip0c1s75" path="res://scenes/player_info_element.tscn" id="1_62fm1"]
 [ext_resource type="Script" path="res://scenes/encounter.gd" id="1_ntlaj"]
@@ -13,6 +13,7 @@
 [ext_resource type="PackedScene" uid="uid://dvhx8smwwrc76" path="res://resources/player_turn.tscn" id="10_g8a0c"]
 [ext_resource type="PackedScene" uid="uid://bw12jjsij082b" path="res://resources/enemy_turn.tscn" id="11_w32u1"]
 [ext_resource type="PackedScene" uid="uid://dameuo7fjvddb" path="res://resources/animation_playing.tscn" id="13_18n1d"]
+[ext_resource type="PackedScene" uid="uid://cmysrbd0hkog0" path="res://resources/end.tscn" id="14_8ocdy"]
 
 [node name="encounter" type="Node2D"]
 script = ExtResource("1_ntlaj")
@@ -69,6 +70,8 @@ layout_mode = 0
 [node name="enemy_turn" parent="State_machine" instance=ExtResource("11_w32u1")]
 
 [node name="animation_playing" parent="State_machine" instance=ExtResource("13_18n1d")]
+
+[node name="end" parent="State_machine" instance=ExtResource("14_8ocdy")]
 
 [node name="action_delay" type="Timer" parent="."]
 wait_time = 3.0

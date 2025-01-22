@@ -4,13 +4,15 @@ extends Node
 @onready var player_turn: State = $player_turn
 @onready var enemy_turn: State = $enemy_turn
 @onready var animation_playing: Node = $animation_playing
+@onready var end: Node = $end
 
 
 @onready var states:Dictionary={
 	"pause":pause,
 	"player_turn":player_turn,
 	"enemy_turn":enemy_turn,
-	"animation_playing":animation_playing
+	"animation_playing":animation_playing,
+	"end":end
 	}
 
 @onready var current_state: State
@@ -27,6 +29,8 @@ func connect_to_global_signal_bus()->void:
 
 
 func state_change(new_state:String)->void:
+	if current_state == end:
+		return
 	if new_state in states.keys():
 		if current_state == states[new_state]:
 			#print("Error: state changing to itself ",current_state)
@@ -45,6 +49,8 @@ func state_change(new_state:String)->void:
 
 
 func revert_state()->void:
+	if current_state == end:
+		return
 	if len(state_stack) <= 1:
 		print("Error: no previous state")
 		return
