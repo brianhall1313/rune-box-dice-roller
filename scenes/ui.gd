@@ -5,6 +5,7 @@ extends Control
 @onready var active_panel: Control = $active_panel
 @onready var player_point = player_info_element.effect_point
 @onready var message_label: Label = $message_label
+@onready var fight_results: PanelContainer = $fight_results
 
 func update_player(player_information)->void:
 	player_info_element.update(player_information)
@@ -45,6 +46,7 @@ func display_message(message:String) -> void:
 	tween = create_tween()
 	tween.tween_property(message_label,"modulate",Color("white",0.0),1)
 	
-	
+func show_end(win:bool,rewards:Dictionary={}) -> void:
+	fight_results.ending(win,rewards)
 	
 	

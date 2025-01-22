@@ -1,0 +1,56 @@
+[gd_scene load_steps=3 format=3 uid="uid://cf8ppbqgmiudb"]
+
+[ext_resource type="Script" path="res://scenes/fight_results.gd" id="1_80w6r"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tayij"]
+bg_color = Color(0.152941, 0.152941, 0.152941, 0.72549)
+
+[node name="fight_results" type="PanelContainer"]
+offset_right = 512.0
+offset_bottom = 288.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_tayij")
+script = ExtResource("1_80w6r")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="spacer" type="Control" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="title" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+text = "You won or lost the fight!"
+horizontal_alignment = 1
+
+[node name="spacer2" type="Control" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="rewards" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+text = "rewards:"
+horizontal_alignment = 1
+
+[node name="spacer3" type="Control" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="return to map" type="Button" parent="VBoxContainer"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Return To Map"
+
+[node name="quit" type="Button" parent="VBoxContainer"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Quit to Main"
+
+[node name="spacer4" type="Control" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[connection signal="button_up" from="VBoxContainer/return to map" to="." method="_on_return_to_map_button_up"]
+[connection signal="button_up" from="VBoxContainer/quit" to="." method="_on_quit_button_up"]

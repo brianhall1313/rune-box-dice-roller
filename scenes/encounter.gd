@@ -86,6 +86,10 @@ func player_loses() -> void:
 	#print("YOU LOSE")
 	get_tree().quit()
 
+func fight_over() -> void:
+	if win_state:
+		pass
+
 func process_finished_action() -> void:
 	busy = false
 
@@ -352,3 +356,11 @@ func display_damage(damage:Damage,pos:Vector2) -> void:
 	add_child(new)
 	new.global_position = pos
 	new.display(damage)
+
+
+func _on_fight_results_return_to_map_pressed() -> void:
+	if win_state:
+		PlayerManager.import(scene_player.export())
+		PlayerManager.reward(rewards)
+		PlayerManager.save_player()
+	get_tree().change_scene_to_file("res://scenes/overworld.tscn")

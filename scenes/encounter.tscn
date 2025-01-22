@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://onto76ada87d"]
+[gd_scene load_steps=14 format=3 uid="uid://onto76ada87d"]
 
 [ext_resource type="PackedScene" uid="uid://un86ip0c1s75" path="res://scenes/player_info_element.tscn" id="1_62fm1"]
 [ext_resource type="Script" path="res://scenes/encounter.gd" id="1_ntlaj"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://dka5ft4cxosrs" path="res://scenes/right_panel.tscn" id="2_yr2bm"]
 [ext_resource type="PackedScene" uid="uid://h587v4triyb6" path="res://scenes/active_panel.tscn" id="3_5nnk0"]
 [ext_resource type="PackedScene" uid="uid://dii5npi80kow4" path="res://resources/state_machine.tscn" id="7_u5qpl"]
+[ext_resource type="PackedScene" uid="uid://cf8ppbqgmiudb" path="res://scenes/fight_results.tscn" id="8_f2oxd"]
 [ext_resource type="PackedScene" uid="uid://ku0noy5beus2" path="res://resources/pause.tscn" id="8_sofs6"]
 [ext_resource type="PackedScene" uid="uid://dvhx8smwwrc76" path="res://resources/player_turn.tscn" id="10_g8a0c"]
 [ext_resource type="PackedScene" uid="uid://bw12jjsij082b" path="res://resources/enemy_turn.tscn" id="11_w32u1"]
@@ -55,6 +56,10 @@ offset_bottom = 31.0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 horizontal_alignment = 1
 
+[node name="fight_results" parent="UI" instance=ExtResource("8_f2oxd")]
+visible = false
+layout_mode = 0
+
 [node name="State_machine" parent="." instance=ExtResource("7_u5qpl")]
 
 [node name="Pause" parent="State_machine" instance=ExtResource("8_sofs6")]
@@ -75,3 +80,4 @@ one_shot = true
 [connection signal="clear_all" from="UI/right_panel" to="." method="_on_right_panel_clear_all"]
 [connection signal="clear_last" from="UI/right_panel" to="." method="_on_right_panel_clear_last"]
 [connection signal="shook" from="UI/active_panel" to="." method="_on_active_panel_shook"]
+[connection signal="return_to_map_pressed" from="UI/fight_results" to="." method="_on_fight_results_return_to_map_pressed"]
