@@ -19,14 +19,15 @@ func _ready() -> void:
 	# set this on load/new in some global state and use it here
 	player_name.text = PlayerManager.player_name
 	player_portrait.setup(PlayerManager.custom_options)
+	player_health.setup(PlayerManager.health,PlayerManager.max_health)
+	
 	
 	# and set the dice list to a bunch of real stuff (loaded or initial)
 	# dice_list = InventoryManager.inventory
 	# pass a dice list to dice_inventory (raw or count unique above)
 
 func update_player_information(scene_player:player)->void:
-	player_health.max_value = scene_player.health.max_health
-	player_health.value = scene_player.health.health
+	player_health.update(scene_player.health.health)
 	health_label.text = "HP: " + str(scene_player.health.health)+" / " + str(scene_player.health.max_health)
 	effects_info.text = ""
 	if scene_player.health.defense > 0:
