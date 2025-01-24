@@ -47,10 +47,15 @@ func report_content() -> Dictionary:
 func roll()->void:
 	current_glyph = get_random()
 	self.texture = Global.glyph_list[die_type][current_glyph]
+	_make_custom_tooltip('')
+
+func _make_custom_tooltip(_for_text: String) -> Object:
+	var label = Label.new()
 	if current_glyph != "":
-		tooltip_text=die_type +" die on "+ current_glyph
+		label.text = die_type +" die on "+ current_glyph
 	else:
-		tooltip_text=die_type +" die"
+		label.text = die_type +" die"
+	return label
 
 func set_selected(value:bool)->void:
 	is_selected = value

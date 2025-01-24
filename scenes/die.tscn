@@ -13,6 +13,7 @@ border_color = Color(0.281385, 0.88849, 0.98832, 1)
 
 [node name="die" type="TextureRect" groups=["die"]]
 custom_minimum_size = Vector2(32, 32)
+tooltip_text = "test"
 texture = ExtResource("2_6eg0e")
 expand_mode = 2
 script = ExtResource("1_hkhwk")
