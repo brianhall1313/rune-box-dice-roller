@@ -1,20 +1,23 @@
-[gd_scene load_steps=2 format=3 uid="uid://cwybtdvgyl68k"]
+[gd_scene load_steps=3 format=3 uid="uid://cwybtdvgyl68k"]
 
 [ext_resource type="PackedScene" uid="uid://rjpdnrvtcto1" path="res://resources/complex_health_bar.tscn" id="1_0sqkv"]
+[ext_resource type="Script" path="res://resources/monster_ui.gd" id="1_m3vjj"]
 
 [node name="monster_ui" type="Control"]
 layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
+script = ExtResource("1_m3vjj")
 
 [node name="display" type="VBoxContainer" parent="."]
+layout_mode = 0
 offset_left = -48.0
 offset_top = 48.0
 offset_right = 52.0
 offset_bottom = 72.0
 
-[node name="background_and_animation" parent="display" instance=ExtResource("1_0sqkv")]
+[node name="complex_health_bar" parent="display" instance=ExtResource("1_0sqkv")]
 layout_mode = 2
 
 [node name="status_conditions" type="HBoxContainer" parent="display"]

@@ -11,6 +11,16 @@ extends Node
 	Color("lavender"),
 ]
 
+@onready var error_icon:CompressedTexture2D = preload("res://textures/error.png")
+
+@onready var intentions: Dictionary = {
+	"attack":preload("res://textures/Buttons-Menus/Attack_Incoming.png"),
+	"defend":preload("res://textures/Buttons-Menus/Defending.png"),
+}
+
+@onready var condition_icons: Dictionary = {
+	
+}
 
 @onready var glyph_list:Dictionary = {
 	"nature":{

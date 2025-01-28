@@ -17,7 +17,7 @@ func setup(current:int,total:int)-> void:
 	set_text(value)
 	#health_bar.size = size
 
-func update(new_val) -> void:
+func update(new_val:int) -> void:
 	#print(new_val) 
 	set_text(new_val)
 	if new_val > value:
