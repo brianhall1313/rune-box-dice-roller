@@ -1,8 +1,10 @@
 extends Control
+class_name Monster_UI
 
 @onready var complex_health_bar: ProgressBar = $display/complex_health_bar
 @onready var status_conditions: HBoxContainer = $display/status_conditions
-@onready var action_icon: TextureRect = $action_icon
+@onready var action_icon: TextureRect = $display/action_icon
+@onready var body_spacer: Control = $display/body_spacer
 
 @onready var icons = Global.intentions
 
@@ -21,10 +23,11 @@ func clear_intentions() -> void:
 	action_icon.texture = null
 
 func setup() -> void:
+	body_spacer.size = parent.sprite.sprite_frames.get_frame_texture("idle",0).get_size()
 	complex_health_bar.setup(parent.health.health,parent.health.max_health)
 
 func update() -> void:
-	complex_health_bar.update(parent.health)
+	complex_health_bar.update(parent.health.health)
 
 func show_status() -> void:
 	for child in status_conditions.get_children():

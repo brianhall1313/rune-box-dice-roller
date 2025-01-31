@@ -43,6 +43,7 @@ func add_effect(effect:PackedScene) -> void:
 
 func _ready() -> void:
 	health.setup(health.max_health,health.max_health)
+	ui.setup()
 	sprite.play("idle")
 
 func get_action() -> Dictionary:

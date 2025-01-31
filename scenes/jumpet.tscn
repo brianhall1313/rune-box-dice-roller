@@ -66,13 +66,14 @@ animations = [{
 "speed": 5.0
 }]
 
-[node name="Jumpet" type="Node2D" node_paths=PackedStringArray("health", "sprite")]
+[node name="Jumpet" type="Node2D" node_paths=PackedStringArray("health", "sprite", "ui")]
 script = ExtResource("15_7pbo0")
 resistances = {
 "fire": 150.0
 }
 health = NodePath("Health")
 sprite = NodePath("sprite")
+ui = NodePath("monster_ui")
 
 [node name="click_box" type="Area2D" parent="."]
 
@@ -100,7 +101,7 @@ position = Vector2(0, 8)
 gizmo_extents = 20.0
 
 [node name="monster_ui" parent="." instance=ExtResource("12_awrcm")]
-offset_top = 8.0
-offset_bottom = 48.0
+offset_top = -120.0
+offset_bottom = -80.0
 
 [connection signal="input_event" from="click_box" to="." method="_on_click_box_input_event"]

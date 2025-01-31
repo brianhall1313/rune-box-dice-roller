@@ -5,6 +5,7 @@ class_name Monster
 @export var health:Health
 @export var sprite:AnimatedSprite2D
 @export var status:Dictionary = {}
+@export var ui:Monster_UI
 
 
 func play_animation(animation_name:String)->void:
@@ -32,6 +33,7 @@ func take_damage(initial_damage:Damage, direct:bool = false)->void:
 	else:
 		var d = Damage.new(0,initial_damage.type)
 		GlobalSignalBus.emit_display_damage(d,global_position)
+	ui.update()
 
 func defend(defend_amount:int) -> void:
 	health.defend(defend_amount)
