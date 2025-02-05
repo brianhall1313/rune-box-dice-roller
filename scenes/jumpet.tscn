@@ -103,5 +103,6 @@ gizmo_extents = 20.0
 [node name="monster_ui" parent="." instance=ExtResource("12_awrcm")]
 offset_top = -120.0
 offset_bottom = -80.0
+min_y = 80.0
 
 [connection signal="input_event" from="click_box" to="." method="_on_click_box_input_event"]

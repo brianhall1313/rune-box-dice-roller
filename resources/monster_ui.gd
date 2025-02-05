@@ -12,6 +12,8 @@ class_name Monster_UI
 
 @onready var parent:Monster = get_parent()
 
+@export var min_y: float
+
 func intention(icon:String) -> void:
 	if icon in icons.keys():
 		action_icon.texture = icons[icon] 
@@ -23,7 +25,7 @@ func clear_intentions() -> void:
 	action_icon.texture = null
 
 func setup() -> void:
-	body_spacer.size = parent.sprite.sprite_frames.get_frame_texture("idle",0).get_size()
+	body_spacer.custom_minimum_size.y = min_y
 	complex_health_bar.setup(parent.health.health,parent.health.max_health)
 
 func update() -> void:

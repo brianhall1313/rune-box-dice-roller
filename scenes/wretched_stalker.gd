@@ -24,6 +24,7 @@ var actions:Array[Dictionary] = [
 		"attack":func ():return do_damage(attack+10,"physical"),
 		"animation":"attack",
 		"damage_animation":"slash",
+		"intent":"attack",
 	},
 	{#attack and defend
 		"name":"Reach Advantage",
@@ -31,6 +32,7 @@ var actions:Array[Dictionary] = [
 		"attack":func ():return do_damage(attack-5,"physical"),
 		"animation":"attack",
 		"damage_animation":"slash",
+		"intent":"special",
 	},
 	{#poison the player and do a tiny amount of damage
 		"name":"Soul Feast",
@@ -38,6 +40,7 @@ var actions:Array[Dictionary] = [
 		"effect":{"disabled dice":5},
 		"animation":"attack",
 		"damage_animation":"bite",
+		"intent":"special",
 	}
 ]
 var regen_actions:Array[Dictionary] = [
@@ -46,6 +49,7 @@ var regen_actions:Array[Dictionary] = [
 		"attack":func ():return do_damage(attack+10,"physical"),
 		"animation":"regen_attack",
 		"damage_animation":"slash",
+		"intent":"attack",
 	},
 	{#attack and defend
 		"name":"Reach Advantage",
@@ -53,6 +57,7 @@ var regen_actions:Array[Dictionary] = [
 		"attack":func ():return do_damage(attack-5,"physical"),
 		"animation":"regen_attack",
 		"damage_animation":"slash",
+		"intent":"special",
 	},
 	{#poison the player and do a tiny amount of damage
 		"name":"Soul Feast",
@@ -60,6 +65,7 @@ var regen_actions:Array[Dictionary] = [
 		"effect":{"disabled dice":5},
 		"animation":"regen_attack",
 		"damage_animation":"bite",
+		"intent":"special",
 	}
 ]
 
@@ -69,6 +75,7 @@ var claw_actions:Array[Dictionary] = [
 		"attack":func ():return do_damage(attack+10,"physical"),
 		"animation":"regen_attack",
 		"damage_animation":"slash",
+		"intent":"attack",
 	},
 	{#attack and defend
 		"name":"Reach Advantage",
@@ -76,6 +83,7 @@ var claw_actions:Array[Dictionary] = [
 		"attack":func ():return do_damage(attack-5,"physical"),
 		"animation":"regen_attack",
 		"damage_animation":"slash",
+		"intent":"special",
 	},
 	{#poison the player and do a tiny amount of damage
 		"name":"Soul Feast",
@@ -83,6 +91,7 @@ var claw_actions:Array[Dictionary] = [
 		"effect":{"disabled dice":5},
 		"animation":"regen_attack",
 		"damage_animation":"bite",
+		"intent":"special",
 	},
 	{
 		"name":"Claw  Grasp",
@@ -90,6 +99,7 @@ var claw_actions:Array[Dictionary] = [
 		"effect":{"bleed":5},
 		"animation":"claw_attack",
 		"damage_animation":"slash",
+		"intent":"special",
 	},
 	
 ]

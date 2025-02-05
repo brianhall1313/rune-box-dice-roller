@@ -18,20 +18,23 @@ var actions:Array[Dictionary] = [
 		"name":"Proboscis",
 		"attack":func ():return do_damage(attack+25,"physical"),
 		"damage_animation":"bite",
-		"animation":"attack"
+		"animation":"attack",
+		"intent":"attack",
 	},
 	{#attack and defend
 		"name":"Curl up",
 		"defence":40,
 		"damage_animation":"slash",
-		"animation":"attack"
+		"animation":"attack",
+		"intent":"defend",
 	},
 	{#poison the player and do a tiny amount of damage
 		"name":"Hooked Claws",
 		"attack":func():return do_damage(attack,"physical"),
 		"effect":{"bleed":5},
 		"damage_animation":"slash",
-		"animation":"attack"
+		"animation":"attack",
+		"intent":"special",
 	}
 ]
 

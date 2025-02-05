@@ -13,13 +13,20 @@ extends Node
 
 @onready var error_icon:CompressedTexture2D = preload("res://textures/error.png")
 
+@onready var outline:Material = preload("res://resources/outline.tres")
+
 @onready var intentions: Dictionary = {
 	"attack":preload("res://textures/Buttons-Menus/Attack_Incoming.png"),
 	"defend":preload("res://textures/Buttons-Menus/Defending.png"),
+	"special":preload("res://textures/Buttons-Menus/Transformation.png")
 }
 
 @onready var condition_icons: Dictionary = {
-	
+	"bleed":preload("res://textures/Buttons-Menus/Bleed.png"),
+	"blight":preload("res://textures/Buttons-Menus/Blight.png"),
+	"def_up":preload("res://textures/Buttons-Menus/Def up.png"),
+	"poisoned":preload("res://textures/Buttons-Menus/Poisoned.png"),
+	"regen":preload("res://textures/Buttons-Menus/Regen.png")
 }
 
 @onready var glyph_list:Dictionary = {

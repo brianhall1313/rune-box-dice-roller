@@ -17,21 +17,24 @@ var actions:Array[Dictionary] = [
 		"name":"Viscous Claw",
 		"attack":func ():return do_damage(attack+10,"physical"),
 		"damage_animation":"slash",
-		"animation":"attack"
+		"animation":"attack",
+		"intent":"attack",
 	},
 	{#attack and defend
 		"name":"Evasive Strike",
 		"attack":func ():return do_damage(attack,"physical"),
 		"defence":10, #armor
 		"damage_animation":"slash",
-		"animation":"attack"
+		"animation":"attack",
+		"intent":"special",
 	},
 	{#poison the player and do a tiny amount of damage
 		"name":"Dirty Claw",
 		"attack":func (): return do_damage(3,"physical"),#is a function cause callables are necessary for the current build
 		"effect":{"poison":5},
 		"damage_animation":"slash",
-		"animation":"attack"
+		"animation":"attack",
+		"intent":"special",
 	}
 ]
 
@@ -57,6 +60,7 @@ func take_turn() -> void:
 
 func select_action()-> void:
 	current_action_index = randi_range(0,len(actions)-1)
+	ui.intention(actions[current_action_index]["intent"])
 
 
 func selected()->void:
