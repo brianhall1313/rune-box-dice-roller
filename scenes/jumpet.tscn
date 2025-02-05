@@ -14,7 +14,7 @@
 [ext_resource type="PackedScene" uid="uid://c3kej11nt2ksr" path="res://scenes/selected_box.tscn" id="16_wyp31"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hdaes"]
-size = Vector2(96, 96)
+size = Vector2(96, 88)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_q1wro"]
 animations = [{
@@ -78,7 +78,7 @@ ui = NodePath("monster_ui")
 [node name="click_box" type="Area2D" parent="."]
 
 [node name="click_box_colide" type="CollisionShape2D" parent="click_box"]
-position = Vector2(0, 8)
+position = Vector2(0, 4)
 shape = SubResource("RectangleShape2D_hdaes")
 
 [node name="selected_box" parent="." instance=ExtResource("16_wyp31")]

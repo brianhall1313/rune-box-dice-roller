@@ -62,11 +62,17 @@ func select_action()-> void:
 	current_action_index = randi_range(0,len(actions)-1)
 	ui.intention(actions[current_action_index]["intent"])
 
-
 func selected()->void:
-	selected_box.visible = !selected_box.visible
+	if sprite.material == Global.outline:
+		sprite.material = null
+		return
+	sprite.material = Global.outline
+	sprite.material.set_shader_parameter("width",1)
+	sprite.material.set_shader_parameter("outline_color",Color("RED"))
+	sprite.material.set_shader_parameter("minimal_flickering_alpha",.9)
 
 func _on_click_box_input_event(_viewport: Node, event: InputEvent, _shape_idx: int) -> void:
 	if event.is_action_released("click"):
+		#print("interact")
 		GlobalSignalBus.emit_enemy_interaction(self)
 		

@@ -9,6 +9,7 @@ layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
+mouse_filter = 1
 script = ExtResource("1_m3vjj")
 
 [node name="display" type="VBoxContainer" parent="."]
@@ -25,6 +26,7 @@ stretch_mode = 3
 
 [node name="body_spacer" type="Control" parent="display"]
 layout_mode = 2
+mouse_filter = 2
 
 [node name="complex_health_bar" parent="display" instance=ExtResource("1_0sqkv")]
 layout_mode = 2
