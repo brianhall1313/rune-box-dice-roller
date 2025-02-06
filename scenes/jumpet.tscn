@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://c32sargkrku8f"]
+[gd_scene load_steps=14 format=3 uid="uid://c32sargkrku8f"]
 
 [ext_resource type="PackedScene" uid="uid://c5d41p3om6lvl" path="res://resources/health.tscn" id="3_qukoe"]
 [ext_resource type="Texture2D" uid="uid://bnwcm0hmorbrs" path="res://textures/Jumpet/Jumpet_Layeres_3.png" id="4_1xndk"]
@@ -11,7 +11,6 @@
 [ext_resource type="Texture2D" uid="uid://bxvq5n8d8vrge" path="res://textures/Jumpet/Jumpet_Dead_2.png" id="8_meoq5"]
 [ext_resource type="PackedScene" uid="uid://cwybtdvgyl68k" path="res://resources/monster_ui.tscn" id="12_awrcm"]
 [ext_resource type="Script" path="res://scenes/jumpet.gd" id="15_7pbo0"]
-[ext_resource type="PackedScene" uid="uid://c3kej11nt2ksr" path="res://scenes/selected_box.tscn" id="16_wyp31"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hdaes"]
 size = Vector2(96, 88)
@@ -81,10 +80,6 @@ ui = NodePath("monster_ui")
 position = Vector2(0, 4)
 shape = SubResource("RectangleShape2D_hdaes")
 
-[node name="selected_box" parent="." instance=ExtResource("16_wyp31")]
-offset_top = -40.0
-offset_bottom = 56.0
-
 [node name="Health" parent="." instance=ExtResource("3_qukoe")]
 max_health = 20
 health = 20
@@ -102,7 +97,8 @@ gizmo_extents = 20.0
 
 [node name="monster_ui" parent="." instance=ExtResource("12_awrcm")]
 offset_top = -120.0
-offset_bottom = -80.0
+offset_right = 0.0
+offset_bottom = -120.0
 min_y = 80.0
 
 [connection signal="input_event" from="click_box" to="." method="_on_click_box_input_event"]

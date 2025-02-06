@@ -2,7 +2,6 @@
 
 [ext_resource type="Texture2D" uid="uid://d0sqaqqow2jha" path="res://textures/Bumblebear/Bumble_Strike.png" id="1_werpa"]
 [ext_resource type="Texture2D" uid="uid://dkmjmr3apv74e" path="res://textures/Bumblebear/Bumble_Base.png" id="2_godqu"]
-[ext_resource type="PackedScene" uid="uid://c3kej11nt2ksr" path="res://scenes/selected_box.tscn" id="2_lsbgh"]
 [ext_resource type="PackedScene" uid="uid://c5d41p3om6lvl" path="res://resources/health.tscn" id="3_1t4im"]
 [ext_resource type="Texture2D" uid="uid://b7au6ekk6dsvn" path="res://textures/Bumblebear/Bumble_2.png" id="3_8iu55"]
 [ext_resource type="Texture2D" uid="uid://n7ql4kysvsca" path="res://textures/Bumblebear/Bumble_3.png" id="4_1c3hi"]
@@ -13,6 +12,7 @@
 [ext_resource type="Texture2D" uid="uid://bsstgffvc28mo" path="res://textures/Bumblebear/Bumble_buff_3.png" id="8_ot8l0"]
 [ext_resource type="Texture2D" uid="uid://b6r6c8ajeemdk" path="res://textures/Bumblebear/Bumble_Dead_2.png" id="10_kie6f"]
 [ext_resource type="Texture2D" uid="uid://bv6q0lc0w4ofj" path="res://textures/Bumblebear/Bumble_Dead.png" id="11_2qsi1"]
+[ext_resource type="PackedScene" uid="uid://cwybtdvgyl68k" path="res://resources/monster_ui.tscn" id="13_emstc"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5yecb"]
 size = Vector2(78, 102)
@@ -89,22 +89,17 @@ animations = [{
 "speed": 5.0
 }]
 
-[node name="bumblebear" type="Node2D" node_paths=PackedStringArray("health", "sprite")]
+[node name="bumblebear" type="Node2D" node_paths=PackedStringArray("health", "sprite", "ui")]
 script = ExtResource("5_va1v8")
 health = NodePath("Health")
 sprite = NodePath("sprite")
+ui = NodePath("monster_ui")
 
 [node name="click_box" type="Area2D" parent="."]
 
 [node name="click_box_colide" type="CollisionShape2D" parent="click_box"]
 position = Vector2(1, 5)
 shape = SubResource("RectangleShape2D_5yecb")
-
-[node name="selected_box" parent="." instance=ExtResource("2_lsbgh")]
-offset_left = -41.0
-offset_top = -48.0
-offset_right = 43.0
-offset_bottom = 58.0
 
 [node name="Health" parent="." instance=ExtResource("3_1t4im")]
 max_health = 40
@@ -117,5 +112,12 @@ animation = &"dead"
 [node name="hit_position" type="Marker2D" parent="."]
 position = Vector2(0, -20)
 gizmo_extents = 20.0
+
+[node name="monster_ui" parent="." instance=ExtResource("13_emstc")]
+offset_left = -1.0
+offset_top = -126.0
+offset_right = 39.0
+offset_bottom = -86.0
+min_y = 85.0
 
 [connection signal="input_event" from="click_box" to="." method="_on_click_box_input_event"]

@@ -1,6 +1,5 @@
 extends Monster
 
-@onready var selected_box: Panel = $selected_box
 @onready var hit_position: Marker2D = $hit_position
 
 @export var resistances:Dictionary = {
@@ -106,6 +105,7 @@ var claw_actions:Array[Dictionary] = [
 
 func _ready() -> void:
 	health.setup(health.max_health,health.max_health)
+	ui.setup()
 	sprite.play("idle")
 
 func plan_turn() -> void:
@@ -117,11 +117,14 @@ func take_turn() -> void:
 func select_action()-> void:
 	if creature_state == CLAW:
 		current_action_index = randi_range(0,len(claw_actions)-1)
+		ui.intention(claw_actions[current_action_index]["intent"])
 		return
 	if creature_state == REGEN:
 		current_action_index = randi_range(0,len(regen_actions)-1)
+		ui.intention(regen_actions[current_action_index]["intent"])
 		return
 	current_action_index = randi_range(0,len(actions)-1)
+	ui.intention(actions[current_action_index]["intent"])
 
 
 func get_action() -> Dictionary:
@@ -132,7 +135,13 @@ func get_action() -> Dictionary:
 	return actions[current_action_index]
 
 func selected()->void:
-	selected_box.visible = !selected_box.visible
+	if sprite.material == Global.outline:
+		sprite.material = null
+		return
+	sprite.material = Global.outline
+	sprite.material.set_shader_parameter("width",1)
+	sprite.material.set_shader_parameter("outline_color",Color("RED"))
+	sprite.material.set_shader_parameter("minimal_flickering_alpha",.9)
 
 func _on_click_box_input_event(_viewport: Node, event: InputEvent, _shape_idx: int) -> void:
 	if event.is_action_released("click"):

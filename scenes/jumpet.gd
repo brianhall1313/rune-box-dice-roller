@@ -1,6 +1,5 @@
 extends Monster
 
-@onready var selected_box: Panel = $selected_box
 @onready var hit_position: Marker2D = $hit_position
 
 @export var resistances:Dictionary = {

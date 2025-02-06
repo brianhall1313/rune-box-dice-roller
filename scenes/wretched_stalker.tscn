@@ -1,7 +1,6 @@
 [gd_scene load_steps=22 format=3 uid="uid://cqncy2kjcr0d"]
 
 [ext_resource type="Script" path="res://scenes/wretched_stalker.gd" id="1_ksksi"]
-[ext_resource type="PackedScene" uid="uid://c3kej11nt2ksr" path="res://scenes/selected_box.tscn" id="2_cx5c0"]
 [ext_resource type="PackedScene" uid="uid://c5d41p3om6lvl" path="res://resources/health.tscn" id="3_crgo6"]
 [ext_resource type="Texture2D" uid="uid://byy0y0j8hyect" path="res://textures/Wretched Stalker/Wretched_Base/Wretched_1.png" id="4_c506j"]
 [ext_resource type="Texture2D" uid="uid://cmqgf44il8jds" path="res://textures/Wretched Stalker/Wretched_Base/Wretched_2.png" id="5_vwu7o"]
@@ -19,6 +18,7 @@
 [ext_resource type="Texture2D" uid="uid://bgkr568s86s1m" path="res://textures/Wretched Stalker/Regen/Wretched_Regen_Idle.png" id="17_ag0p6"]
 [ext_resource type="Texture2D" uid="uid://b5cxpe6q0di85" path="res://textures/Wretched Stalker/Regen/Wretched_Regen_Idle_2.png" id="18_3unf1"]
 [ext_resource type="Texture2D" uid="uid://ck2oixbtmhx4q" path="res://textures/Wretched Stalker/Regen/Wretched_Regen_Idle_3.png" id="19_a3eb3"]
+[ext_resource type="PackedScene" uid="uid://cwybtdvgyl68k" path="res://resources/monster_ui.tscn" id="19_k0eh2"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5yecb"]
 size = Vector2(90, 104)
@@ -116,11 +116,12 @@ animations = [{
 "speed": 5.0
 }]
 
-[node name="wretched_stalker" type="Node2D" node_paths=PackedStringArray("health", "sprite")]
-position = Vector2(0, 36)
+[node name="wretched_stalker" type="Node2D" node_paths=PackedStringArray("health", "sprite", "ui")]
+position = Vector2(1, 1)
 script = ExtResource("1_ksksi")
 health = NodePath("Health")
 sprite = NodePath("sprite")
+ui = NodePath("monster_ui")
 metadata/_edit_group_ = true
 
 [node name="click_box" type="Area2D" parent="."]
@@ -128,11 +129,6 @@ metadata/_edit_group_ = true
 [node name="click_box_colide" type="CollisionShape2D" parent="click_box"]
 position = Vector2(-3, -1)
 shape = SubResource("RectangleShape2D_5yecb")
-
-[node name="selected_box" parent="." instance=ExtResource("2_cx5c0")]
-offset_top = -56.0
-offset_right = 45.0
-offset_bottom = 54.0
 
 [node name="Health" parent="." instance=ExtResource("3_crgo6")]
 max_health = 40
@@ -146,6 +142,13 @@ frame_progress = 0.982216
 [node name="hit_position" type="Marker2D" parent="."]
 position = Vector2(0, -20)
 gizmo_extents = 20.0
+
+[node name="monster_ui" parent="." instance=ExtResource("19_k0eh2")]
+offset_left = -5.0
+offset_top = -133.0
+offset_right = 35.0
+offset_bottom = -93.0
+min_y = 90.0
 
 [connection signal="input_event" from="click_box" to="." method="_on_click_box_input_event"]
 [connection signal="taken_damage" from="Health" to="." method="_on_health_taken_damage"]
