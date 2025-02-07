@@ -10,7 +10,7 @@ extends Control
 @onready var effect_point: Control = $effect_point
 @onready var health_label: Label = $container_parent/MarginContainer/VBoxContainer/health_label
 @onready var defense_label: Label = $container_parent/MarginContainer/VBoxContainer/defense_label
-@onready var effects_info: Label = $container_parent/MarginContainer/VBoxContainer/effects_info
+@onready var effects_info: HBoxContainer = $container_parent/MarginContainer/VBoxContainer/effects_info
 
 
 
@@ -29,13 +29,20 @@ func _ready() -> void:
 func update_player_information(scene_player:player)->void:
 	player_health.update(scene_player.health.health)
 	health_label.text = "HP: " + str(scene_player.health.health)+" / " + str(scene_player.health.max_health)
-	effects_info.text = ""
+	update_status(scene_player)
 	if scene_player.health.defense > 0:
 		defense_label.text = str(scene_player.health.defense) + " Defense"
 	else:
 		defense_label.text = ""
-	for effect in scene_player.status:
-		effects_info.text += effect + ": " + str(scene_player.status[effect]) + "\n"
+
+
+func update_status(scene_player:player) -> void:
+	for child in effects_info.get_children():
+		child.queue_free()
+	for status in scene_player.status.keys():
+		var new = Global.status_icon.instantiate()
+		effects_info.add_child(new)
+		new.setup(status,scene_player.status[status])
 
 
 func add_effect(effect:PackedScene) -> void:
