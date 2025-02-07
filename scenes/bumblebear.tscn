@@ -90,6 +90,7 @@ animations = [{
 }]
 
 [node name="bumblebear" type="Node2D" node_paths=PackedStringArray("health", "sprite", "ui")]
+scale = Vector2(0.8, 0.8)
 script = ExtResource("5_va1v8")
 health = NodePath("Health")
 sprite = NodePath("sprite")

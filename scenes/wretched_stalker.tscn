@@ -118,6 +118,7 @@ animations = [{
 
 [node name="wretched_stalker" type="Node2D" node_paths=PackedStringArray("health", "sprite", "ui")]
 position = Vector2(1, 1)
+scale = Vector2(0.8, 0.8)
 script = ExtResource("1_ksksi")
 health = NodePath("Health")
 sprite = NodePath("sprite")
@@ -148,7 +149,7 @@ offset_left = -5.0
 offset_top = -133.0
 offset_right = 35.0
 offset_bottom = -93.0
-min_y = 90.0
+min_y = 80.0
 
 [connection signal="input_event" from="click_box" to="." method="_on_click_box_input_event"]
 [connection signal="taken_damage" from="Health" to="." method="_on_health_taken_damage"]

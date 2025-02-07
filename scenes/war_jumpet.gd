@@ -40,6 +40,7 @@ var actions:Array[Dictionary] = [
 
 func _ready() -> void:
 	health.setup(health.max_health,health.max_health)
+	StatusManager.increase_effect(self,StatusManager.BLEED,9)
 	ui.setup()
 	sprite.play("idle")
 

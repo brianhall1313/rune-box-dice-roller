@@ -8,7 +8,7 @@ var encounters: Array[Dictionary] = [
 			{
 				"enemy":"jumpet",
 				"name":"Jumpet",
-				"position":Vector2(8, 37)
+				"position":Vector2(8, 35)
 			}
 		]
 	},
@@ -19,7 +19,7 @@ var encounters: Array[Dictionary] = [
 			{
 				"enemy":"bumblebear",
 				"name":"Bumblebear",
-				"position":Vector2(-1, 46)
+				"position":Vector2(-1, 33)
 			}
 		]
 	},
@@ -30,7 +30,7 @@ var encounters: Array[Dictionary] = [
 			{
 				"enemy":"wretched_stalker",
 				"name":"Wretched Stalker",
-				"position":Vector2(7, 46)
+				"position":Vector2(7, 38)
 			}
 		]
 	},
@@ -52,12 +52,12 @@ var encounters: Array[Dictionary] = [
 			{
 				"enemy":"jumpet",
 				"name":"George",
-				"position":Vector2(-59, 47)
+				"position":Vector2(-59, 35)
 			},
 			{
 				"enemy":"jumpet",
 				"name":"Paul",
-				"position":Vector2(70, 47)
+				"position":Vector2(70, 35)
 			},
 		]
 	},

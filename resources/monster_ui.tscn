@@ -19,6 +19,7 @@ offset_left = -48.0
 offset_top = 48.0
 offset_right = 52.0
 offset_bottom = 72.0
+theme_override_constants/separation = 2
 
 [node name="action_icon" type="TextureRect" parent="display"]
 layout_mode = 2
@@ -28,6 +29,12 @@ stretch_mode = 3
 [node name="body_spacer" type="Control" parent="display"]
 layout_mode = 2
 mouse_filter = 2
+
+[node name="name_lable" type="Label" parent="display"]
+layout_mode = 2
+size_flags_vertical = 0
+theme_override_font_sizes/font_size = 8
+text = "Default"
 
 [node name="complex_health_bar" parent="display" instance=ExtResource("1_0sqkv")]
 layout_mode = 2

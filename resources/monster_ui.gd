@@ -5,6 +5,7 @@ class_name Monster_UI
 @onready var status_conditions: HBoxContainer = $display/status_conditions
 @onready var action_icon: TextureRect = $display/action_icon
 @onready var body_spacer: Control = $display/body_spacer
+@onready var name_lable: Label = $display/name_lable
 
 @onready var icons = Global.intentions
 
@@ -23,6 +24,7 @@ func clear_intentions() -> void:
 	action_icon.texture = null
 
 func setup() -> void:
+	name_lable.text = parent.monster_name
 	body_spacer.custom_minimum_size.y = min_y
 	complex_health_bar.setup(parent.health.health,parent.health.max_health)
 	show_status()
