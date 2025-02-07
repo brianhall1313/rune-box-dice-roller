@@ -65,8 +65,6 @@ func connect_to_global_signal_bus() -> void:
 	GlobalSignalBus.connect("display_damage",display_damage)
 	GlobalSignalBus.connect("interrupt_action",add_interrupt_action_to_queue)
 
-func show_enemy_information()->void:
-	ui.update_enemy_info(current_enemy)
 
 func enemy_death(enemy:Monster) -> void:
 	if enemy == current_enemy:
@@ -154,7 +152,6 @@ func rune_interaction(die) -> void:
 		_update_ui()
 
 func _update_ui():
-	show_enemy_information()
 	ui.update_right_panel({"queue":spell_queue,"active":{"spell":current_spell_selection,"target":current_enemy}})
 	ui.update_player_information(scene_player)
 

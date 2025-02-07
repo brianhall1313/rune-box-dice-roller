@@ -1,8 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://dka5ft4cxosrs"]
+[gd_scene load_steps=5 format=3 uid="uid://dka5ft4cxosrs"]
 
 [ext_resource type="Script" path="res://scenes/right_panel.gd" id="1_ojs6q"]
 [ext_resource type="PackedScene" uid="uid://cxvm65rnq0he1" path="res://scenes/active_spell.tscn" id="2_66hhk"]
-[ext_resource type="PackedScene" uid="uid://ccb4jaydyjrbl" path="res://scenes/enemy_info_container.tscn" id="2_a0wsg"]
 [ext_resource type="PackedScene" uid="uid://du30i2smjir4w" path="res://scenes/queued_spell.tscn" id="3_a6yu1"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_50sc1"]
@@ -30,9 +29,6 @@ theme_override_constants/margin_right = 5
 theme_override_constants/margin_bottom = 5
 
 [node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer"]
-layout_mode = 2
-
-[node name="enemy_info_container" parent="PanelContainer/MarginContainer/VBoxContainer" instance=ExtResource("2_a0wsg")]
 layout_mode = 2
 
 [node name="spell_information" type="VBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer"]

@@ -7,8 +7,6 @@ extends Control
 @onready var active_spell_box: PackedScene=preload("res://scenes/active_spell.tscn")
 @onready var queued_spell_box: PackedScene = preload("res://scenes/queued_spell.tscn")
 
-@onready var enemy_info_container: VBoxContainer = $PanelContainer/MarginContainer/VBoxContainer/enemy_info_container
-
 
 signal cast
 signal clear_all
@@ -30,12 +28,6 @@ func update(args:Dictionary)->void:
 		#print("want to update active spell too")
 		#print(args["spell"]["active"])
 		active_spell.setup(args["spell"]["active"])
-	if args.has("enemy"):
-		if args["enemy"]:
-			enemy_info_container.show()
-			enemy_info_container.update(args["enemy"])
-		else:
-			enemy_info_container.hide()
 
 
 func _on_cast_button_up() -> void:
