@@ -66,6 +66,7 @@ animations = [{
 }]
 
 [node name="Jumpet" type="Node2D" node_paths=PackedStringArray("health", "sprite", "ui")]
+scale = Vector2(0.8, 0.8)
 script = ExtResource("15_7pbo0")
 resistances = {
 "fire": 150.0

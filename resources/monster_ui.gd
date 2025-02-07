@@ -8,8 +8,6 @@ class_name Monster_UI
 
 @onready var icons = Global.intentions
 
-@onready var status_icon:PackedScene = preload("res://resources/status_icon.tscn")
-
 @onready var parent:Monster = get_parent()
 
 @export var min_y: float
@@ -27,14 +25,16 @@ func clear_intentions() -> void:
 func setup() -> void:
 	body_spacer.custom_minimum_size.y = min_y
 	complex_health_bar.setup(parent.health.health,parent.health.max_health)
+	show_status()
 
 func update() -> void:
 	complex_health_bar.update(parent.health.health)
+	show_status()
 
 func show_status() -> void:
 	for child in status_conditions.get_children():
 		child.queue_free()
 	for status in parent.status.keys():
-		var new = status_icon.instantiate()
+		var new = Global.status_icon.instantiate()
 		status_conditions.add_child(new)
 		new.setup(status,parent.status[status])

@@ -1,10 +1,22 @@
 extends Node
 
+#debuffs/negative staus conditions
 const BLEED:String = "bleed"
+const BLIGHT:String = "blight"
 const POISON:String = "poison"
+
+#buffs
+const DEF_UP:String = "def up"
 const REGEN:String = "regen"
 const SV:String = "Stalker Vigor"
 
+@onready var condition_icons: Dictionary = {
+	BLEED:preload("res://textures/Buttons-Menus/Bleed.png"),
+	BLIGHT:preload("res://textures/Buttons-Menus/Blight.png"),
+	DEF_UP:preload("res://textures/Buttons-Menus/Def up.png"),
+	POISON:preload("res://textures/Buttons-Menus/Poisoned.png"),
+	REGEN:preload("res://textures/Buttons-Menus/Regen.png")
+}
 
 var effects_list:Dictionary={
 	POISON:preload("res://resources/damage_animations/poison_damage_effect.tscn"),
@@ -35,13 +47,13 @@ func increase_effect(target,effect_name:String,amount:int=1) -> void:
 func poison(target) -> void:
 	var poison_damage:Damage = Damage.new(target.status[POISON],POISON)
 	#print("takes poison damage ",poison_damage.damage)
-	target.take_damage(poison_damage,true)
 	reduce_effect(target,POISON)
+	target.take_damage(poison_damage,true)
 
 func regen(target) -> void:
 	var regen_amount:int = target.status[REGEN]
-	target.heal(regen_amount)
 	reduce_effect(target,REGEN)
+	target.heal(regen_amount)
 
 func sv(target) -> void:
 	var regen_amount:int = target.status[SV]
@@ -49,5 +61,5 @@ func sv(target) -> void:
 	
 
 func bleed(target) -> void:
-	target.take_damage(Damage.new(1,BLEED),true)
 	reduce_effect(target,BLEED)
+	target.take_damage(Damage.new(1,BLEED),true)

@@ -1,13 +1,23 @@
-[gd_scene load_steps=2 format=3 uid="uid://co7mai35gmrpq"]
+[gd_scene load_steps=3 format=3 uid="uid://co7mai35gmrpq"]
 
 [ext_resource type="Script" path="res://resources/status_icon.gd" id="1_qglxo"]
+[ext_resource type="Texture2D" uid="uid://dc28hlk3t78aj" path="res://textures/error.png" id="1_v2l24"]
 
 [node name="status_icon" type="TextureRect"]
-offset_right = 40.0
-offset_bottom = 40.0
+custom_minimum_size = Vector2(16, 16)
+offset_right = 16.0
+offset_bottom = 16.0
+texture = ExtResource("1_v2l24")
+expand_mode = 2
+stretch_mode = 4
 script = ExtResource("1_qglxo")
 
 [node name="amount" type="Label" parent="."]
 layout_mode = 0
-offset_right = 40.0
-offset_bottom = 23.0
+offset_left = 8.0
+offset_top = 8.0
+offset_right = 27.0
+offset_bottom = 24.0
+theme_override_font_sizes/font_size = 9
+text = "99"
+horizontal_alignment = 1

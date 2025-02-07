@@ -21,14 +21,6 @@ extends Node
 	"special":preload("res://textures/Buttons-Menus/Transformation.png")
 }
 
-@onready var condition_icons: Dictionary = {
-	"bleed":preload("res://textures/Buttons-Menus/Bleed.png"),
-	"blight":preload("res://textures/Buttons-Menus/Blight.png"),
-	"def_up":preload("res://textures/Buttons-Menus/Def up.png"),
-	"poisoned":preload("res://textures/Buttons-Menus/Poisoned.png"),
-	"regen":preload("res://textures/Buttons-Menus/Regen.png")
-}
-
 @onready var glyph_list:Dictionary = {
 	"nature":{
 		"":preload("res://textures/Nature_blank.png"),
@@ -83,5 +75,6 @@ extends Node
 var current_state:String = "none"
 
 var damage_number_label:PackedScene = preload("res://resources/damage_number_label.tscn")
+var status_icon:PackedScene = preload("res://resources/status_icon.tscn")
 
 var next_level:int = 0
