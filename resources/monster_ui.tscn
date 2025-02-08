@@ -1,9 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://cwybtdvgyl68k"]
+[gd_scene load_steps=4 format=3 uid="uid://cwybtdvgyl68k"]
 
 [ext_resource type="PackedScene" uid="uid://rjpdnrvtcto1" path="res://resources/complex_health_bar.tscn" id="1_0sqkv"]
 [ext_resource type="Script" path="res://resources/monster_ui.gd" id="1_m3vjj"]
 [ext_resource type="Texture2D" uid="uid://dc28hlk3t78aj" path="res://textures/error.png" id="2_y7xma"]
-[ext_resource type="PackedScene" uid="uid://co7mai35gmrpq" path="res://resources/status_icon.tscn" id="4_3ol40"]
 
 [node name="monster_ui" type="Control"]
 layout_mode = 3
@@ -42,6 +41,3 @@ layout_mode = 2
 [node name="status_conditions" type="HBoxContainer" parent="display"]
 layout_mode = 2
 size_flags_vertical = 0
-
-[node name="status_icon" parent="display/status_conditions" instance=ExtResource("4_3ol40")]
-layout_mode = 2

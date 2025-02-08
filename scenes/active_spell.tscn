@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://cxvm65rnq0he1"]
 
-[ext_resource type="PackedScene" uid="uid://fq6oy2qhfmhr" path="res://scenes/rune_spell.tscn" id="1_gs3yd"]
 [ext_resource type="Script" path="res://scenes/active_spell.gd" id="1_lnemb"]
+[ext_resource type="PackedScene" uid="uid://xvk5ncvqqj4v" path="res://scenes/thought_preview.tscn" id="2_w2y6y"]
 
 [node name="active_spell" type="VBoxContainer"]
 script = ExtResource("1_lnemb")
@@ -9,9 +9,8 @@ script = ExtResource("1_lnemb")
 [node name="HBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 2
 
-[node name="rune_spell" parent="HBoxContainer" instance=ExtResource("1_gs3yd")]
+[node name="thought_preview" parent="HBoxContainer" instance=ExtResource("2_w2y6y")]
 layout_mode = 2
-size_flags_horizontal = 3
 
 [node name="HBoxContainer" type="HBoxContainer" parent="HBoxContainer"]
 layout_mode = 2
@@ -31,6 +30,3 @@ size_flags_vertical = 0
 size_flags_stretch_ratio = 0.5
 theme_override_font_sizes/font_size = 8
 text = "X"
-
-[connection signal="pressed" from="HBoxContainer/HBoxContainer/confirm" to="HBoxContainer/rune_spell" method="_on_confirm_pressed"]
-[connection signal="pressed" from="HBoxContainer/HBoxContainer/cancel" to="HBoxContainer/rune_spell" method="_on_cancel_pressed"]
