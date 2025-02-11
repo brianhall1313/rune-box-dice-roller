@@ -1,9 +1,11 @@
-[gd_scene load_steps=2 format=3 uid="uid://du30i2smjir4w"]
+[gd_scene load_steps=3 format=3 uid="uid://du30i2smjir4w"]
 
+[ext_resource type="Script" path="res://scenes/queued_spell.gd" id="1_13w8s"]
 [ext_resource type="PackedScene" uid="uid://xvk5ncvqqj4v" path="res://scenes/thought_preview.tscn" id="1_nembj"]
 
 [node name="powerable_spell" type="HBoxContainer"]
 size_flags_horizontal = 3
+script = ExtResource("1_13w8s")
 
 [node name="thought_preview" parent="." instance=ExtResource("1_nembj")]
 layout_mode = 2

@@ -4,6 +4,7 @@ extends Node2D
 @onready var ui: Control = $UI
 @onready var scene_player: player = $player
 @onready var action_delay: Timer = $action_delay
+@onready var background: TextureRect = $background
 
 var battle_round:int = 0
 var displayed: Array[Die] = []
@@ -23,7 +24,6 @@ var win_state:bool = false
  
 func _ready() -> void:
 	connect_to_global_signal_bus()
-	#TODO setup combact: however we are going to do that
 	setup()
 	GlobalSignalBus.emit_state_change("player_turn")
 	scene_player.setup(PlayerManager.export())
@@ -47,6 +47,7 @@ func _process(_delta: float) -> void:
 
 func setup() -> void:
 	var encounter = EncounterDirectory.encounters[Global.next_level]
+	#TODO set background to W/E gets used
 	for enemy in encounter.enemies:
 		var new = EncounterDirectory.monster_directory[enemy.enemy].instantiate()
 		new.monster_name = enemy.name

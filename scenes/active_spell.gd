@@ -12,7 +12,6 @@ func _ready() -> void:
 
 func setup(spell_package:Dictionary) -> void:
 	var spell = spell_package.spell
-	var _target = spell_package.target
 	SpellManager.get_ui_info(spell)
 	thought_preview.setup(spell_package)
 	if SpellManager.is_spell(spell):
@@ -24,3 +23,11 @@ func setup(spell_package:Dictionary) -> void:
 			cancel.disabled = false
 		else:
 			cancel.disabled = true
+
+
+func _on_confirm_button_up() -> void:
+	GlobalSignalBus.emit_spell_confirm()
+
+
+func _on_cancel_button_up() -> void:
+	GlobalSignalBus.emit_spell_cancel()

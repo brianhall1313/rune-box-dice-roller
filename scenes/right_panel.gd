@@ -7,6 +7,7 @@ extends Control
 @onready var active_spell_box: PackedScene=preload("res://scenes/active_spell.tscn")
 @onready var queued_spell_box: PackedScene = preload("res://scenes/queued_spell.tscn")
 
+@onready var interact_buttons: HBoxContainer = $PanelContainer/MarginContainer/VBoxContainer/interact_buttons
 
 signal cast
 signal clear_all
@@ -24,10 +25,15 @@ func update(args:Dictionary)->void:
 		for spell in args["spell"]["queue"]:
 			var new = queued_spell_box.instantiate()
 			queued_spells.add_child(new)
-			new.get_child(0).setup(spell)
+			new.setup(spell)
 		#print("want to update active spell too")
-		#print(args["spell"]["active"])
-		active_spell.setup(args["spell"]["active"])
+		print(args["spell"]["active"])
+		if len(args["spell"]["active"]["spell"])>0:
+			active_spell.show()
+			active_spell.setup(args["spell"]["active"])
+			return
+		active_spell.hide()
+
 
 
 func _on_cast_button_up() -> void:
