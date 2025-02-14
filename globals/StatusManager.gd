@@ -15,7 +15,17 @@ const SV:String = "Stalker Vigor"
 	BLIGHT:preload("res://textures/Buttons-Menus/Blight.png"),
 	DEF_UP:preload("res://textures/Buttons-Menus/Def up.png"),
 	POISON:preload("res://textures/Buttons-Menus/Poisoned.png"),
-	REGEN:preload("res://textures/Buttons-Menus/Regen.png")
+	REGEN:preload("res://textures/Buttons-Menus/Regen.png"),
+	SV:preload("res://textures/Buttons-Menus/Regen.png")
+}
+
+@onready var status_descriptions: Dictionary = {
+	BLEED:{"title":"Bleed","description":"Deals Damage every time an action is taken."},
+	BLIGHT:{"title":"Blight","description":"Take damage if Die is used."},
+	DEF_UP:{"title":"Defense Up","description":"Adds more defense when a defend action is taken"},
+	POISON:{"title":"Poison","description":"Deals Damage at the start of turn."},
+	REGEN:{"title":"Regen","description":"Heals Damage at the starrt of turn."},
+	SV:{"title":"Stalker Vigor","description":"Heals damage every turn."},
 }
 
 var effects_list:Dictionary={

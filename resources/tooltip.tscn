@@ -1,0 +1,44 @@
+[gd_scene load_steps=3 format=3 uid="uid://drsac6wnlupk1"]
+
+[ext_resource type="Texture2D" uid="uid://dc28hlk3t78aj" path="res://textures/error.png" id="1_rtgjp"]
+[ext_resource type="Script" path="res://resources/tooltip.gd" id="1_vtsmv"]
+
+[node name="effect tooltip" type="PanelContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -360.0
+offset_bottom = -144.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_vtsmv")
+
+[node name="tooltip_margins" type="MarginContainer" parent="."]
+layout_mode = 2
+theme_override_constants/margin_left = 3
+theme_override_constants/margin_top = 3
+theme_override_constants/margin_right = 3
+theme_override_constants/margin_bottom = 3
+
+[node name="tooltip_info" type="VBoxContainer" parent="tooltip_margins"]
+layout_mode = 2
+
+[node name="title" type="HBoxContainer" parent="tooltip_margins/tooltip_info"]
+layout_mode = 2
+
+[node name="effect_icon" type="TextureRect" parent="tooltip_margins/tooltip_info/title"]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+texture = ExtResource("1_rtgjp")
+
+[node name="effect_title" type="Label" parent="tooltip_margins/tooltip_info/title"]
+layout_mode = 2
+text = "Default effect"
+
+[node name="description" type="Label" parent="tooltip_margins/tooltip_info"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+theme_override_font_sizes/font_size = 12
+text = "This should be a description of the effect
+"
+autowrap_mode = 2
