@@ -1,0 +1,73 @@
+[gd_scene load_steps=5 format=3 uid="uid://dvlugsg5oun00"]
+
+[ext_resource type="Script" path="res://resources/inventory_dice_entry.gd" id="1_5hist"]
+[ext_resource type="Texture2D" uid="uid://cpvb5j6ghcqcv" path="res://textures/Craft_Die.png" id="2_0ib02"]
+[ext_resource type="Texture2D" uid="uid://dnee5630octbt" path="res://textures/Lob_Glyph.png" id="3_315bt"]
+[ext_resource type="Texture2D" uid="uid://jmp57s4hr8ll" path="res://textures/Temper_Glyph.png" id="4_6qfn4"]
+
+[node name="inventory_dice_entry" type="VBoxContainer"]
+script = ExtResource("1_5hist")
+
+[node name="dice_summary" type="HBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="type_icon" type="TextureRect" parent="dice_summary"]
+custom_minimum_size = Vector2(16, 16)
+layout_mode = 2
+texture = ExtResource("2_0ib02")
+expand_mode = 2
+
+[node name="glyph_title" type="Label" parent="dice_summary"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 8
+text = "default"
+
+[node name="delete_button" type="Button" parent="dice_summary"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 8
+text = "Remove"
+
+[node name="full_dice_view" type="VBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="glyph_container" type="HBoxContainer" parent="full_dice_view"]
+layout_mode = 2
+theme_override_constants/separation = 2
+
+[node name="glyph_icon1" type="TextureRect" parent="full_dice_view/glyph_container"]
+custom_minimum_size = Vector2(16, 16)
+layout_mode = 2
+texture = ExtResource("3_315bt")
+expand_mode = 2
+
+[node name="glyph_icon2" type="TextureRect" parent="full_dice_view/glyph_container"]
+custom_minimum_size = Vector2(16, 16)
+layout_mode = 2
+texture = ExtResource("3_315bt")
+expand_mode = 2
+
+[node name="glyph_icon3" type="TextureRect" parent="full_dice_view/glyph_container"]
+custom_minimum_size = Vector2(16, 16)
+layout_mode = 2
+texture = ExtResource("3_315bt")
+expand_mode = 2
+
+[node name="glyph_icon4" type="TextureRect" parent="full_dice_view/glyph_container"]
+custom_minimum_size = Vector2(16, 16)
+layout_mode = 2
+texture = ExtResource("4_6qfn4")
+expand_mode = 2
+
+[node name="glyph_icon5" type="TextureRect" parent="full_dice_view/glyph_container"]
+custom_minimum_size = Vector2(16, 16)
+layout_mode = 2
+texture = ExtResource("4_6qfn4")
+expand_mode = 2
+
+[node name="glyph_icon6" type="TextureRect" parent="full_dice_view/glyph_container"]
+custom_minimum_size = Vector2(16, 16)
+layout_mode = 2
+texture = ExtResource("2_0ib02")
+expand_mode = 2
+
+[connection signal="button_up" from="dice_summary/delete_button" to="." method="_on_delete_button_button_up"]

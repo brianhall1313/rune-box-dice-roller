@@ -1,24 +1,49 @@
 extends Control
 
 @onready var inventory_container: GridContainer = $main/inventory/inventory_margin/inventory_display/inventory_scroll/inventory_container
-@onready var dice_entry: PackedScene = preload("res://scenes/dice_entry.tscn")
+@onready var dice_entry: PackedScene = preload("res://resources/inventory_dice_entry.tscn")
+
+var display_inventory:Array[Dictionary] = []
+
 
 func _ready() -> void:
 	populate_inventory()
 
 func populate_inventory() -> void:
-	var display_inventory = []
+	display_inventory = []
 	for item in InventoryManager.inventory:
-		if !display_inventory.has(item):
-			display_inventory.append(item.duplicate(true))
-	for item in display_inventory:
-		item["count"]=InventoryManager.inventory.count(item)
-	#TODO the rest of this nonsense
+		display_inventory.append(item.duplicate(true))
+	var i:int = 0
 	for item in display_inventory:
 		var new = dice_entry.instantiate()
 		inventory_container.add_child(new)
-		new.setup(item)
+		new.setup(item,i)
+		i += 1
+	attach_signals()
+
+func update_inventory() -> void:
+	for child in inventory_container.get_children():
+		child.disconnect("delete",_delete_item_at)
+		child.queue_free()
+	var i:int = 0
+	for item in display_inventory:
+		var new = dice_entry.instantiate()
+		inventory_container.add_child(new)
+		new.setup(item,i)
+		i += 1
+	attach_signals()
+
+func attach_signals() -> void:
+	for child in inventory_container.get_children():
+		child.connect("delete",_delete_item_at)
 
 
 func _on_exit_button_button_up() -> void:
+	InventoryManager.build_inventory(display_inventory)
 	get_tree().change_scene_to_file("res://scenes/overworld.tscn")
+
+func _delete_item_at(index) -> void:
+	display_inventory.remove_at(index)
+	#print(display_inventory)
+	update_inventory()
+	
