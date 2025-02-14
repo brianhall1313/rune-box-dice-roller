@@ -11,11 +11,11 @@ var effect:String
 
 
 func _ready() -> void:
-	setup(effect)
+	setup()
 
-func setup(effect_name):
+func setup():
 	print("effect tooltip generation", get_children(true))
-	if StatusManager.effects_list.keys().has(effect_name):
-		effect_icon.texture = StatusManager.condition_icons[effect_name]
-		effect_title.text = StatusManager.status_descriptions[effect_name]["title"]
-		description.text = StatusManager.status_descriptions[effect_name]["description"]
+	if StatusManager.effects_list.keys().has(effect):
+		effect_icon.texture = StatusManager.condition_icons[effect]
+		effect_title.text = StatusManager.status_descriptions[effect]["title"]
+		description.text = StatusManager.status_descriptions[effect]["description"]

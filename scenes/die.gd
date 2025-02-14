@@ -17,7 +17,7 @@ var is_selected:bool = false
 func _ready() -> void:
 	set_selected(is_selected)
 	#for testing purposes
-	setup("Elemental","nature",["fire","water","earth","sky","life",""])
+	#setup("Elemental","nature",["fire","water","earth","sky","life",""])
 
 
 func _gui_input(event: InputEvent) -> void:
@@ -50,12 +50,10 @@ func roll()->void:
 	_make_custom_tooltip('')
 
 func _make_custom_tooltip(_for_text: String) -> Object:
-	var label = Label.new()
-	if current_glyph != "":
-		label.text = die_type +" die on "+ current_glyph
-	else:
-		label.text = die_type +" die"
-	return label
+	var dt = preload("res://resources/die_tooltip.tscn").instantiate()
+	dt.type = die_type
+	dt.glyph = current_glyph
+	return dt
 
 func set_selected(value:bool)->void:
 	is_selected = value

@@ -27,6 +27,7 @@ SpellManager="*res://globals/SpellManager.gd"
 StatusManager="*res://globals/StatusManager.gd"
 SaveAndLoad="*res://globals/SaveAndLoad.gd"
 EncounterDirectory="*res://globals/EncounterDirectory.gd"
+DiceDirectory="*res://globals/DiceDirectory.gd"
 
 [display]
 

@@ -1,0 +1,25 @@
+[gd_scene load_steps=2 format=3 uid="uid://deg7vejyccjba"]
+
+[ext_resource type="Script" path="res://resources/die_tooltip.gd" id="1_5tava"]
+
+[node name="die_tooltip" type="MarginContainer"]
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_5tava")
+
+[node name="tooltip" type="VBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="tooltip"]
+layout_mode = 2
+
+[node name="die" type="TextureRect" parent="tooltip/HBoxContainer"]
+layout_mode = 2
+
+[node name="die_title" type="Label" parent="tooltip/HBoxContainer"]
+layout_mode = 2
+
+[node name="die_description" type="Label" parent="tooltip"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+autowrap_mode = 2
