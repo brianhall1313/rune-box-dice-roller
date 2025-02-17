@@ -3,6 +3,7 @@ extends Node
 var player_name:String = "Default"
 var max_health:int = 100
 var health:int = max_health
+var max_shifts:int =3
 var experience:int = 0
 var stories:int = 0
 
@@ -18,6 +19,7 @@ var custom_options:Dictionary ={
 func set_player_to_default() -> void:
 	max_health = 100
 	health = max_health
+	max_shifts = 3
 	experience = 0
 	stories = 0
 	InventoryManager.build_inventory()#no args = set to default inv
@@ -45,6 +47,10 @@ func load_player() -> void:
 		health = data["health"]
 	else:
 		print("health not found! loading default")
+	if data.keys().has("max_shifts"):
+		max_shifts = data["max_shifts"]
+	else:
+		print("max shifts not found! loading default")
 	if data.keys().has("experience"):
 		experience = data["experience"]
 	else:
@@ -64,6 +70,7 @@ func save_player() -> void:
 		"player_name":player_name,
 		"max_health":max_health,
 		"health":health,
+		"max_shifts":max_shifts,
 		"experience":experience,
 		"stories":stories
 	})

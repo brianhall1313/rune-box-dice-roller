@@ -11,6 +11,7 @@ extends Control
 @onready var health_label: Label = $container_parent/MarginContainer/VBoxContainer/health_label
 @onready var defense_label: Label = $container_parent/MarginContainer/VBoxContainer/defense_label
 @onready var effects_info: HBoxContainer = $container_parent/MarginContainer/VBoxContainer/effects_info
+@onready var shifts: Label = $container_parent/MarginContainer/VBoxContainer/shifts
 
 
 
@@ -20,6 +21,7 @@ func _ready() -> void:
 	player_name.text = PlayerManager.player_name
 	player_portrait.setup(PlayerManager.custom_options)
 	player_health.setup(PlayerManager.health,PlayerManager.max_health)
+	
 	
 	
 	# and set the dice list to a bunch of real stuff (loaded or initial)
@@ -34,6 +36,7 @@ func update_player_information(scene_player:player)->void:
 		defense_label.text = str(scene_player.health.defense) + " Defense"
 	else:
 		defense_label.text = ""
+	shifts.text = "Shifts: " + str(scene_player.shifts) + " / " + str(scene_player.max_shifts)
 
 
 func update_status(scene_player:player) -> void:
@@ -43,7 +46,7 @@ func update_status(scene_player:player) -> void:
 		var new = Global.status_icon.instantiate()
 		effects_info.add_child(new)
 		new.setup(status,scene_player.status[status])
-
+	
 
 func add_effect(effect:PackedScene) -> void:
 	var ani = effect.instantiate()

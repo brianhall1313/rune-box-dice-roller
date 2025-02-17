@@ -155,6 +155,7 @@ func rune_interaction(die) -> void:
 func _update_ui():
 	ui.update_right_panel({"queue":spell_queue,"active":{"spell":current_spell_selection,"target":current_enemy}})
 	ui.update_player_information(scene_player)
+	ui.update_active_panel(scene_player.can_spend_shift())
 
 func play_animation(animation:PackedScene,target=null,is_player:bool=false) -> void:
 	GlobalSignalBus.emit_state_change("animation_playing")
@@ -326,6 +327,9 @@ func add_action_to_queue(item:Dictionary) -> void:
 func add_interrupt_action_to_queue(item:Dictionary) -> void:
 	action_queue.append(item)
 
+func shift_action() -> void:
+	scene_player.spend_shift()
+
 func _on_right_panel_clear_all() -> void:
 	clear_queue()
 
@@ -337,6 +341,8 @@ func _on_right_panel_clear_last() -> void:
 
 func _on_active_panel_shook() -> void:
 	clear_spell()
+	shift_action()
+	_update_ui()
 
 
 func _on_player_defense_gone() -> void:

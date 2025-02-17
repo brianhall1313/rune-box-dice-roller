@@ -15,3 +15,6 @@ func _on_shake_box_button_up() -> void:
 
 func shake_box() -> void:
 	box.shake_box()
+
+func update(shift_spends_available:bool) -> void:
+	toggle_shake(shift_spends_available)
