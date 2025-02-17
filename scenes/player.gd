@@ -5,6 +5,7 @@ class_name player
 
 var player_name:String = "Default"
 var shifts:int = 0
+var max_shifts:int = 3
 var status:Dictionary = {}
 
 signal defense_gone
@@ -20,6 +21,7 @@ func start_turn() -> void:
 	health.reset_defense()
 	if health.health == 0:
 		GlobalSignalBus.emit_player_death()
+	set_shifts()
 
 func defend(shield:int) -> void:
 	health.defend(shield)
@@ -50,3 +52,19 @@ func heal(heal_amount:int) -> void:
 
 func export() -> Dictionary:
 	return {"health":health.health}
+
+func spend_shift() -> void:
+	shifts -= 1
+
+func can_spend_shift() -> bool:
+	if shifts > 0:
+		return true
+	return false
+
+func get_bonus_shifts() -> int:
+	var bonus:int = 0
+	#TODO bonus logic
+	return bonus
+
+func set_shifts() -> void:
+	shifts =  max_shifts + get_bonus_shifts()
