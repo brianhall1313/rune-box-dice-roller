@@ -1,5 +1,7 @@
 extends Node
 
+@onready var debug:bool = false
+
 @onready var colors: Array = [
 	Color("light gray"),
 	Color("red"),

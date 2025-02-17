@@ -64,6 +64,8 @@ func can_spend_shift() -> bool:
 func get_bonus_shifts() -> int:
 	var bonus:int = 0
 	#TODO bonus logic
+	if Global.debug:
+		bonus = 99
 	return bonus
 
 func set_shifts() -> void:

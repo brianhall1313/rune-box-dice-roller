@@ -155,7 +155,8 @@ func rune_interaction(die) -> void:
 func _update_ui():
 	ui.update_right_panel({"queue":spell_queue,"active":{"spell":current_spell_selection,"target":current_enemy}})
 	ui.update_player_information(scene_player)
-	ui.update_active_panel(scene_player.can_spend_shift())
+	#long and ugly, but it works
+	ui.update_active_panel(scene_player.can_spend_shift() and len(spell_queue) == 0 and len(current_spell_selection) == 0)
 
 func play_animation(animation:PackedScene,target=null,is_player:bool=false) -> void:
 	GlobalSignalBus.emit_state_change("animation_playing")
