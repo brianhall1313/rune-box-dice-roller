@@ -77,6 +77,7 @@ func shake_box()->void:
 			dice[i].setup(item["name"],item["type"],item["faces"])
 			dice[i].roll()
 			dice[i].set_selected(false)
+			dice[i].set_used(false)
 		i += 1
 	while i < 12:
 		dice[i].set_blank()

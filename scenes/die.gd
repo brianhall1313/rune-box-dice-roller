@@ -13,6 +13,7 @@ var die_name:String = ''
 var adjacent:Dictionary = {"up":null,"down":null,"right":null,"left":null,}
 var pos:Dictionary = {}
 var is_selected:bool = false
+var used:bool = false
 
 func _ready() -> void:
 	set_selected(is_selected)
@@ -54,6 +55,14 @@ func _make_custom_tooltip(_for_text: String) -> Object:
 	dt.type = die_type
 	dt.glyph = current_glyph
 	return dt
+
+func set_used(is_used:bool) -> void:
+	used = is_used
+	if used:
+		self.modulate = Color("White",0.25)
+		return
+	self.modulate = Color("White",1.0)
+	
 
 func set_selected(value:bool)->void:
 	is_selected = value

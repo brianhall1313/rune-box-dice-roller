@@ -109,6 +109,8 @@ func queue_spell() -> void:
 			"target":target
 		}
 		spell_queue.append(spell)
+		for rune in current_spell_selection:
+			rune.set_used(true)
 		current_spell_selection = []
 		_update_ui()
 	ui.toggle_shake(false)
