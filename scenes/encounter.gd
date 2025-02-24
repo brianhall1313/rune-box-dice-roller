@@ -199,6 +199,7 @@ func clear_queue() -> void:
 	for spell in spell_queue:
 		for die:Die in spell.spell:
 			die.set_selected(false)
+			die.set_used(false)
 	spell_queue = []
 	#print("queue cleared")
 	_update_ui()
@@ -206,9 +207,10 @@ func clear_queue() -> void:
 
 func clear_last_spell() -> void:
 	if len(spell_queue) > 0:
-		var spell:Array[Die] = spell_queue.pop_back()
-		for die:Die in spell:
+		var spell:Dictionary = spell_queue.pop_back()
+		for die:Die in spell.spell:
 			die.set_selected(false)
+			die.set_used(false)
 	_update_ui()
 	if len(spell_queue) == 0:
 		ui.toggle_shake(true)
